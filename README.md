@@ -1,1 +1,1 @@
-# instagram-react12
+# react instagram app
