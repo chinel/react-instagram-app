@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavbarStyles } from "../../styles";
 import { AppBar } from "@material-ui/core";
+import Logo from "./Logo";
 
 function Navbar() {
   const classes = useNavbarStyles();
