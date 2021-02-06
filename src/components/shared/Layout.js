@@ -1,6 +1,6 @@
 import React from "react";
 import { useLayoutStyles } from "../../styles";
-
+import SEO from "../shared/Seo";
 function Layout({ children }) {
   const classes = useLayoutStyles();
 
