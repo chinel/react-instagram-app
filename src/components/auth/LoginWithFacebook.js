@@ -1,7 +1,7 @@
 import React from "react";
 import { useLoginPageStyles } from "../../styles";
-import FacebookIconBlue from "../images/facebook-icon-blue.svg";
-import FacebookIconWhite from "../images/facebook-icon-white.png";
+import FacebookIconBlue from "../../images/facebook-icon-blue.svg";
+import FacebookIconWhite from "../../images/facebook-icon-white.png";
 import { Button } from "@material-ui/core";
 
 function LoginWithFacebook({ color, iconColor }) {

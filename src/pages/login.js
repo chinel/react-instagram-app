@@ -7,6 +7,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
+import LoginWithFacebook from "../components/auth/LoginWithFacebook";
 import SEO from "../components/shared/Seo";
 import { useLoginPageStyles } from "../styles";
 
@@ -22,7 +23,7 @@ function LoginPage() {
             <CardHeader className={classes.cardHeader} />
             <form>
               <TextField
-                fullwidth
+                fullWidth
                 variant="filled"
                 label="Username"
                 margin="dense"
@@ -30,7 +31,7 @@ function LoginPage() {
                 autoComplete="username"
               />
               <TextField
-                fullwidth
+                fullWidth
                 variant="filled"
                 label="Password"
                 margin="dense"
@@ -39,7 +40,7 @@ function LoginPage() {
               />
               <Button
                 variant="contained"
-                fullwidth
+                fullWidth
                 color="primary"
                 className={classes.button}
                 type="submit"
