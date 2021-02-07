@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  CardHeader,
-  TextField,
-  Typography,
-} from "@material-ui/core";
+import { Button, Card, TextField, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import LoginWithFacebook from "../components/auth/LoginWithFacebook";
 import SEO from "../components/shared/Seo";
@@ -29,8 +23,32 @@ function SignUpPage() {
               iconColor="white"
               variant="contained"
             />
-
+            <div className={classes.orContainer}>
+              <div className={classes.orLine} />
+              <div>
+                <Typography variant="body2" color="textSecondary">
+                  OR
+                </Typography>
+              </div>
+              <div className={classes.orLine} />
+            </div>
             <form>
+              <TextField
+                fullWidth
+                variant="filled"
+                label="Email"
+                type="email"
+                margin="dense"
+                className={classes.textField}
+                autoComplete="username"
+              />
+              <TextField
+                fullWidth
+                variant="filled"
+                label="Full Name"
+                margin="dense"
+                className={classes.textField}
+              />
               <TextField
                 fullWidth
                 variant="filled"
@@ -43,9 +61,10 @@ function SignUpPage() {
                 fullWidth
                 variant="filled"
                 label="Password"
+                type="password"
                 margin="dense"
                 className={classes.textField}
-                autoComplete="current-password"
+                autoComplete="new-password"
               />
               <Button
                 variant="contained"
@@ -54,29 +73,17 @@ function SignUpPage() {
                 className={classes.button}
                 type="submit"
               >
-                Log In
+                Sign Up
               </Button>
             </form>
-            <div className={classes.orContainer}>
-              <div className={classes.orLine} />
-              <div>
-                <Typography variant="body2" color="textSecondary">
-                  OR
-                </Typography>
-              </div>
-              <div className={classes.orLine} />
-            </div>
-            <Button fullWidth color="secondary">
-              <Typography variant="caption">Forgot password?</Typography>
-            </Button>
           </Card>
-          <Card className={classes.signUpCard}>
+          <Card className={classes.loginCard}>
             <Typography variant="body2" align="right">
-              Don't have an account?
+              Have an account?
             </Typography>
-            <Link to="/accounts/emailsignup">
-              <Button color="primary" className={classes.signUpButton}>
-                Sign up
+            <Link to="/accounts/login">
+              <Button color="primary" className={classes.loginButton}>
+                Log In
               </Button>
             </Link>
           </Card>

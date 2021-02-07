@@ -36,6 +36,7 @@ function LoginPage() {
                 label="Password"
                 margin="dense"
                 className={classes.textField}
+                type="password"
                 autoComplete="current-password"
               />
               <Button
