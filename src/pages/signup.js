@@ -1,4 +1,14 @@
 import React from "react";
+import {
+  Button,
+  Card,
+  CardHeader,
+  TextField,
+  Typography,
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
+import LoginWithFacebook from "../components/auth/LoginWithFacebook";
+import SEO from "../components/shared/Seo";
 import { useSignUpPageStyles } from "../styles";
 
 function SignUpPage() {
@@ -6,11 +16,20 @@ function SignUpPage() {
 
   return (
     <>
-      <SEO title="Login" />
+      <SEO title="Sign up" />
       <section className={classes.section}>
         <article>
           <Card className={classes.card}>
-            <CardHeader className={classes.cardHeader} />
+            <div className={classes.cardHeader} />
+            <Typography className={classes.cardHeaderSubHeader}>
+              Sign up to see photos and videos from your friends.
+            </Typography>
+            <LoginWithFacebook
+              color="primary"
+              iconColor="white"
+              variant="contained"
+            />
+
             <form>
               <TextField
                 fullWidth
@@ -47,7 +66,6 @@ function SignUpPage() {
               </div>
               <div className={classes.orLine} />
             </div>
-            <LoginWithFacebook color="secondary" iconColor="blue" />
             <Button fullWidth color="secondary">
               <Typography variant="caption">Forgot password?</Typography>
             </Button>
