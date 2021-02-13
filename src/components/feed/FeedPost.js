@@ -7,6 +7,7 @@ import UserCard from "../shared/UserCard";
 import LikeButton from "./LikeButton";
 import SaveButton from "./SaveButton";
 import HTMLEllipsis from "react-lines-ellipsis/lib/html";
+import Comment from "./Comment";
 
 function FeedPost({ post }) {
   const classes = useFeedPostStyles();
@@ -17,7 +18,7 @@ function FeedPost({ post }) {
       <article className={classes.article}>
         {/*Feed Post Header */}
         <div className={classes.postHeader}>
-          <UserCard />
+          <UserCard user={user} />
           <MoreIcon className={classes.moreIcon} />
         </div>
         {/*Feed Post Image */}
