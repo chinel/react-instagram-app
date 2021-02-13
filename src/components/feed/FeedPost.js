@@ -1,4 +1,4 @@
-import { Button, Typography } from "@material-ui/core";
+import { Button, Divider, Hidden, Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import { CommentIcon, MoreIcon, ShareIcon } from "../../icons";
@@ -100,6 +100,10 @@ function FeedPost({ post }) {
               5 DAYS AGO
             </Typography>
           </div>
+          <Hidden xsDown>
+            <Divider />
+            <Comment />
+          </Hidden>
         </div>
       </article>
     </>
