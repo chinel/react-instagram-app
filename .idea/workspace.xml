@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d4872dbc-770a-42c7-ba2b-b99678695e63" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/auth/LoginWithFacebook.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/auth/LoginWithFacebook.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +16,31 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1612733425" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="structureTheApp" />
+                    <option name="lastUsedInstant" value="1612733424" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="ProjectId" id="1o5HAejrGtyt7M0V7aYRjdasCQ2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -56,6 +80,8 @@
       <option name="presentableId" value="Default" />
       <updated>1612569388576</updated>
       <workItem from="1612569416259" duration="7961000" />
+      <workItem from="1612962925198" duration="534000" />
+      <workItem from="1612976502357" duration="578000" />
     </task>
     <servers />
   </component>
