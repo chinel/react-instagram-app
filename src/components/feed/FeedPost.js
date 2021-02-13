@@ -38,6 +38,7 @@ function FeedPost({ post }) {
           <Typography className={classes.like} variant="subtitle2">
             <span>{likes === 1 ? "1 like" : `${likes} likes`}</span>
           </Typography>
+
           <div className={showCaption ? classes.expanded : classes.collapsed}>
             <Link to={`/${user.username}`}>
               <Typography
@@ -72,17 +73,17 @@ function FeedPost({ post }) {
               </div>
             )}
           </div>
-          <div>
-            <Link to={`/p/${id}`}>
-              <Typography
-                className={classes.commentsLink}
-                variant="body2"
-                component="div"
-              >
-                View all {comments.length} comments
-              </Typography>
-            </Link>
-          </div>
+
+          <Link to={`/p/${id}`}>
+            <Typography
+              className={classes.commentsLink}
+              variant="body2"
+              component="div"
+            >
+              View all {comments.length} comments
+            </Typography>
+          </Link>
+
           {comments.map((comment) => (
             <div key={comment.id}>
               <Link to={`/${comment.user.username}`}>
@@ -102,12 +103,11 @@ function FeedPost({ post }) {
           <Typography color="textSecondary" className={classes.datePosted}>
             5 DAYS AGO
           </Typography>
-
-          <Hidden xsDown>
-            <Divider />
-            <Comment />
-          </Hidden>
         </div>
+        <Hidden xsDown>
+          <Divider />
+          <Comment />
+        </Hidden>
       </article>
     </>
   );
