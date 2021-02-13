@@ -11,7 +11,7 @@ import HTMLEllipsis from "react-lines-ellipsis/lib/html";
 function FeedPost({ post }) {
   const classes = useFeedPostStyles();
   const [showCaption, setShowCaption] = React.useState(false);
-  const { id, media, likes, user, caption } = post;
+  const { id, media, likes, user, caption, comments } = post;
   return (
     <>
       <article className={classes.article}>
@@ -70,6 +70,35 @@ function FeedPost({ post }) {
                 </Button>
               </div>
             )}
+
+            <Link to={`/p/${id}`}>
+              <Typography
+                className={classes.commentsLink}
+                variant="body2"
+                component="div"
+              >
+                View all {comments.length} comments
+              </Typography>
+            </Link>
+            {comments.map((comment) => (
+              <div key={comment.id}>
+                <Link to={`/${comment.user.username}`}>
+                  <Typography
+                    variant="subtitle2"
+                    component="span"
+                    className={classes.commentUsername}
+                  >
+                    {comment.user.username}
+                  </Typography>{" "}
+                  <Typography variant="body2" component="span">
+                    {comment.content}
+                  </Typography>
+                </Link>
+              </div>
+            ))}
+            <Typography color="textSecondary" className={classes.datePosted}>
+              5 DAYS AGO
+            </Typography>
           </div>
         </div>
       </article>
