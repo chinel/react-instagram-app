@@ -2,8 +2,9 @@ import React from "react";
 import { useUserCardStyles } from "../../styles";
 import { Link } from "react-router-dom";
 import { Avatar, Typography } from "@material-ui/core";
+import { defaultUser } from "../../data";
 
-function UserCard({ user }) {
+function UserCard({ user = defaultUser }) {
   const classes = useUserCardStyles();
 
   return user ? (

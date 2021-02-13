@@ -9,16 +9,17 @@ function LikeButton() {
   const className = liked ? classes.liked : classes.like;
   const onClick = liked ? handleUnlike : handleLike;
 
-  function handleLike(){
-
+  function handleLike() {
+    console.log("like");
+    setLiked(true);
   }
 
-  function handleUnlike(){
-      
+  function handleUnlike() {
+    console.log("unlike");
+    setLiked(false);
   }
 
-   
-  return <Icon className={className} onClick={onClick}/>;
+  return <Icon className={className} onClick={onClick} />;
 }
 
 export default LikeButton;

@@ -17,7 +17,7 @@ function FeedPage() {
         <div>
           {Array.from({ length: 5 }, () => getDefaultPost()).map((post) => (
             <FeedPost key={post.id} post={post} />
-          ))}
+          ))} 
         </div>
         {/*Sidebar */}
         <Hidden smDown>
