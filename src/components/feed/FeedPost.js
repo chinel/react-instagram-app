@@ -18,7 +18,7 @@ function FeedPost({ post }) {
       <article className={classes.article}>
         {/*Feed Post Header */}
         <div className={classes.postHeader}>
-          <UserCard user={user} />
+          {user && <UserCard user={user} />}
           <MoreIcon className={classes.moreIcon} />
         </div>
         {/*Feed Post Image */}
@@ -71,7 +71,8 @@ function FeedPost({ post }) {
                 </Button>
               </div>
             )}
-
+          </div>
+          <div>
             <Link to={`/p/${id}`}>
               <Typography
                 className={classes.commentsLink}
@@ -81,26 +82,27 @@ function FeedPost({ post }) {
                 View all {comments.length} comments
               </Typography>
             </Link>
-            {comments.map((comment) => (
-              <div key={comment.id}>
-                <Link to={`/${comment.user.username}`}>
-                  <Typography
-                    variant="subtitle2"
-                    component="span"
-                    className={classes.commentUsername}
-                  >
-                    {comment.user.username}
-                  </Typography>{" "}
-                  <Typography variant="body2" component="span">
-                    {comment.content}
-                  </Typography>
-                </Link>
-              </div>
-            ))}
-            <Typography color="textSecondary" className={classes.datePosted}>
-              5 DAYS AGO
-            </Typography>
           </div>
+          {comments.map((comment) => (
+            <div key={comment.id}>
+              <Link to={`/${comment.user.username}`}>
+                <Typography
+                  variant="subtitle2"
+                  component="span"
+                  className={classes.commentUsername}
+                >
+                  {comment.user.username}
+                </Typography>{" "}
+                <Typography variant="body2" component="span">
+                  {comment.content}
+                </Typography>
+              </Link>
+            </div>
+          ))}
+          <Typography color="textSecondary" className={classes.datePosted}>
+            5 DAYS AGO
+          </Typography>
+
           <Hidden xsDown>
             <Divider />
             <Comment />

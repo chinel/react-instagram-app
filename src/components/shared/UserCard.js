@@ -1,25 +1,24 @@
 import React from "react";
 import { useUserCardStyles } from "../../styles";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { Avatar, Typography } from "@material-ui/core";
 
 function UserCard({ user }) {
   const classes = useUserCardStyles();
-  const { username, profile_image, name } = user;
 
-  return (
+  return user ? (
     <div className={classes.wrapper}>
-      <Link to={`/${username}`}>
+      <Link to={`/${user.username}`}>
         <Avatar
-          src={profile_image}
+          src={user.profile_image}
           alt="User Avatar"
           className={classes.avatar}
         />
       </Link>
       <div className={classes.nameWrapper}>
-        <Link to={`/${username}`}>
+        <Link to={`/${user.username}`}>
           <Typography className={classes.typography} variant="subtitle2">
-            {username}
+            {user.username}
           </Typography>
         </Link>
         <Typography
@@ -27,10 +26,12 @@ function UserCard({ user }) {
           variant="body2"
           className={classes.typography}
         >
-          {name}
+          {user.name}
         </Typography>
       </div>
     </div>
+  ) : (
+    <p>Loading</p>
   );
 }
 
