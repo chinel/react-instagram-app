@@ -56,7 +56,7 @@ function FeedPost({ post }) {
             ) : (
               <div className={classes.captionWrapper}>
                 <HTMLEllipsis
-                  unsafehtml={caption}
+                  unsafeHTML={caption}
                   className={classes.caption}
                   maxLine="0"
                   ellipsis="..."
