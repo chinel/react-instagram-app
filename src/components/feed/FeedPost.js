@@ -1,11 +1,13 @@
 import React from "react";
-import { MoreIcon } from "../../icons";
+import { Link } from "react-router-dom";
+import { CommentIcon, MoreIcon, ShareIcon } from "../../icons";
 import { useFeedPostStyles } from "../../styles";
 import UserCard from "../shared/UserCard";
+import LikeButton from "./LikeButton";
 
 function FeedPost({ post }) {
   const classes = useFeedPostStyles();
-  const { media } = post;
+  const { id, media } = post;
   return (
     <>
       <article className={classes.article}>
@@ -21,7 +23,11 @@ function FeedPost({ post }) {
         {/*Feed Post Buttons*/}
         <div className={classes.postButtonsWrapper}>
           <div className={classes.postButtons}>
-
+            <LikeButton />
+            <Link to={`/p/${id}`}>
+              <CommentIcon />
+            </Link>
+            <ShareIcon />
           </div>
         </div>
       </article>
