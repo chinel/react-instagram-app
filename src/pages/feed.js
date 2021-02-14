@@ -7,9 +7,11 @@ import FeedPost from "../components/feed/FeedPost";
 import FeedSideSuggestions from "../components/feed/FeedSideSuggestions";
 import { Hidden } from "@material-ui/core";
 import LoadingScreen from "../components/shared/LoadingScreen";
+import { LoadingLargeIcon } from "../icons";
 
 function FeedPage() {
   const classes = useFeedPageStyles();
+  const [isEndOfFeed] = React.useState(false);
 
   let loading = false;
   if (loading) return <LoadingScreen />;
@@ -32,6 +34,7 @@ function FeedPage() {
             </div>
           </div>
         </Hidden>
+        {!isEndOfFeed && <LoadingLargeIcon />}
       </div>
     </Layout>
   );
