@@ -17,13 +17,13 @@ function FeedPage() {
         <div>
           {Array.from({ length: 5 }, () => getDefaultPost()).map((post) => (
             <FeedPost key={post.id} post={post} />
-          ))} 
+          ))}
         </div>
         {/*Sidebar */}
         <Hidden smDown>
           <div className={classes.sidebarContainer}>
             <div className={classes.sidebarWrapper}>
-              <UserCard />
+              <UserCard avatarSize={50} />
               <FeedSideSuggestions />
             </div>
           </div>
