@@ -21,7 +21,7 @@ function FeedSideSuggestions() {
         >
           Suggestions For You
         </Typography>
-        {Array.from({ length: 5 }, () => getDefaultUser).map((user) => (
+        {Array.from({ length: 5 }, () => getDefaultUser()).map((user) => (
           <div key={user.id} className={classes.card}>
             <UserCard user={user} />
             <FollowButton side />

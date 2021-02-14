@@ -9,7 +9,7 @@ function FollowButton({ side }) {
   const followButton = (
     <Button
       variant={side ? "text" : "contained"}
-      colors="primary"
+      color="primary"
       className={classes.button}
       onClick={() => setIsFollowing(true)}
       fullWidth
@@ -25,11 +25,11 @@ function FollowButton({ side }) {
       onClick={() => setIsFollowing(false)}
       fullWidth
     >
-      following
+      Following
     </Button>
   );
 
-  return <div>FollowButton</div>;
+  return isFollowing ? followingButton : followButton;
 }
 
 export default FollowButton;
