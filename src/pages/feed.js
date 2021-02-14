@@ -6,9 +6,13 @@ import { getDefaultPost } from "../data";
 import FeedPost from "../components/feed/FeedPost";
 import FeedSideSuggestions from "../components/feed/FeedSideSuggestions";
 import { Hidden } from "@material-ui/core";
+import LoadingScreen from "../components/shared/LoadingScreen";
 
 function FeedPage() {
   const classes = useFeedPageStyles();
+
+  let loading = false;
+  if (loading) return <LoadingScreen />;
 
   return (
     <Layout>
