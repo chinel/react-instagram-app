@@ -10,6 +10,8 @@ function Navbar() {
     <AppBar className={classes.appBar}>
       <section className={classes.section}>
         <Logo />
+        <Search />
+        <Links />
       </section>
     </AppBar>
   );
