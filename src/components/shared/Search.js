@@ -10,6 +10,8 @@ function Search() {
   const [query, setQuery] = React.useState("");
   const [results, setResults] = React.useState([]);
 
+  const hasResults = Boolean(query) && results.length > 0;
+
   React.useEffect(() => {
     if (!query.trim()) return;
     setResults(Array.from({ length: 5 }, () => getDefaultUser()));
