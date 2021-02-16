@@ -2,12 +2,20 @@ import React from "react";
 import { useNavbarStyles } from "../../styles";
 import { Hidden, InputBase } from "@material-ui/core";
 import { LoadingIcon } from "../../icons";
+import { getDefaultUser } from "../../data";
 
 function Search() {
   const classes = useNavbarStyles();
+  const [loading, setLoading] = React.useState(false);
   const [query, setQuery] = React.useState("");
+  const [results, setResults] = React.useState([]);
 
-  let loading = false;
+  const hasResults = Boolean(query) && results.length > 0;
+
+  React.useEffect(() => {
+    if (!query.trim()) return;
+    setResults(Array.from({ length: 5 }, () => getDefaultUser()));
+  }, [query]);
 
   const handleClearInput = () => {
     setQuery("");
