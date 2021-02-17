@@ -8,7 +8,7 @@ function Comment() {
   return (
     <div className={classes.commentContainer}>
       <TextField
-        fullwidth
+        fullWidth
         value={content}
         placeholder="Add a comment..."
         multiline
