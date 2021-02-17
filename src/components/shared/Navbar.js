@@ -8,21 +8,29 @@ import { useHistory } from "react-router-dom";
 
 function Navbar({ minimalNavbar }) {
   const classes = useNavbarStyles();
+  const [loadingPage, setLoadingPage] = React.useState(false);
   const history = useHistory();
   const path = history.location.pathname;
 
+  React.useEffect(() => {
+    setLoadingPage(true);
+  }, [path]);
+
   return (
-    <AppBar className={classes.appBar}>
-      <section className={classes.section}>
-        <Logo />
-        {!minimalNavbar && (
-          <>
-            <Search history={history} />
-            <Links path={path} />
-          </>
-        )}
-      </section>
-    </AppBar>
+    <>
+    <Progress />
+      <AppBar className={classes.appBar}>
+        <section className={classes.section}>
+          <Logo />
+          {!minimalNavbar && (
+            <>
+              <Search history={history} />
+              <Links path={path} />
+            </>
+          )}
+        </section>
+      </AppBar>
+    </>
   );
 }
 
