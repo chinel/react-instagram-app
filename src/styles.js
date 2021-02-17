@@ -343,6 +343,7 @@ export const useNavbarStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   resultLink: {
+    cursor: "pointer",
     background: "#fafafa",
     width: "100%",
     borderBottom: "solid 1px rgba(var(--b38,219,219,219),1)",
