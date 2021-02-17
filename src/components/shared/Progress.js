@@ -16,7 +16,7 @@ function Progress({ isAnimating }) {
       }}
     >
       <div
-        className={classes.progress}
+        className={classes.progressBar}
         style={{
           marginLeft: `${(-1 + progress) * 100}%`,
           transition: `margin-left ${animationDuration}ms linear`,

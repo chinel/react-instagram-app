@@ -5,20 +5,21 @@ import Logo from "./Logo";
 import Search from "./Search";
 import Links from "./Links";
 import { useHistory } from "react-router-dom";
+import Progress from "./Progress";
 
 function Navbar({ minimalNavbar }) {
   const classes = useNavbarStyles();
-  const [loadingPage, setLoadingPage] = React.useState(false);
+  const [loadingPage, setLoadingPage] = React.useState(true);
   const history = useHistory();
   const path = history.location.pathname;
 
   React.useEffect(() => {
-    setLoadingPage(true);
+    setTimeout(() => setLoadingPage(false), 10000);
   }, [path]);
 
   return (
     <>
-    <Progress />
+      <Progress isAnimating={loadingPage} />
       <AppBar className={classes.appBar}>
         <section className={classes.section}>
           <Logo />
