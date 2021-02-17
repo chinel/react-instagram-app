@@ -14,7 +14,8 @@ function Navbar({ minimalNavbar }) {
   const path = history.location.pathname;
 
   React.useEffect(() => {
-    setTimeout(() => setLoadingPage(false), 10000);
+    setLoadingPage(false);
+    //setTimeout(() => setLoadingPage(false), 10000);//since our page is a single page to see the progress bar you can use set timeout
   }, [path]);
 
   return (
