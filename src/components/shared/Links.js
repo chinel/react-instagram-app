@@ -17,7 +17,14 @@ import NotificationTooltip from "../notification/NotificationTooltip";
 function Links({ path }) {
   const classes = useNavbarStyles();
   const [showList, setShowList] = React.useState(false);
-  const [showTooltip, setTooltip] = React.useState(false);
+  const [showTooltip, setTooltip] = React.useState(true);
+
+  React.useEffect(() => {
+    const timeout = setTimeout(handleHideTooltip, 5000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  });
 
   function handleToggleList() {
     setShowList((prev) => !prev);
