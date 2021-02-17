@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavbarStyles } from "../../styles";
+import { useNavbarStyles, RedTooltip } from "../../styles";
 import {
   AddIcon,
   LikeIcon,
@@ -9,20 +9,38 @@ import {
   HomeIcon,
   HomeActiveIcon,
 } from "../../icons";
-import { Avatar, Hidden } from "@material-ui/core";
+import { Avatar, Hidden, Zoom } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { defaultCurrentUser } from "../../data";
+import NotificationTooltip from "../notification/NotificationTooltip";
+import NotificationList from "../notification/NotificationList";
 
 function Links({ path }) {
   const classes = useNavbarStyles();
   const [showList, setShowList] = React.useState(false);
+  const [showTooltip, setTooltip] = React.useState(true);
+
+  React.useEffect(() => {
+    const timeout = setTimeout(handleHideTooltip, 5000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  });
 
   function handleToggleList() {
     setShowList((prev) => !prev);
   }
+  function handleHideTooltip() {
+    setTooltip(false);
+  }
+
+  function handleHideList() {
+    setShowList(false);
+  }
 
   return (
     <div className={classes.linksContainer}>
+      {showList && <NotificationList handleHideList={handleHideList} />}
       <div className={classes.linksWrapper}>
         <Hidden xsDown>
           <AddIcon />
@@ -31,9 +49,17 @@ function Links({ path }) {
         <Link to="/explore">
           {path === "/explore" ? <ExploreActiveIcon /> : <ExploreIcon />}
         </Link>
-        <div className={classes.notifications} onClick={handleToggleList}>
-          {showList ? <LikeActiveIcon /> : <LikeIcon />}
-        </div>
+        <RedTooltip
+          arrow
+          open={showTooltip}
+          onOpen={handleHideTooltip}
+          TransitionComponent={Zoom}
+          title={<NotificationTooltip />}
+        >
+          <div className={classes.notifications} onClick={handleToggleList}>
+            {showList ? <LikeActiveIcon /> : <LikeIcon />}
+          </div>
+        </RedTooltip>
         <Link to={`/${defaultCurrentUser.username}`}>
           <div
             className={

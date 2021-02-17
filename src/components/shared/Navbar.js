@@ -17,7 +17,7 @@ function Navbar({ minimalNavbar }) {
         <Logo />
         {!minimalNavbar && (
           <>
-            <Search />
+            <Search history={history} />
             <Links path={path} />
           </>
         )}
