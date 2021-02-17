@@ -1,10 +1,17 @@
 import React from "react";
 import { useNavbarStyles, WhiteTooltip } from "../../styles";
-import { Avatar, Fade, Grid, Hidden, InputBase, Typography } from "@material-ui/core";
+import {
+  Avatar,
+  Fade,
+  Grid,
+  Hidden,
+  InputBase,
+  Typography,
+} from "@material-ui/core";
 import { LoadingIcon } from "../../icons";
 import { getDefaultUser } from "../../data";
 
-function Search() {
+function Search({ history }) {
   const classes = useNavbarStyles();
   const [loading, setLoading] = React.useState(false);
   const [query, setQuery] = React.useState("");
@@ -31,17 +38,23 @@ function Search() {
           hasResults && (
             <Grid className={classes.resultContainer} container>
               {results.map((result) => (
-                <Grid key={result.id} item className={classes.resultLink}>
+                <Grid
+                  key={result.id}
+                  item
+                  className={classes.resultLink}
+                  onClick={() => {
+                    history.push(`/${result.username}`);
+                    handleClearInput();
+                  }}
+                >
                   <div className={classes.resultWrapper}>
                     <div className={classes.avatarWrapper}>
                       <Avatar src={result.profile_image} alt="user avatar" />
                     </div>
                     <div className={classes.nameWrapper}>
-                      <Typography variant="body1">
-                        {result.username}
-                      </Typography>
+                      <Typography variant="body1">{result.username}</Typography>
                       <Typography variant="body2" color="textSecondary">
-                         {result.name}
+                        {result.name}
                       </Typography>
                     </div>
                   </div>
