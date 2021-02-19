@@ -9,10 +9,11 @@ import SaveButton from "./SaveButton";
 import HTMLEllipsis from "react-lines-ellipsis/lib/html";
 import Comment from "./Comment";
 
-function FeedPost({ post }) {
+function FeedPost({ post, index }) {
   const classes = useFeedPostStyles();
   const [showCaption, setShowCaption] = React.useState(false);
   const { id, media, likes, user, caption, comments } = post;
+  const showFollowSuggestion = index === ;
   return (
     <>
       <article className={classes.article}>
@@ -109,6 +110,7 @@ function FeedPost({ post }) {
           <Comment />
         </Hidden>
       </article>
+      {showFollowSuggestion && <FollowSuggestions/>}
     </>
   );
 }
