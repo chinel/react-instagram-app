@@ -17,7 +17,10 @@ function FeedPost({ post, index }) {
   const showFollowSuggestion = index === 1;
   return (
     <>
-      <article className={classes.article}>
+      <article
+        className={classes.article}
+        style={{ marginBottom: showFollowSuggestion && 30 }}
+      >
         {/*Feed Post Header */}
         <div className={classes.postHeader}>
           {user && <UserCard user={user} />}
