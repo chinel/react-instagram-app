@@ -6,9 +6,10 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { getDefaultUser } from "../../data";
+import FollowSuggestionsItem from "./FollowSuggestionsItem";
 function FollowSuggestions() {
   const classes = useFollowSuggestionsStyles();
-  let loading = true;
+  let loading = false;
   return (
     <div className={classes.container}>
       <Typography
@@ -22,7 +23,7 @@ function FollowSuggestions() {
         <LoadingLargeIcon />
       ) : (
         <Slider
-          className={classes.slider}
+          className={classes.slide}
           dots={false}
           infinite
           speed={1000}

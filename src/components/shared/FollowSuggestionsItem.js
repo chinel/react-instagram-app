@@ -43,3 +43,5 @@ function FollowSuggestionsItem({ user }) {
     </div>
   );
 }
+
+export default FollowSuggestionsItem;
