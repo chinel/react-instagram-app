@@ -7,18 +7,20 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { getDefaultUser } from "../../data";
 import FollowSuggestionsItem from "./FollowSuggestionsItem";
-function FollowSuggestions() {
+function FollowSuggestions({ hideHeader }) {
   const classes = useFollowSuggestionsStyles();
   let loading = false;
   return (
     <div className={classes.container}>
-      <Typography
-        color="textSecondary"
-        variant="subtitle2"
-        className={classes.typography}
-      >
-        Suggestions For You
-      </Typography>
+      {!hideHeader && (
+        <Typography
+          color="textSecondary"
+          variant="subtitle2"
+          className={classes.typography}
+        >
+          Suggestions For You
+        </Typography>
+      )}
       {loading ? (
         <LoadingLargeIcon />
       ) : (
