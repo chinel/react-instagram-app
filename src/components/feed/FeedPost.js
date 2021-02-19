@@ -8,18 +8,28 @@ import LikeButton from "./LikeButton";
 import SaveButton from "./SaveButton";
 import HTMLEllipsis from "react-lines-ellipsis/lib/html";
 import Comment from "./Comment";
+import FollowSuggestions from "../shared/FollowSuggestions";
+import OptionsDialog from "../shared/OptionsDialog";
 
-function FeedPost({ post }) {
+function FeedPost({ post, index }) {
   const classes = useFeedPostStyles();
   const [showCaption, setShowCaption] = React.useState(false);
+  const [showOptionsDialog, setShowOptionsDialog] = React.useState(false);
   const { id, media, likes, user, caption, comments } = post;
+  const showFollowSuggestion = index === 1;
   return (
     <>
-      <article className={classes.article}>
+      <article
+        className={classes.article}
+        style={{ marginBottom: showFollowSuggestion && 30 }}
+      >
         {/*Feed Post Header */}
         <div className={classes.postHeader}>
           {user && <UserCard user={user} />}
-          <MoreIcon className={classes.moreIcon} />
+          <MoreIcon
+            className={classes.moreIcon}
+            onClick={() => setShowOptionsDialog(true)}
+          />
         </div>
         {/*Feed Post Image */}
         <div>
@@ -109,6 +119,10 @@ function FeedPost({ post }) {
           <Comment />
         </Hidden>
       </article>
+      {showFollowSuggestion && <FollowSuggestions />}
+      {showOptionsDialog && (
+        <OptionsDialog onClose={() => setShowOptionsDialog(false)} />
+      )}
     </>
   );
 }
