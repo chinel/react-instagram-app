@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import {
   EditProfilePage,
   ExplorePage,
@@ -10,21 +10,20 @@ import {
   ProfilePage,
   SignUpPage,
 } from "./pages";
+import PostModal from "./components/post/PostModal";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={FeedPage} />
-        <Route path="/explore" component={ExplorePage} />
-        <Route exact path="/:username" component={ProfilePage} />
-        <Route exact path="/p/:postId" component={PostPage} />
-        <Route path="/accounts/edit" component={EditProfilePage} />
-        <Route path="/accounts/login" component={LoginPage} />
-        <Route path="/accounts/emailsignup" component={SignUpPage} />
-        <Route path="*" component={NotFoundPage} />
-      </Switch>
-    </Router>
+    <Switch>
+      <Route exact path="/" component={FeedPage} />
+      <Route path="/explore" component={ExplorePage} />
+      <Route exact path="/:username" component={ProfilePage} />
+      <Route exact path="/p/:postId" component={PostPage} />
+      <Route path="/accounts/edit" component={EditProfilePage} />
+      <Route path="/accounts/login" component={LoginPage} />
+      <Route path="/accounts/emailsignup" component={SignUpPage} />
+      <Route path="*" component={NotFoundPage} />
+    </Switch>
   );
 }
 
