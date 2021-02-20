@@ -1,11 +1,14 @@
 import React from "react";
 import Modal from "react-modal";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { usePostModalStyles } from "../../styles";
+import Post from "./Post";
 
 function PostModal() {
   const history = useHistory();
   const classes = usePostModalStyles();
+  const { postId } = useParams();
+  console.log({ postId });
 
   return (
     <>
@@ -30,7 +33,9 @@ function PostModal() {
             WebkitOverflowScrolling: "touch",
           },
         }}
-      ></Modal>
+      >
+        <Post id={postId} />
+      </Modal>
     </>
   );
 }
