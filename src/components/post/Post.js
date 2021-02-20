@@ -37,7 +37,7 @@ function Post() {
         {/*Post Buttons*/}
         <div className={classes.postButtonsWrapper}>
           <div className={classes.postButtons}>
-            <LikeButton postStyles />
+            <LikeButton />
             <Link to={`/p/${id}`}>
               <CommentIcon />
             </Link>
