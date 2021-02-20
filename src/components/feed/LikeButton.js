@@ -1,9 +1,9 @@
 import React from "react";
 import { LikeIcon, UnlikeIcon } from "../../icons";
-import { useFeedPostStyles } from "../../styles";
+import { useFeedPostStyles, usePostStyles } from "../../styles";
 
 function LikeButton() {
-  const classes = useFeedPostStyles();
+  let classes = useFeedPostStyles();
   const [liked, setLiked] = React.useState(false);
   const Icon = liked ? UnlikeIcon : LikeIcon;
   const className = liked ? classes.liked : classes.like;
