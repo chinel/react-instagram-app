@@ -77,8 +77,10 @@ function Post() {
             5 DAYS AGO
           </Typography>
           <Hidden xsDown>
-            <Divider />
-            <Comment />
+            <div className={classes.comment}>
+              <Divider />
+              <Comment />
+            </div>
           </Hidden>
         </div>
       </article>
