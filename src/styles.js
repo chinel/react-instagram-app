@@ -637,6 +637,7 @@ export const usePostStyles = makeStyles((theme) => ({
   },
   image: {
     width: "100%",
+    height: "100%",
   },
   postButtons: {
     display: "grid",
@@ -1696,8 +1697,8 @@ export const useMorePostsFromUserStyles = makeStyles((theme) => ({
   },
   typography: {
     fontWeight: "bold !important",
-    marginBottom: `${theme.spacing(2)} !important`,
-    marginLeft: `${theme.spacing(1)} !important`,
+    marginBottom: `${theme.spacing(2)}px !important`,
+    marginLeft: `${theme.spacing(1)}px !important`,
   },
   container: {
     paddingTop: "6vh",

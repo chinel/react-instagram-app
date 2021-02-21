@@ -22,7 +22,7 @@ function PostModal() {
           content: {
             display: "flex",
             alignItems: "center",
-            maxWidth: 935,
+            maxWidth: 1083,
             width: "100%",
             top: "50%",
             left: "50%",
