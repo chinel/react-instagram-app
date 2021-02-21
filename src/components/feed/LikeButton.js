@@ -1,6 +1,6 @@
 import React from "react";
 import { LikeIcon, UnlikeIcon } from "../../icons";
-import { useFeedPostStyles, usePostStyles } from "../../styles";
+import { useFeedPostStyles } from "../../styles";
 
 function LikeButton() {
   let classes = useFeedPostStyles();
