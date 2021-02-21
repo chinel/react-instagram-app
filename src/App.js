@@ -21,7 +21,7 @@ function App() {
 
   React.useEffect(() => {
     //Here we are saying if we are not going back and if the modal is not set to true in the histroy's state
-    if (history.action !== "POP" && !modal) {
+    if (!modal) {
       prevLocation.current = location;
     }
   }, [location, modal, history.action]);
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <>
-      <Switch location={isModalOpen ? prevLocation : location}>
+      <Switch location={isModalOpen ? prevLocation.current : location}>
         <Route exact path="/" component={FeedPage} />
         <Route path="/explore" component={ExplorePage} />
         <Route exact path="/:username" component={ProfilePage} />
