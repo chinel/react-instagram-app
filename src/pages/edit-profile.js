@@ -1,7 +1,14 @@
 import React from "react";
 import Layout from "../components/shared/Layout";
 import { useEditProfilePageStyles } from "../styles";
-import { Drawer, Hidden, IconButton, List, ListItem } from "@material-ui/core";
+import {
+  Drawer,
+  Hidden,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+} from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 
@@ -53,7 +60,13 @@ function EditProfilePage({ history }) {
           button
           selected={handleSelected(index)}
           onClick={() => handleListClick(index)}
-        ></ListItem>
+          classes={{
+            selected: classes.listItemSelected,
+            button: classes.listItemButton,
+          }}
+        >
+          <ListItemText primary={option}></ListItemText>
+        </ListItem>
       ))}
     </List>
   );
@@ -76,7 +89,9 @@ function EditProfilePage({ history }) {
               open={showDrawer}
               onClose={handleToggleDrawer}
               classes={{ paperAnchorLeft: classes.temporaryDrawer }}
-            ></Drawer>
+            >
+              {drawer}
+            </Drawer>
           </Hidden>
         </nav>
       </section>
