@@ -23,6 +23,16 @@ function EditProfilePage({ history }) {
     }
   }
 
+  function handleListClick(index) {
+    switch (index) {
+      case 0:
+        history.push("/accounts/edit");
+        break;
+      default:
+        break;
+    }
+  }
+
   const options = [
     "Edit Profile",
     "Change Password",
@@ -42,6 +52,7 @@ function EditProfilePage({ history }) {
           key={option}
           button
           selected={handleSelected(index)}
+          onClick={() => handleListClick(index)}
         ></ListItem>
       ))}
     </List>
