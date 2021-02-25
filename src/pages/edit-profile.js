@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
+import { defaultCurrentUser } from "../data";
 
 function EditProfilePage({ history }) {
   const classes = useEditProfilePageStyles();
@@ -111,7 +112,9 @@ function EditProfilePage({ history }) {
             </Drawer>
           </Hidden>
         </nav>
-        <main>{path.includes("edit") && <EditUserInfo />}</main>
+        <main>
+          {path.includes("edit") && <EditUserInfo user={defaultCurrentUser} />}
+        </main>
       </section>
     </Layout>
   );
