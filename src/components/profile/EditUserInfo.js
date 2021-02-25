@@ -1,6 +1,7 @@
-import { Hidden, TextField, Typography } from "@material-ui/core";
+import { Button, Hidden, TextField, Typography } from "@material-ui/core";
 import React from "react";
 import { useEditProfilePageStyles } from "../../styles";
+import ProfilePicture from "../shared/ProfilePicture";
 
 function EditUserInfo({ user }) {
   const classes = useEditProfilePageStyles();
@@ -21,7 +22,46 @@ function EditUserInfo({ user }) {
           </Typography>
         </div>
       </div>
-      <form className={classes.form}></form>
+      <form className={classes.form}>
+        <SectionItem text="Name" formItem={user.name} />
+        <SectionItem text="Username" formItem={user.username} />
+        <SectionItem text="Website" formItem={user.website} />
+        <div className={classes.SectionItem}>
+          <aside>
+            <Typography className={classes.bio}>Bio</Typography>
+          </aside>
+          <TextField
+            variant="outlined"
+            multiline
+            rowsMax={3}
+            rows={3}
+            fullWidth
+            value={user.bio}
+          />
+        </div>
+        <div className={classes.SectionItem}>
+          <div />
+          <Typography
+            className={classes.justifySelfStart}
+            color="textSecondary"
+          >
+            Personal Information
+          </Typography>
+        </div>
+        <SectionItem text="Email" formItem={user.email} type="email" />
+        <SectionItem text="Phone Number" formItem={user.phone_number} />
+        <div className={classes.SectionItem}>
+          <div />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            className={classes.justifySelfStart}
+          >
+            Submit
+          </Button>
+        </div>
+      </form>
     </section>
   );
 }
