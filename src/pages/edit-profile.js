@@ -111,7 +111,7 @@ function EditProfilePage({ history }) {
             </Drawer>
           </Hidden>
         </nav>
-        <main></main>
+        <main>{path.includes("edit") && <EditUserInfo />}</main>
       </section>
     </Layout>
   );
