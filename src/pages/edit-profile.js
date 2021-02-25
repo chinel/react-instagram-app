@@ -14,6 +14,8 @@ import { useHistory } from "react-router-dom";
 
 function EditProfilePage({ history }) {
   const classes = useEditProfilePageStyles();
+  const path = history.location.pathname;
+
   const [showDrawer, setShowDrawer] = React.useState(false);
 
   function handleToggleDrawer() {
@@ -21,7 +23,6 @@ function EditProfilePage({ history }) {
   }
 
   function handleSelected(index) {
-    const path = history.location.pathname;
     switch (index) {
       case 0:
         return path.includes("edit");
@@ -93,7 +94,24 @@ function EditProfilePage({ history }) {
               {drawer}
             </Drawer>
           </Hidden>
+          <Hidden
+            xsDown
+            implementation="css"
+            className={classes.permanentDrawerRoot}
+          >
+            <Drawer
+              variant="permanent"
+              open
+              classes={{
+                paper: classes.permanentDrawerPaper,
+                root: classes.permanentDrawerRoot,
+              }}
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
         </nav>
+        <main></main>
       </section>
     </Layout>
   );
