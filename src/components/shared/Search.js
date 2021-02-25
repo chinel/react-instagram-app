@@ -13,7 +13,7 @@ import { getDefaultUser } from "../../data";
 
 function Search({ history }) {
   const classes = useNavbarStyles();
-  const [loading, setLoading] = React.useState(false);
+  const [loading] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const [results, setResults] = React.useState([]);
 
