@@ -12,6 +12,7 @@ import {
 import { Menu } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 import { defaultCurrentUser } from "../data";
+import EditUserInfo from "../components/profile/EditUserInfo";
 
 function EditProfilePage({ history }) {
   const classes = useEditProfilePageStyles();
