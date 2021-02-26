@@ -10,7 +10,6 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
-import { useHistory } from "react-router-dom";
 import { defaultCurrentUser } from "../data";
 import EditUserInfo from "../components/profile/EditUserInfo";
 
