@@ -26,7 +26,7 @@ function EditUserInfo({ user }) {
         <SectionItem text="Name" formItem={user.name} />
         <SectionItem text="Username" formItem={user.username} />
         <SectionItem text="Website" formItem={user.website} />
-        <div className={classes.SectionItem}>
+        <div className={classes.sectionItem}>
           <aside>
             <Typography className={classes.bio}>Bio</Typography>
           </aside>
@@ -39,7 +39,7 @@ function EditUserInfo({ user }) {
             value={user.bio}
           />
         </div>
-        <div className={classes.SectionItem}>
+        <div className={classes.sectionItem}>
           <div />
           <Typography
             className={classes.justifySelfStart}
@@ -50,7 +50,7 @@ function EditUserInfo({ user }) {
         </div>
         <SectionItem text="Email" formItem={user.email} type="email" />
         <SectionItem text="Phone Number" formItem={user.phone_number} />
-        <div className={classes.SectionItem}>
+        <div className={classes.sectionItem}>
           <div />
           <Button
             type="submit"
@@ -69,7 +69,7 @@ function EditUserInfo({ user }) {
 function SectionItem({ type = "text", text, formItem }) {
   const classes = useEditProfilePageStyles();
   return (
-    <div className={classes.SectionItemWrapper}>
+    <div className={classes.sectionItemWrapper}>
       <aside>
         <Hidden xsDown>
           <Typography className={classes.typography} align="right">
