@@ -1,10 +1,19 @@
+import { Avatar } from "@material-ui/core";
 import React from "react";
 import { useProfilePictureStyles } from "../../styles";
 
-function ProfilePicture() {
-  useProfilePictureStyles();
+function ProfilePicture({ user }) {
+  const classes = useProfilePictureStyles();
 
-  return <div>ProfilePicture</div>;
+  return (
+    <>
+      <Avatar
+        src={user.profile_image}
+        alt="User Avatar"
+        className={classes.avatar}
+      />
+    </>
+  );
 }
 
 export default ProfilePicture;
