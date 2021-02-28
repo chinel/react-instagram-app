@@ -14,11 +14,18 @@ import OptionsDialog from "../shared/OptionsDialog";
 import { defaultPost } from "../../data";
 import { LikeIcon, UnlikeIcon } from "../../icons";
 import { RemoveIcon, SaveIcon } from "../../icons";
+import PostSkeleton from "./PostSkeleton";
 
 function Post() {
   const classes = usePostStyles();
+  const [loading, setLoading] = React.useState(true);
   const [showOptionsDialog, setShowOptionsDialog] = React.useState(false);
   const { id, media, likes, user, caption, comments } = defaultPost;
+
+  setTimeout(() => setLoading(false), 2000);
+
+  if (loading) return <PostSkeleton />;
+
   return (
     <div className={classes.postContainer}>
       <article className={classes.article}>
