@@ -16,9 +16,7 @@ function ProfilePage() {
         <Hidden xsDown>
           <Card className={classes.cardLarge}>
             <ProfilePicture />
-            <CardContent className={classes.cardContentLarge}>
-              
-            </CardContent>
+            <CardContent className={classes.cardContentLarge}></CardContent>
           </Card>
         </Hidden>
         <Hidden smUp></Hidden>
@@ -26,5 +24,4 @@ function ProfilePage() {
     </Layout>
   );
 }
-
 export default ProfilePage;
