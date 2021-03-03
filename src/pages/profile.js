@@ -26,7 +26,18 @@ function ProfilePage() {
             </CardContent>
           </Card>
         </Hidden>
-        <Hidden smUp></Hidden>
+        <Hidden smUp>
+          <Card className={classes.cardSmall}>
+            <CardContent>
+              <section className={classes.sectionSmall}>
+                <ProfilePicture />
+                <ProfileNameSection />
+              </section>
+              <NameBioSection />
+            </CardContent>
+            <PostCountSection />
+          </Card>
+        </Hidden>
       </div>
     </Layout>
   );
