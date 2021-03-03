@@ -13,7 +13,15 @@ function OptionsMenu() {
         paper: classes.dialogPaper,
       }}
       TransitionComponent={Zoom}
-    ></Dialog>
+    >
+      <OptionsItem text="Change Password" />
+      <OptionsItem text="Nametag" />
+      <OptionsItem text="Authorized Apps" />
+      <OptionsItem text="Notifications" />
+      <OptionsItem text="Privacy and Security" />
+      <OptionsItem text="Log Out" />
+      <OptionsItem text="Change Password" />
+    </Dialog>
   );
 }
 
