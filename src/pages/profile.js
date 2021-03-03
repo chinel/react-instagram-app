@@ -9,6 +9,7 @@ import { defaultCurrentUser } from "../data";
 import { useProfilePageStyles } from "../styles";
 
 function ProfilePage() {
+  const isOwner = true;
   const classes = useProfilePageStyles();
 
   return (
@@ -18,7 +19,7 @@ function ProfilePage() {
       <div className={classes.container}>
         <Hidden xsDown>
           <Card className={classes.cardLarge}>
-            <ProfilePicture />
+            <ProfilePicture isOwner={isOwner} />
             <CardContent className={classes.cardContentLarge}>
               <ProfileNameSection />
               <PostCountSection />
@@ -30,7 +31,7 @@ function ProfilePage() {
           <Card className={classes.cardSmall}>
             <CardContent>
               <section className={classes.sectionSmall}>
-                <ProfilePicture />
+                <ProfilePicture isOwner={isOwner} />
                 <ProfileNameSection />
               </section>
               <NameBioSection />
