@@ -11,6 +11,11 @@ import { useProfilePageStyles } from "../styles";
 function ProfilePage() {
   const isOwner = true;
   const classes = useProfilePageStyles();
+  const [showOptionsMenu, setShowOptionsMenu] = React.useState(false);
+
+  function handleOptionsMenuClick() {
+    setShowOptionsMenu(true);
+  }
 
   return (
     <Layout
@@ -21,7 +26,11 @@ function ProfilePage() {
           <Card className={classes.cardLarge}>
             <ProfilePicture isOwner={isOwner} />
             <CardContent className={classes.cardContentLarge}>
-              <ProfileNameSection />
+              <ProfileNameSection
+                user={defaultCurrentUser}
+                isOwner={isOwner}
+                handleOptionsMenuClick={handleOptionsMenuClick}
+              />
               <PostCountSection />
               <NameBioSection />
             </CardContent>
@@ -31,8 +40,12 @@ function ProfilePage() {
           <Card className={classes.cardSmall}>
             <CardContent>
               <section className={classes.sectionSmall}>
-                <ProfilePicture isOwner={isOwner} />
-                <ProfileNameSection />
+                <ProfilePicture size={77} isOwner={isOwner} />
+                <ProfileNameSection
+                  user={defaultCurrentUser}
+                  isOwner={isOwner}
+                  handleOptionsMenuClick={handleOptionsMenuClick}
+                />
               </section>
               <NameBioSection />
             </CardContent>
