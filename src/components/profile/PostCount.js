@@ -1,7 +1,7 @@
 import React from "react";
 
-function PostCount() {
+function PostCountSection() {
   return <div>Post Count</div>;
 }
 
-export default PostCount;
+export default PostCountSection;

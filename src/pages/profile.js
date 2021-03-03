@@ -1,5 +1,8 @@
 import { Card, CardContent, Hidden } from "@material-ui/core";
 import React from "react";
+import NameBioSection from "../components/profile/NameBioSection";
+import PostCountSection from "../components/profile/PostCount";
+import ProfileNameSection from "../components/profile/ProfileNameSection";
 import Layout from "../components/shared/Layout";
 import ProfilePicture from "../components/shared/ProfilePicture";
 import { defaultCurrentUser } from "../data";
@@ -16,7 +19,11 @@ function ProfilePage() {
         <Hidden xsDown>
           <Card className={classes.cardLarge}>
             <ProfilePicture />
-            <CardContent className={classes.cardContentLarge}></CardContent>
+            <CardContent className={classes.cardContentLarge}>
+              <ProfileNameSection />
+              <PostCountSection />
+              <NameBioSection />
+            </CardContent>
           </Card>
         </Hidden>
         <Hidden smUp></Hidden>

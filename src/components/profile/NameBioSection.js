@@ -1,7 +1,7 @@
 import React from "react";
 
-function NameBioService() {
+function NameBioSection() {
   return <div>Name Bio Service</div>;
 }
 
-export default NameBioService;
+export default NameBioSection;
