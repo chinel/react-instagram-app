@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { useProfilePageStyles } from "../../styles";
 
-function OptionsMenu() {
+function OptionsMenu({ handleCloseMenu }) {
   const classes = useProfilePageStyles();
   const [showLogoutMessage, setShowLogoutMessage] = React.useState(false);
 
@@ -40,7 +40,7 @@ function OptionsMenu() {
           <OptionsItem text="Notifications" />
           <OptionsItem text="Privacy and Security" />
           <OptionsItem text="Log Out" onClick={handleLogoutClick} />
-          <OptionsItem text="Change Password" />
+          <OptionsItem text="Cancel" onClick={handleCloseMenu} />
         </>
       )}
     </Dialog>
