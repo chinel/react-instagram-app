@@ -1,6 +1,7 @@
 import { Card, CardContent, Hidden } from "@material-ui/core";
 import React from "react";
 import NameBioSection from "../components/profile/NameBioSection";
+import OptionsMenu from "../components/profile/OptionsMenu";
 import PostCountSection from "../components/profile/PostCount";
 import ProfileNameSection from "../components/profile/ProfileNameSection";
 import Layout from "../components/shared/Layout";
@@ -15,6 +16,10 @@ function ProfilePage() {
 
   function handleOptionsMenuClick() {
     setShowOptionsMenu(true);
+  }
+
+  function handleCloseMenu() {
+    setShowOptionsMenu(false);
   }
 
   return (
@@ -52,6 +57,7 @@ function ProfilePage() {
             <PostCountSection />
           </Card>
         </Hidden>
+        {showOptionsMenu && <OptionsMenu handleCloseMenu={handleCloseMenu} />}
       </div>
     </Layout>
   );
