@@ -10,7 +10,7 @@ import { defaultCurrentUser } from "../data";
 import { useProfilePageStyles } from "../styles";
 
 function ProfilePage() {
-  const isOwner = true;
+  const isOwner = false;
   const classes = useProfilePageStyles();
   const [showOptionsMenu, setShowOptionsMenu] = React.useState(false);
 

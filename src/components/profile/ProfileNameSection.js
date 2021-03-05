@@ -3,15 +3,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { GearIcon } from "../../icons";
 import { useProfilePageStyles } from "../../styles";
+import UnFollowDialog from "./UnFollowDialog";
 
 function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
   const classes = useProfilePageStyles();
+  const [showUnFollowDialog, setShowUnFollowDialog] = React.useState(false);
   let followButton;
-  const isFollowing = false;
+  const isFollowing = true;
   const isFollower = false;
   if (isFollowing) {
     followButton = (
-      <Button variant="outlined" className={classes.button}>
+      <Button
+        onClick={() => setShowUnFollowDialog(true)}
+        variant="outlined"
+        className={classes.button}
+      >
         Following
       </Button>
     );
@@ -34,22 +40,23 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
       <Hidden xsDown>
         <section className={classes.usernameSection}>
           <Typography className={classes.username}>{user.username}</Typography>
+
+          {isOwner ? (
+            <>
+              <Link to="/account/edit">
+                <Button variant="outlined">Edit Profile</Button>
+              </Link>
+              <div
+                onClick={handleOptionsMenuClick}
+                className={classes.settingsWrapper}
+              >
+                <GearIcon className={classes.settings} />
+              </div>
+            </>
+          ) : (
+            <>{followButton}</>
+          )}
         </section>
-        {isOwner ? (
-          <>
-            <Link to="/account/edit">
-              <Button variant="outlined">Edit Profile</Button>
-            </Link>
-            <div
-              onClick={handleOptionsMenuClick}
-              className={classes.settingsWrapper}
-            >
-              <GearIcon className={classes.settings} />
-            </div>
-          </>
-        ) : (
-          <>{followButton}</>
-        )}
       </Hidden>
       <Hidden smUp>
         <section>
@@ -77,6 +84,12 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
           )}
         </section>
       </Hidden>
+      {showUnFollowDialog && (
+        <UnFollowDialog
+          onClose={() => setShowUnFollowDialog(false)}
+          user={user}
+        />
+      )}
     </>
   );
 }
