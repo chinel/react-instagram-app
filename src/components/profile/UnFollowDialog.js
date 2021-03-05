@@ -18,7 +18,7 @@ function UnFollowDialog({ user, onClose }) {
       classes={{
         scrollPaper: classes.unfollowDialogScrollPaper,
       }}
-      onClose
+      onClose={onClose}
       TransitionComponent={Zoom}
     >
       <div className={classes.wrapper}>

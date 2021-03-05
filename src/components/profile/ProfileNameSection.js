@@ -14,7 +14,7 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
   if (isFollowing) {
     followButton = (
       <Button
-        onClick={() => setShowUnFollowDialog(false)}
+        onClick={() => setShowUnFollowDialog(true)}
         variant="outlined"
         className={classes.button}
       >
@@ -84,7 +84,7 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
           )}
         </section>
       </Hidden>
-      {setShowUnFollowDialog && (
+      {showUnFollowDialog && (
         <UnFollowDialog
           onClose={() => setShowUnFollowDialog(false)}
           user={user}
