@@ -6,12 +6,17 @@ import { useProfilePageStyles } from "../../styles";
 
 function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
   const classes = useProfilePageStyles();
+  const [showUnFollowDialog, setShowUnFollowDialog] = React.useState(false);
   let followButton;
-  const isFollowing = false;
+  const isFollowing = true;
   const isFollower = false;
   if (isFollowing) {
     followButton = (
-      <Button variant="outlined" className={classes.button}>
+      <Button
+        onClick={() => setShowUnFollowDialog(false)}
+        variant="outlined"
+        className={classes.button}
+      >
         Following
       </Button>
     );
@@ -78,6 +83,9 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
           )}
         </section>
       </Hidden>
+      {setShowUnFollowDialog && (
+        <UnfollowDialog onClose={() => setShowUnFollowDialog(false)} />
+      )}
     </>
   );
 }
