@@ -34,22 +34,23 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
       <Hidden xsDown>
         <section className={classes.usernameSection}>
           <Typography className={classes.username}>{user.username}</Typography>
+
+          {isOwner ? (
+            <>
+              <Link to="/account/edit">
+                <Button variant="outlined">Edit Profile</Button>
+              </Link>
+              <div
+                onClick={handleOptionsMenuClick}
+                className={classes.settingsWrapper}
+              >
+                <GearIcon className={classes.settings} />
+              </div>
+            </>
+          ) : (
+            <>{followButton}</>
+          )}
         </section>
-        {isOwner ? (
-          <>
-            <Link to="/account/edit">
-              <Button variant="outlined">Edit Profile</Button>
-            </Link>
-            <div
-              onClick={handleOptionsMenuClick}
-              className={classes.settingsWrapper}
-            >
-              <GearIcon className={classes.settings} />
-            </div>
-          </>
-        ) : (
-          <>{followButton}</>
-        )}
       </Hidden>
       <Hidden smUp>
         <section>
