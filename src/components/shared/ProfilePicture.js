@@ -1,4 +1,3 @@
-import { Avatar } from "@material-ui/core";
 import { Person } from "@material-ui/icons";
 import React from "react";
 import { useProfilePictureStyles } from "../../styles";
