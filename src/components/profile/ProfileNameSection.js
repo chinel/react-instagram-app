@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { GearIcon } from "../../icons";
 import { useProfilePageStyles } from "../../styles";
+import UnFollowDialog from "./UnFollowDialog";
 
 function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
   const classes = useProfilePageStyles();
@@ -84,7 +85,10 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
         </section>
       </Hidden>
       {setShowUnFollowDialog && (
-        <UnfollowDialog onClose={() => setShowUnFollowDialog(false)} />
+        <UnFollowDialog
+          onClose={() => setShowUnFollowDialog(false)}
+          user={user}
+        />
       )}
     </>
   );
