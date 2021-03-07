@@ -1,6 +1,6 @@
 import { Divider, Hidden, Tab, Tabs } from "@material-ui/core";
 import React from "react";
-import { GridIcon } from "../../icons";
+import { GridIcon, SaveIcon } from "../../icons";
 import { useProfileTabsStyles } from "../../styles";
 
 function ProfileTabs({ user, isOwner }) {
@@ -62,7 +62,7 @@ function ProfileTabs({ user, isOwner }) {
             {isOwner && (
               <Tab
                 icon={
-                  <GridIcon
+                  <SaveIcon
                     fill={value === 1 ? "#3897f0" : undefined}
                     classes={{ root: classes.tabRoot }}
                   />
@@ -71,6 +71,7 @@ function ProfileTabs({ user, isOwner }) {
             )}
           </Tabs>
         </Hidden>
+        <Hidden smUp>{user.posts.length === 0 && <Divider />}</Hidden>
       </section>
     </>
   );
