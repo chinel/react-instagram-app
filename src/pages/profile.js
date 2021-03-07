@@ -4,13 +4,14 @@ import NameBioSection from "../components/profile/NameBioSection";
 import OptionsMenu from "../components/profile/OptionsMenu";
 import PostCountSection from "../components/profile/PostCount";
 import ProfileNameSection from "../components/profile/ProfileNameSection";
+import ProfileTabs from "../components/profile/ProfileTabs";
 import Layout from "../components/shared/Layout";
 import ProfilePicture from "../components/shared/ProfilePicture";
 import { defaultCurrentUser } from "../data";
 import { useProfilePageStyles } from "../styles";
 
 function ProfilePage() {
-  const isOwner = false;
+  const isOwner = true;
   const classes = useProfilePageStyles();
   const [showOptionsMenu, setShowOptionsMenu] = React.useState(false);
 
@@ -36,8 +37,8 @@ function ProfilePage() {
                 isOwner={isOwner}
                 handleOptionsMenuClick={handleOptionsMenuClick}
               />
-              <PostCountSection />
-              <NameBioSection />
+              <PostCountSection user={defaultCurrentUser} />
+              <NameBioSection user={defaultCurrentUser} />
             </CardContent>
           </Card>
         </Hidden>
@@ -52,12 +53,13 @@ function ProfilePage() {
                   handleOptionsMenuClick={handleOptionsMenuClick}
                 />
               </section>
-              <NameBioSection />
+              <NameBioSection user={defaultCurrentUser} />
             </CardContent>
-            <PostCountSection />
+            <PostCountSection user={defaultCurrentUser} />
           </Card>
         </Hidden>
         {showOptionsMenu && <OptionsMenu handleCloseMenu={handleCloseMenu} />}
+        <ProfileTabs user={defaultCurrentUser} isOwner={isOwner} />
       </div>
     </Layout>
   );
