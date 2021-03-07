@@ -4,6 +4,7 @@ import NameBioSection from "../components/profile/NameBioSection";
 import OptionsMenu from "../components/profile/OptionsMenu";
 import PostCountSection from "../components/profile/PostCount";
 import ProfileNameSection from "../components/profile/ProfileNameSection";
+import ProfileTabs from "../components/profile/ProfileTabs";
 import Layout from "../components/shared/Layout";
 import ProfilePicture from "../components/shared/ProfilePicture";
 import { defaultCurrentUser } from "../data";
@@ -58,6 +59,7 @@ function ProfilePage() {
           </Card>
         </Hidden>
         {showOptionsMenu && <OptionsMenu handleCloseMenu={handleCloseMenu} />}
+        <ProfileTabs user={defaultCurrentUser} isOwner={isOwner} />
       </div>
     </Layout>
   );
