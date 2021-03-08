@@ -448,7 +448,6 @@ export const useLayoutStyles = makeStyles((theme) => ({
     display: "flex",
     margin: "0 auto",
     flexFlow: "row nowrap",
-    width: "935px !important",
   },
   children: {
     width: "100%",
