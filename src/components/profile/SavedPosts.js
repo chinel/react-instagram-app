@@ -1,7 +1,21 @@
+import { Typography } from "@material-ui/core";
 import React from "react";
+import { useProfileTabsStyles } from "../../styles";
 
 function SavedPosts() {
-  return <div>Saved Post</div>;
+  const classes = useProfileTabsStyles();
+  return (
+    <section className={classes.savedPostsSection}>
+      <div className={classes.noContent}>
+        <div className={classes.savedPhotoIcon} />
+        <Typography variant="h4">Save</Typography>
+        <Typography align="center">
+          Save photos and videos that you want to see again. No one is notified,
+          and only you can see what you've saved.
+        </Typography>
+      </div>
+    </section>
+  );
 }
 
 export default SavedPosts;
