@@ -43,7 +43,7 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
 
           {isOwner ? (
             <>
-              <Link to="/account/edit">
+              <Link to="/accounts/edit">
                 <Button variant="outlined">Edit Profile</Button>
               </Link>
               <div
