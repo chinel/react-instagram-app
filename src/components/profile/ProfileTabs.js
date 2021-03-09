@@ -2,6 +2,8 @@ import { Divider, Hidden, Tab, Tabs } from "@material-ui/core";
 import React from "react";
 import { GridIcon, SaveIcon } from "../../icons";
 import { useProfileTabsStyles } from "../../styles";
+import ProfilePosts from "./ProfilePosts";
+import SavedPosts from "./SavedPosts";
 
 function ProfileTabs({ user, isOwner }) {
   const classes = useProfileTabsStyles();
@@ -72,6 +74,8 @@ function ProfileTabs({ user, isOwner }) {
           </Tabs>
         </Hidden>
         <Hidden smUp>{user.posts.length === 0 && <Divider />}</Hidden>
+        {value === 0 && <ProfilePosts />}
+        {value === 1 && <SavedPosts />}
       </section>
     </>
   );
