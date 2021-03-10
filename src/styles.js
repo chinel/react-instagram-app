@@ -608,7 +608,7 @@ export const useFeedPostStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   expanded: {
-    display: "block",
+    display: "inline-block",
   },
   caption: {
     fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", Helvetica, Arial, sans-serif`,
