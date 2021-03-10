@@ -1596,6 +1596,8 @@ export const useProfileTabsStyles = makeStyles((theme) => {
       width: 18,
     },
     profilePostsSection: {
+      display: "flex",
+      justifyContent: "center",
       paddingTop: 60,
     },
     noPicDivAlt: {
