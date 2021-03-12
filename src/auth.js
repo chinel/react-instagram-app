@@ -8,12 +8,13 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 // Find these options in your Firebase console
 firebase.initializeApp({
-  apiKey: "xxx",
-  authDomain: "xxx",
-  databaseURL: "xxx",
-  projectId: "xxx",
-  storageBucket: "xxx",
-  messagingSenderId: "xxx",
+    apiKey: "AIzaSyA-TSz8V_JRXE3gJy5R43YlgxcZXhN8Dm4",
+    authDomain: "react-instagram-clone-2b9a9.firebaseapp.com",
+    projectId: "react-instagram-clone-2b9a9",
+    storageBucket: "react-instagram-clone-2b9a9.appspot.com",
+    messagingSenderId: "437854781427",
+    appId: "1:437854781427:web:836fd69b2f8a7c5e021c86",
+    measurementId: "G-SMXY24VT5J"
 });
 
 function AuthProvider() {
