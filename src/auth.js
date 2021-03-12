@@ -8,13 +8,13 @@ const provider = new firebase.auth.GoogleAuthProvider();
 
 // Find these options in your Firebase console
 firebase.initializeApp({
-    apiKey: "AIzaSyA-TSz8V_JRXE3gJy5R43YlgxcZXhN8Dm4",
-    authDomain: "react-instagram-clone-2b9a9.firebaseapp.com",
-    projectId: "react-instagram-clone-2b9a9",
-    storageBucket: "react-instagram-clone-2b9a9.appspot.com",
-    messagingSenderId: "437854781427",
-    appId: "1:437854781427:web:836fd69b2f8a7c5e021c86",
-    measurementId: "G-SMXY24VT5J"
+  apiKey: "AIzaSyA-TSz8V_JRXE3gJy5R43YlgxcZXhN8Dm4",
+  authDomain: "react-instagram-clone-2b9a9.firebaseapp.com",
+  projectId: "react-instagram-clone-2b9a9",
+  storageBucket: "react-instagram-clone-2b9a9.appspot.com",
+  messagingSenderId: "437854781427",
+  appId: "1:437854781427:web:836fd69b2f8a7c5e021c86",
+  measurementId: "G-SMXY24VT5J",
 });
 
 function AuthProvider() {
@@ -34,7 +34,7 @@ function AuthProvider() {
           // Check if refresh is required.
           const metadataRef = firebase
             .database()
-            .ref("metadata/" + user.uid + "/refreshTime");
+            .ref(`metadata/${user.uid}/refreshTime`);
 
           metadataRef.on("value", async (data) => {
             if (!data.exists) return;
@@ -49,29 +49,20 @@ function AuthProvider() {
     });
   }, []);
 
-  const signInWithGoogle = async () => {
-    try {
-      await firebase.auth().signInWithPopup(provider);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  async function signInWithGoogle() {
+    await firebase.auth().signInWithPopup(provider);
+  }
 
-  const signOut = async () => {
-    try {
-      setAuthState({ status: "loading" });
-      await firebase.auth().signOut();
-      setAuthState({ status: "out" });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  async function signOut() {
+    setAuthState({ status: "loading" });
+    await firebase.auth().signOut();
+    setAuthState({ status: "out" });
+  }
 
-  let content;
   if (authState.status === "loading") {
-    content = null;
+    return null;
   } else {
-    content = (
+    return (
       <>
         <div>
           {authState.status === "in" ? (
@@ -88,8 +79,6 @@ function AuthProvider() {
       </>
     );
   }
-
-  return <div className="auth">{content}</div>;
 }
 
 export default AuthProvider;
