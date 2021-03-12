@@ -16,11 +16,11 @@ firebase.initializeApp({
   messagingSenderId: "xxx",
 });
 
-export default function Auth() {
+function AuthProvider() {
   const [authState, setAuthState] = useState({ status: "loading" });
 
   useEffect(() => {
-    return firebase.auth().onAuthStateChanged(async (user) => {
+    firebase.auth().onAuthStateChanged(async (user) => {
       if (user) {
         const token = await user.getIdToken();
         const idTokenResult = await user.getIdTokenResult();
@@ -90,3 +90,5 @@ export default function Auth() {
 
   return <div className="auth">{content}</div>;
 }
+
+export default AuthProvider;
