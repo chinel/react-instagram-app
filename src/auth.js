@@ -2,7 +2,6 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import React, { useState, useEffect } from "react";
-import App from "./App";
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -17,7 +16,9 @@ firebase.initializeApp({
   measurementId: "G-SMXY24VT5J",
 });
 
-function AuthProvider() {
+export const AuthContext = React.createContext();
+
+function AuthProvider({ children }) {
   const [authState, setAuthState] = useState({ status: "loading" });
 
   useEffect(() => {
@@ -63,20 +64,15 @@ function AuthProvider() {
     return null;
   } else {
     return (
-      <>
-        <div>
-          {authState.status === "in" ? (
-            <div>
-              <h2>Welcome, {authState.user.displayName}</h2>
-              <button onClick={signOut}>Sign out</button>
-            </div>
-          ) : (
-            <button onClick={signInWithGoogle}>Sign in with Google</button>
-          )}
-        </div>
-
-        <App authState={authState} />
-      </>
+      <AuthContext.Provider
+        value={{
+          authState,
+          signInWithGoogle,
+          signOut,
+        }}
+      >
+        {children}
+      </AuthContext.Provider>
     );
   }
 }
