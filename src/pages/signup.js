@@ -4,9 +4,22 @@ import { Link } from "react-router-dom";
 import LoginWithFacebook from "../components/auth/LoginWithFacebook";
 import SEO from "../components/shared/Seo";
 import { useSignUpPageStyles } from "../styles";
+import { AuthContext } from "../auth";
 
 function SignUpPage() {
   const classes = useSignUpPageStyles();
+  const { signUpWithEmailAndPassword } = React.useContext(AuthContext);
+  const [values, setValues] = React.useState({
+    email: "",
+    name: "",
+    username: "",
+    password: "",
+  });
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setValues((prev) => ({ ...prev, [name]: value }));
+  }
 
   return (
     <>
