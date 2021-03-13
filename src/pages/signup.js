@@ -21,6 +21,11 @@ function SignUpPage() {
     setValues((prev) => ({ ...prev, [name]: value }));
   }
 
+  async function handleSubmit(event) {
+    event.preventDefault();
+    await signUpWithEmailAndPassword(values);
+  }
+
   return (
     <>
       <SEO title="Sign up" />
