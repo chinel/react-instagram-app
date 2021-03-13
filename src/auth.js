@@ -1,3 +1,4 @@
+import { useMutation } from "@apollo/react-hooks";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
@@ -21,6 +22,7 @@ export const AuthContext = React.createContext();
 
 function AuthProvider({ children }) {
   const [authState, setAuthState] = useState({ status: "loading" });
+  const [createUser] = useMutation(CREATE_USER);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (user) => {
@@ -70,6 +72,7 @@ function AuthProvider({ children }) {
         phoneNumber: "",
         profileImage: defaultUserImage,
       };
+      await createUser({ variables });
     }
   }
 
@@ -88,6 +91,7 @@ function AuthProvider({ children }) {
           authState,
           signInWithGoogle,
           signOut,
+          signInWithEmailAndPassword,
         }}
       >
         {children}
