@@ -54,6 +54,15 @@ function AuthProvider({ children }) {
     await firebase.auth().signInWithPopup(provider);
   }
 
+  async function signInWithEmailAndPassword(formData) {
+    const data = await firebase
+      .auth()
+      .createUserWithEmailAndPassword(formData.email, formData.password);
+       if(data.additionalUserInfo.isNewUser) {
+           
+       }
+    }
+
   async function signOut() {
     setAuthState({ status: "loading" });
     await firebase.auth().signOut();

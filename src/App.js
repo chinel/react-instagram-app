@@ -11,8 +11,11 @@ import {
   SignUpPage,
 } from "./pages";
 import PostModal from "./components/post/PostModal";
+import { AuthContext } from "./auth";
 
 function App() {
+  const { authState } = React.useContext(AuthContext);
+  console.log({ authState });
   const history = useHistory();
   const location = useLocation();
   // console.log(history, location);
