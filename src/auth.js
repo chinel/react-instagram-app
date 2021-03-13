@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import React, { useState, useEffect } from "react";
+import defaultUserImage from "./images/default-user-image.jpg";
 
 const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -58,10 +59,19 @@ function AuthProvider({ children }) {
     const data = await firebase
       .auth()
       .createUserWithEmailAndPassword(formData.email, formData.password);
-       if(data.additionalUserInfo.isNewUser) {
-           
-       }
+    if (data.additionalUserInfo.isNewUser) {
+      const variables = {
+        userId: data.user.uid,
+        name: formData.name,
+        username: formData.username,
+        email: data.user.email,
+        bio: "",
+        website: "",
+        phoneNumber: "",
+        profileImage: defaultUserImage,
+      };
     }
+  }
 
   async function signOut() {
     setAuthState({ status: "loading" });
