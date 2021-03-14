@@ -17,7 +17,9 @@ import { CheckCircleOutline, HighlightOff } from "@material-ui/icons";
 
 function SignUpPage() {
   const classes = useSignUpPageStyles();
-  const { register, handleSubmit, formState } = useForm({ mode: "onBlur" }); // passing onBlur as the mode validates only when the user blurs away from the form field
+  const { register, handleSubmit, formState, errors } = useForm({
+    mode: "onBlur",
+  }); // passing onBlur as the mode validates only when the user blurs away from the form field
   const { signUpWithEmailAndPassword } = React.useContext(AuthContext);
   // const [values, setValues] = React.useState({
   //   email: "",
@@ -56,7 +58,7 @@ function SignUpPage() {
   );
 
   return (
-    <InputAdornment>
+    <>
       <SEO title="Sign up" />
       <section className={classes.section}>
         <article>
@@ -87,6 +89,11 @@ function SignUpPage() {
                   required: true,
                   validate: (input) => isEmail(input),
                 })}
+                InputProps={{
+                  endAdornment: errors.email
+                    ? errorIcon
+                    : formState.touched.email && validIcon,
+                }}
                 fullWidth
                 variant="filled"
                 label="Email"
@@ -103,6 +110,11 @@ function SignUpPage() {
                   minLength: 5,
                   maxLength: 20,
                 })}
+                InputProps={{
+                  endAdornment: errors.name
+                    ? errorIcon
+                    : formState.touched.name && validIcon,
+                }}
                 fullWidth
                 variant="filled"
                 label="Full Name"
@@ -119,6 +131,11 @@ function SignUpPage() {
                   // accept only lowercase/uppercase letters , numbers, periods and underscore
                   pattern: /^[a-zA-Z0-9_.]*$/,
                 })}
+                InputProps={{
+                  endAdornment: errors.username
+                    ? errorIcon
+                    : formState.touched.username && validIcon,
+                }}
                 fullWidth
                 variant="filled"
                 label="Username"
@@ -133,6 +150,11 @@ function SignUpPage() {
                   required: true,
                   minLength: 5,
                 })}
+                InputProps={{
+                  endAdornment: errors.password
+                    ? errorIcon
+                    : formState.touched.password && validIcon,
+                }}
                 fullWidth
                 variant="filled"
                 label="Password"
@@ -165,7 +187,7 @@ function SignUpPage() {
           </Card>
         </article>
       </section>
-    </InputAdornment>
+    </>
   );
 }
 
