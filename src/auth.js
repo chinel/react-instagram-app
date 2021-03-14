@@ -3,6 +3,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import React, { useState, useEffect } from "react";
+import { CREATE_USER } from "./graphql/mutations";
 import defaultUserImage from "./images/default-user-image.jpg";
 
 const provider = new firebase.auth.GoogleAuthProvider();
@@ -57,7 +58,7 @@ function AuthProvider({ children }) {
     await firebase.auth().signInWithPopup(provider);
   }
 
-  async function signInWithEmailAndPassword(formData) {
+  async function signUpWithEmailAndPassword(formData) {
     const data = await firebase
       .auth()
       .createUserWithEmailAndPassword(formData.email, formData.password);
@@ -91,7 +92,7 @@ function AuthProvider({ children }) {
           authState,
           signInWithGoogle,
           signOut,
-          signInWithEmailAndPassword,
+          signUpWithEmailAndPassword,
         }}
       >
         {children}
