@@ -1,5 +1,11 @@
 import React from "react";
-import { Button, Card, TextField, Typography } from "@material-ui/core";
+import {
+  Button,
+  Card,
+  InputAdornment,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
 import LoginWithFacebook from "../components/auth/LoginWithFacebook";
 import SEO from "../components/shared/Seo";
@@ -7,6 +13,7 @@ import { useSignUpPageStyles } from "../styles";
 import { AuthContext } from "../auth";
 import { useForm } from "react-hook-form";
 import isEmail from "validator/lib/isEmail";
+import { CheckCircleOutline, HighlightOff } from "@material-ui/icons";
 
 function SignUpPage() {
   const classes = useSignUpPageStyles();
@@ -28,7 +35,7 @@ function SignUpPage() {
 
   // async function handleSubmit(event) {
   //   event.preventDefault();
-  //   await signUpWithEmailAndPassword(values);
+  //   await signUpWithEmailAn dPassword(values);
   //   history.push("/");
   // }
 
@@ -36,8 +43,20 @@ function SignUpPage() {
     console.log(data);
   }
 
+  const errorIcon = (
+    <InputAdornment>
+      <HighlightOff style={{ color: "red", height: 30, width: 30 }} />
+    </InputAdornment>
+  );
+
+  const validIcon = (
+    <InputAdornment>
+      <CheckCircleOutline style={{ color: "#ccc", height: 30, width: 30 }} />
+    </InputAdornment>
+  );
+
   return (
-    <>
+    <InputAdornment>
       <SEO title="Sign up" />
       <section className={classes.section}>
         <article>
@@ -146,7 +165,7 @@ function SignUpPage() {
           </Card>
         </article>
       </section>
-    </>
+    </InputAdornment>
   );
 }
 
