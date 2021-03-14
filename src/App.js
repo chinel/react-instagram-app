@@ -1,5 +1,11 @@
 import React from "react";
-import { Switch, Route, useHistory, useLocation } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  useHistory,
+  useLocation,
+  Redirect,
+} from "react-router-dom";
 import {
   EditProfilePage,
   ExplorePage,
@@ -15,7 +21,7 @@ import { AuthContext } from "./auth";
 
 function App() {
   const { authState } = React.useContext(AuthContext);
-  console.log({ authState });
+  const isAuth = authState.status === "in";
   const history = useHistory();
   const location = useLocation();
   // console.log(history, location);
@@ -30,6 +36,18 @@ function App() {
   }, [location, modal, history.action]);
 
   const isModalOpen = modal && prevLocation.current !== location;
+
+  if (!isAuth) {
+    // use unauthenticated routes
+    return (
+      <Switch>
+        <Route path="/accounts/login" component={LoginPage} />
+        <Route path="/accounts/emailsignup" component={SignUpPage} />
+        {/**If neither of the first two route is hit, that is if the user tries to visit another route when not authenticated redirect them to the login route */}
+        <Redirect to="/accounts/login" />
+      </Switch>
+    );
+  }
 
   return (
     <>
