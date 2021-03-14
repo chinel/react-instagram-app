@@ -6,14 +6,21 @@ import {
   Zoom,
 } from "@material-ui/core";
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "../../auth";
 import { useProfilePageStyles } from "../../styles";
 
 function OptionsMenu({ handleCloseMenu }) {
   const classes = useProfilePageStyles();
+  const { signOut } = React.useContext(AuthContext);
   const [showLogoutMessage, setShowLogoutMessage] = React.useState(false);
-
+  const history = useHistory();
   function handleLogoutClick() {
     setShowLogoutMessage(true);
+    setTimeout(() => {
+      signOut();
+      history.push("/accounts/login");
+    }, 2000);
   }
 
   return (
