@@ -3,6 +3,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import React, { useState, useEffect } from "react";
+import { CREATE_USER } from "./graphql/mutations";
 import defaultUserImage from "./images/default-user-image.jpg";
 
 const provider = new firebase.auth.GoogleAuthProvider();
@@ -11,6 +12,8 @@ const provider = new firebase.auth.GoogleAuthProvider();
 firebase.initializeApp({
   apiKey: "AIzaSyA-TSz8V_JRXE3gJy5R43YlgxcZXhN8Dm4",
   authDomain: "react-instagram-clone-2b9a9.firebaseapp.com",
+  databaseURL:
+    "https://react-instagram-clone-2b9a9-default-rtdb.firebaseio.com",
   projectId: "react-instagram-clone-2b9a9",
   storageBucket: "react-instagram-clone-2b9a9.appspot.com",
   messagingSenderId: "437854781427",
@@ -57,7 +60,7 @@ function AuthProvider({ children }) {
     await firebase.auth().signInWithPopup(provider);
   }
 
-  async function signInWithEmailAndPassword(formData) {
+  async function signUpWithEmailAndPassword(formData) {
     const data = await firebase
       .auth()
       .createUserWithEmailAndPassword(formData.email, formData.password);
@@ -91,7 +94,7 @@ function AuthProvider({ children }) {
           authState,
           signInWithGoogle,
           signOut,
-          signInWithEmailAndPassword,
+          signUpWithEmailAndPassword,
         }}
       >
         {children}
