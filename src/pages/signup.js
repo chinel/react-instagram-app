@@ -10,7 +10,7 @@ import isEmail from "validator/lib/isEmail";
 
 function SignUpPage() {
   const classes = useSignUpPageStyles();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState } = useForm({ mode: "onBlur" }); // passing onBlur as the mode validates only when the user blurs away from the form field
   const { signUpWithEmailAndPassword } = React.useContext(AuthContext);
   // const [values, setValues] = React.useState({
   //   email: "",
@@ -123,6 +123,7 @@ function SignUpPage() {
                 autoComplete="new-password"
               />
               <Button
+                disabled={!formState.isValid || formState.isSubmitting}
                 variant="contained"
                 fullWidth
                 color="primary"
