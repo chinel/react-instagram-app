@@ -72,6 +72,7 @@ function SignUpPage() {
       query: CHECK_IF_USERNAME_TAKEN,
       variables,
     });
+    console.log({ response });
     const isUsernameValid = response.data.users.length === 0;
     return isUsernameValid;
   }
@@ -140,7 +141,6 @@ function SignUpPage() {
                   required: true,
                   minLength: 5,
                   maxLength: 20,
-                  validate: async (input) => await validateUsername(input),
                 })}
                 InputProps={{
                   endAdornment: errors.name
@@ -162,6 +162,7 @@ function SignUpPage() {
                   maxLength: 20,
                   // accept only lowercase/uppercase letters , numbers, periods and underscore
                   pattern: /^[a-zA-Z0-9_.]*$/,
+                  validate: async (input) => await validateUsername(input),
                 })}
                 InputProps={{
                   endAdornment: errors.username
