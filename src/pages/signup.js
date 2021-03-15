@@ -41,8 +41,10 @@ function SignUpPage() {
   //   history.push("/");
   // }
 
-  function onSubmit(data) {
-    console.log(data);
+  async function onSubmit(data) {
+    //console.log(data);
+    await signUpWithEmailAndPassword(data);
+    history.push("/");
   }
 
   const errorIcon = (
