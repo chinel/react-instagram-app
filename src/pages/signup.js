@@ -51,6 +51,14 @@ function SignUpPage() {
       history.push("/");
     } catch (error) {
       console.log("Error signing up", error);
+      handleError(error);
+    }
+  }
+
+  function handleError(error) {
+    if (error.message.includes("users_username_key")) {
+      setError("Username already taken");
+    } else if (error.code.includes("auth")) {
       setError(error.message);
     }
   }
