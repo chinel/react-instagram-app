@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import isEmail from "validator/lib/isEmail";
 import { CheckCircleOutline, HighlightOff } from "@material-ui/icons";
 import AuthError from "../components/auth/AuthError";
+import { useApolloClient } from "@apollo/react-hooks";
 
 function SignUpPage() {
   const classes = useSignUpPageStyles();
@@ -31,6 +32,7 @@ function SignUpPage() {
   // });
 
   const history = useHistory();
+  const client = useApolloClient();
 
   // function handleChange(event) {
   //   const { name, value } = event.target;
@@ -63,6 +65,12 @@ function SignUpPage() {
     }
   }
 
+  async function validateUsername(username){
+   await client.query({
+     
+   })
+  }
+
   const errorIcon = (
     <InputAdornment>
       <HighlightOff style={{ color: "red", height: 30, width: 30 }} />
@@ -74,6 +82,8 @@ function SignUpPage() {
       <CheckCircleOutline style={{ color: "#ccc", height: 30, width: 30 }} />
     </InputAdornment>
   );
+
+    
 
   return (
     <>
@@ -127,6 +137,7 @@ function SignUpPage() {
                   required: true,
                   minLength: 5,
                   maxLength: 20,
+                  validate: async (input) => await validateUsername(input),
                 })}
                 InputProps={{
                   endAdornment: errors.name
