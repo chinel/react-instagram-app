@@ -16,6 +16,7 @@ import isEmail from "validator/lib/isEmail";
 import { CheckCircleOutline, HighlightOff } from "@material-ui/icons";
 import AuthError from "../components/auth/AuthError";
 import { useApolloClient } from "@apollo/react-hooks";
+import { CHECK_IF_USERNAME_TAKEN } from "../graphql/queries";
 
 function SignUpPage() {
   const classes = useSignUpPageStyles();
@@ -65,10 +66,14 @@ function SignUpPage() {
     }
   }
 
-  async function validateUsername(username){
-   await client.query({
-     
-   })
+  async function validateUsername(username) {
+    const variables = { username };
+    const response = await client.query({
+      query: CHECK_IF_USERNAME_TAKEN,
+      variables,
+    });
+    const isUsernameValid = response.data.users.length === 0;
+    return isUsernameValid;
   }
 
   const errorIcon = (
@@ -82,8 +87,6 @@ function SignUpPage() {
       <CheckCircleOutline style={{ color: "#ccc", height: 30, width: 30 }} />
     </InputAdornment>
   );
-
-    
 
   return (
     <>
