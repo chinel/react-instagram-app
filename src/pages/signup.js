@@ -21,6 +21,7 @@ function SignUpPage() {
     mode: "onBlur",
   }); // passing onBlur as the mode validates only when the user blurs away from the form field
   const { signUpWithEmailAndPassword } = React.useContext(AuthContext);
+  const [error, setError] = React.useState("");
   // const [values, setValues] = React.useState({
   //   email: "",
   //   name: "",
@@ -43,8 +44,13 @@ function SignUpPage() {
 
   async function onSubmit(data) {
     //console.log(data);
-    await signUpWithEmailAndPassword(data);
-    history.push("/");
+    try {
+      await signUpWithEmailAndPassword(data);
+      history.push("/");
+    } catch (error) {
+      console.log("Error signing up", error);
+      setError(error.message);
+    }
   }
 
   const errorIcon = (
