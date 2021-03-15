@@ -14,6 +14,7 @@ import { AuthContext } from "../auth";
 import { useForm } from "react-hook-form";
 import isEmail from "validator/lib/isEmail";
 import { CheckCircleOutline, HighlightOff } from "@material-ui/icons";
+import AuthError from "../components/auth/AuthError";
 
 function SignUpPage() {
   const classes = useSignUpPageStyles();
@@ -182,6 +183,7 @@ function SignUpPage() {
                 Sign Up
               </Button>
             </form>
+            <AuthError error={error} />
           </Card>
           <Card className={classes.loginCard}>
             <Typography variant="body2" align="right">
