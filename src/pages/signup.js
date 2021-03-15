@@ -14,6 +14,9 @@ import { AuthContext } from "../auth";
 import { useForm } from "react-hook-form";
 import isEmail from "validator/lib/isEmail";
 import { CheckCircleOutline, HighlightOff } from "@material-ui/icons";
+import AuthError from "../components/auth/AuthError";
+import { useApolloClient } from "@apollo/react-hooks";
+import { CHECK_IF_USERNAME_TAKEN } from "../graphql/queries";
 
 function SignUpPage() {
   const classes = useSignUpPageStyles();
@@ -21,6 +24,7 @@ function SignUpPage() {
     mode: "onBlur",
   }); // passing onBlur as the mode validates only when the user blurs away from the form field
   const { signUpWithEmailAndPassword } = React.useContext(AuthContext);
+  const [error, setError] = React.useState("");
   // const [values, setValues] = React.useState({
   //   email: "",
   //   name: "",
@@ -29,6 +33,7 @@ function SignUpPage() {
   // });
 
   const history = useHistory();
+  const client = useApolloClient();
 
   // function handleChange(event) {
   //   const { name, value } = event.target;
@@ -41,8 +46,35 @@ function SignUpPage() {
   //   history.push("/");
   // }
 
-  function onSubmit(data) {
-    console.log(data);
+  async function onSubmit(data) {
+    //console.log(data);
+    try {
+      setError("");
+      await signUpWithEmailAndPassword(data);
+      history.push("/");
+    } catch (error) {
+      console.log("Error signing up", error);
+      handleError(error);
+    }
+  }
+
+  function handleError(error) {
+    if (error.message.includes("users_username_key")) {
+      setError("Username already taken");
+    } else if (error.code.includes("auth")) {
+      setError(error.message);
+    }
+  }
+
+  async function validateUsername(username) {
+    const variables = { username };
+    const response = await client.query({
+      query: CHECK_IF_USERNAME_TAKEN,
+      variables,
+    });
+    console.log({ response });
+    const isUsernameValid = response.data.users.length === 0;
+    return isUsernameValid;
   }
 
   const errorIcon = (
@@ -130,6 +162,7 @@ function SignUpPage() {
                   maxLength: 20,
                   // accept only lowercase/uppercase letters , numbers, periods and underscore
                   pattern: /^[a-zA-Z0-9_.]*$/,
+                  validate: async (input) => await validateUsername(input),
                 })}
                 InputProps={{
                   endAdornment: errors.username
@@ -174,6 +207,7 @@ function SignUpPage() {
                 Sign Up
               </Button>
             </form>
+            <AuthError error={error} />
           </Card>
           <Card className={classes.loginCard}>
             <Typography variant="body2" align="right">
