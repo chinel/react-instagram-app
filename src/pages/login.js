@@ -29,14 +29,22 @@ function LoginPage() {
             <CardHeader className={classes.cardHeader} />
             <form onSubmit={handleSubmit(onSubmit)}>
               <TextField
+                inputRef={register({
+                  required: true,
+                  minLength: 5,
+                })}
                 fullWidth
                 variant="filled"
-                label="Username"
+                label="Username, email or phone"
                 margin="dense"
                 className={classes.textField}
                 autoComplete="username"
               />
               <TextField
+                inputRef={register({
+                  required: true,
+                  minLength: 5,
+                })}
                 fullWidth
                 variant="filled"
                 label="Password"
