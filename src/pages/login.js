@@ -16,6 +16,7 @@ import { useLoginPageStyles } from "../styles";
 function LoginPage() {
   const classes = useLoginPageStyles();
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
+  const [showPassword, setShowPassword] = React.useState(false);
 
   function onSubmit(data) {
     console.log({ data });
