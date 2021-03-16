@@ -57,7 +57,9 @@ function LoginPage() {
                 InputProps={{
                   endAdornment: hasPassword && (
                     <InputAdornment>
-                      <Button>{showPassword ? "Hide" : "Show"}</Button>
+                      <Button onClick={togglePasswordVisibility}>
+                        {showPassword ? "Hide" : "Show"}
+                      </Button>
                     </InputAdornment>
                   ),
                 }}
