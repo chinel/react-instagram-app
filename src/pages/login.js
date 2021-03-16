@@ -61,12 +61,12 @@ function LoginPage() {
                     </InputAdornment>
                   ),
                 }}
+                type={showPassword ? "text" : "password"}
                 fullWidth
                 variant="filled"
                 label="Password"
                 margin="dense"
                 className={classes.textField}
-                type="password"
                 autoComplete="current-password"
               />
               <Button
