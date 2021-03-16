@@ -17,6 +17,7 @@ function LoginPage() {
   const classes = useLoginPageStyles();
   const { register, handleSubmit, watch } = useForm({ mode: "onBlur" });
   const [showPassword, setShowPassword] = React.useState(false);
+  const hasPassword = Boolean(watch("password"));
 
   function onSubmit(data) {
     console.log({ data });
@@ -54,9 +55,9 @@ function LoginPage() {
                   minLength: 5,
                 })}
                 InputProps={{
-                  endAdornment: (
+                  endAdornment: hasPassword && (
                     <InputAdornment>
-                      <Button>Show</Button>
+                      <Button>{showPassword ? "Hide" : "Show"}</Button>
                     </InputAdornment>
                   ),
                 }}
