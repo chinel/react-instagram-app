@@ -15,7 +15,9 @@ import { useLoginPageStyles } from "../styles";
 
 function LoginPage() {
   const classes = useLoginPageStyles();
-  const { register, handleSubmit, watch } = useForm({ mode: "onBlur" });
+  const { register, handleSubmit, watch, formState } = useForm({
+    mode: "onBlur",
+  });
   const [showPassword, setShowPassword] = React.useState(false);
   const hasPassword = Boolean(watch("password"));
 
@@ -72,6 +74,7 @@ function LoginPage() {
                 autoComplete="current-password"
               />
               <Button
+                disabled={!formState.isValid || formState.isSubmitting}
                 variant="contained"
                 fullWidth
                 color="primary"
