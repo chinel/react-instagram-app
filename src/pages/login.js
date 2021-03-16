@@ -15,11 +15,15 @@ import { useLoginPageStyles } from "../styles";
 
 function LoginPage() {
   const classes = useLoginPageStyles();
-  const { register, handleSubmit } = useForm({ mode: "onBlur" });
+  const { register, handleSubmit, watch } = useForm({ mode: "onBlur" });
   const [showPassword, setShowPassword] = React.useState(false);
 
   function onSubmit(data) {
     console.log({ data });
+  }
+
+  function togglePasswordVisibility() {
+    setShowPassword((prev) => !prev);
   }
 
   return (
@@ -31,6 +35,7 @@ function LoginPage() {
             <CardHeader className={classes.cardHeader} />
             <form onSubmit={handleSubmit(onSubmit)}>
               <TextField
+                name="input"
                 inputRef={register({
                   required: true,
                   minLength: 5,
@@ -43,6 +48,7 @@ function LoginPage() {
                 autoComplete="username"
               />
               <TextField
+                name="password"
                 inputRef={register({
                   required: true,
                   minLength: 5,
