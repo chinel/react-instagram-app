@@ -13,6 +13,7 @@ import LoginWithFacebook from "../components/auth/LoginWithFacebook";
 import SEO from "../components/shared/Seo";
 import { useLoginPageStyles } from "../styles";
 import { AuthContext } from "../auth";
+import isEmail from "validator/lib/isEmail";
 
 function LoginPage() {
   const classes = useLoginPageStyles();
@@ -25,6 +26,9 @@ function LoginPage() {
   const history = useHistory();
 
   async function onSubmit({ input, password }) {
+    if(!isEmail(input)) {
+      
+    }
     await loginWithEmailAndPassword(input, password);
     history.push("/");
   }
