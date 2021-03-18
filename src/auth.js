@@ -102,6 +102,7 @@ function AuthProvider({ children }) {
           signInWithGoogle,
           signOut,
           signUpWithEmailAndPassword,
+          loginWithEmailAndPassword,
         }}
       >
         {children}
