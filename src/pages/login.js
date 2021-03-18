@@ -33,7 +33,9 @@ function LoginPage() {
       input = await getUserEmail(input);
     }
     await loginWithEmailAndPassword(input, password);
-    history.push("/");
+    setTimeout(() => {
+      history.push("/");
+    }, 0);
   }
 
   async function getUserEmail(input) {
