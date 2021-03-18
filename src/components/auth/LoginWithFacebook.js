@@ -15,6 +15,7 @@ function LoginWithFacebook({ color, iconColor, variant }) {
   const [error, setError] = React.useState("");
   async function handleLogInWithGoogle() {
     try {
+      await loginWithGoogle();
     } catch (error) {
       console.error("Error logging in with Google", error);
       setError(error.message);
