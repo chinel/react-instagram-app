@@ -58,20 +58,21 @@ function AuthProvider({ children }) {
 
   async function loginInWithGoogle() {
     const data = await firebase.auth().signInWithPopup(provider);
-    if (data.isAdditionalInfo.isNewUser) {
-      const { uid, displayName } = data.user;
+    if (data.additionalUserInfo.isNewUser) {
+      const { uid, displayName, email, photoURL } = data.user;
       //to get the display name we use regex to remove the white space and join it with the last 5 characters from the uid
       const username = `${displayName.replace(/\s+/g, "")}${uid.slice(-5)}`;
       const variables = {
         userId: uid,
         name: displayName,
-        username: username,
-        email: data.user.email,
+        username,
+        email,
         bio: "",
         website: "",
         phoneNumber: "",
-        profileImage: defaultUserImage,
+        profileImage: photoURL,
       };
+      await createUser({ variables });
     }
   }
 
