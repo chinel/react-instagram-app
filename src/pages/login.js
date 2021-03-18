@@ -7,22 +7,26 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import LoginWithFacebook from "../components/auth/LoginWithFacebook";
 import SEO from "../components/shared/Seo";
 import { useLoginPageStyles } from "../styles";
+import { AuthContext } from "../auth";
 
 function LoginPage() {
   const classes = useLoginPageStyles();
   const { register, handleSubmit, watch, formState } = useForm({
     mode: "onBlur",
   });
+  const { loginWithEmailAndPassword } = React.useContext(AuthContext);
   const [showPassword, setShowPassword] = React.useState(false);
   const hasPassword = Boolean(watch("password"));
+  const history = useHistory();
 
-  function onSubmit(data) {
-    console.log({ data });
+  async function onSubmit({ input, password }) {
+    await loginWithEmailAndPassword(input, password);
+    history.push("/");
   }
 
   function togglePasswordVisibility() {
