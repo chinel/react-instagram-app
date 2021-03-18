@@ -42,7 +42,8 @@ function LoginPage() {
       query: GET_USER_EMAIL,
       variables,
     });
-    console.log(response);
+    const userEmail = response.data.users[0]?.email || "no@email.com";
+    return userEmail;
   }
 
   function togglePasswordVisibility() {
