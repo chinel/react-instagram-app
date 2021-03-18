@@ -15,6 +15,7 @@ import { useLoginPageStyles } from "../styles";
 import { AuthContext } from "../auth";
 import isEmail from "validator/lib/isEmail";
 import { useApolloClient } from "@apollo/react-hooks";
+import { GET_USER_EMAIL } from "../graphql/queries";
 
 function LoginPage() {
   const classes = useLoginPageStyles();
@@ -29,10 +30,19 @@ function LoginPage() {
 
   async function onSubmit({ input, password }) {
     if (!isEmail(input)) {
-      getUserEmail(input);
+      await getUserEmail(input);
     }
-    await loginWithEmailAndPassword(input, password);
-    history.push("/");
+    // await loginWithEmailAndPassword(input, password);
+    //history.push("/");
+  }
+
+  async function getUserEmail(input) {
+    const variables = { input };
+    const response = await client.query({
+      query: GET_USER_EMAIL,
+      variables,
+    });
+    console.log(response);
   }
 
   function togglePasswordVisibility() {
