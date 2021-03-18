@@ -16,6 +16,7 @@ import { AuthContext } from "../auth";
 import isEmail from "validator/lib/isEmail";
 import { useApolloClient } from "@apollo/react-hooks";
 import { GET_USER_EMAIL } from "../graphql/queries";
+import AuthError from "../components/auth/AuthError";
 
 function LoginPage() {
   const classes = useLoginPageStyles();
@@ -117,6 +118,7 @@ function LoginPage() {
               <div className={classes.orLine} />
             </div>
             <LoginWithFacebook color="secondary" iconColor="blue" />
+            <AuthError error={error}/>
             <Button fullWidth color="secondary">
               <Typography variant="caption">Forgot password?</Typography>
             </Button>
