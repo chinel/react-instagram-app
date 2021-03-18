@@ -28,15 +28,22 @@ function LoginPage() {
   const hasPassword = Boolean(watch("password"));
   const history = useHistory();
   const client = useApolloClient();
+  const [error, setError] = React.useState("");
 
   async function onSubmit({ input, password }) {
-    if (!isEmail(input)) {
-      input = await getUserEmail(input);
+    try {
+      setError("");
+      if (!isEmail(input)) {
+        input = await getUserEmail(input);
+      }
+      await loginWithEmailAndPassword(input, password);
+      setTimeout(() => {
+        history.push("/");
+      }, 0);
+    } catch (error) {
+      console.error("Error loggin in", error);
+      handleError(error);
     }
-    await loginWithEmailAndPassword(input, password);
-    setTimeout(() => {
-      history.push("/");
-    }, 0);
   }
 
   async function getUserEmail(input) {
@@ -118,7 +125,7 @@ function LoginPage() {
               <div className={classes.orLine} />
             </div>
             <LoginWithFacebook color="secondary" iconColor="blue" />
-            <AuthError error={error}/>
+            <AuthError error={error} />
             <Button fullWidth color="secondary">
               <Typography variant="caption">Forgot password?</Typography>
             </Button>
