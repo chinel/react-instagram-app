@@ -6,6 +6,7 @@ import { Button } from "@material-ui/core";
 import { AuthContext } from "../../auth";
 import { useContext } from "react";
 import AuthError from "./AuthError";
+import { useHistory } from "react-router-dom";
 
 function LoginWithFacebook({ color, iconColor, variant }) {
   const classes = useLoginPageStyles();
@@ -13,9 +14,11 @@ function LoginWithFacebook({ color, iconColor, variant }) {
   const facebookIcon =
     iconColor === "blue" ? FacebookIconBlue : FacebookIconWhite;
   const [error, setError] = React.useState("");
+  const history = useHistory();
   async function handleLogInWithGoogle() {
     try {
       await loginWithGoogle();
+      history.push('/');
     } catch (error) {
       console.error("Error logging in with Google", error);
       setError(error.message);
