@@ -60,6 +60,13 @@ function AuthProvider({ children }) {
     await firebase.auth().signInWithPopup(provider);
   }
 
+  async function loginWithEmailAndPassword(email, password) {
+    const data = await firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password);
+    return data;
+  }
+
   async function signUpWithEmailAndPassword(formData) {
     const data = await firebase
       .auth()
@@ -95,6 +102,7 @@ function AuthProvider({ children }) {
           signInWithGoogle,
           signOut,
           signUpWithEmailAndPassword,
+          loginWithEmailAndPassword,
         }}
       >
         {children}
