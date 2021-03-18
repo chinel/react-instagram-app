@@ -46,6 +46,12 @@ function LoginPage() {
     }
   }
 
+  function handleError(error) {
+    if (error.code.includes("auth")) {
+      setError(error.message);
+    }
+  }
+
   async function getUserEmail(input) {
     const variables = { input };
     const response = await client.query({
