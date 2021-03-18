@@ -10,15 +10,15 @@ import { useHistory } from "react-router-dom";
 
 function LoginWithFacebook({ color, iconColor, variant }) {
   const classes = useLoginPageStyles();
-  const { loginWithGoogle } = useContext(AuthContext);
+  const { loginInWithGoogle } = useContext(AuthContext);
   const facebookIcon =
     iconColor === "blue" ? FacebookIconBlue : FacebookIconWhite;
   const [error, setError] = React.useState("");
   const history = useHistory();
   async function handleLogInWithGoogle() {
     try {
-      await loginWithGoogle();
-      history.push('/');
+      await loginInWithGoogle();
+      history.push("/");
     } catch (error) {
       console.error("Error logging in with Google", error);
       setError(error.message);
