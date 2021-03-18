@@ -14,6 +14,7 @@ import SEO from "../components/shared/Seo";
 import { useLoginPageStyles } from "../styles";
 import { AuthContext } from "../auth";
 import isEmail from "validator/lib/isEmail";
+import { useApolloClient } from "@apollo/react-hooks";
 
 function LoginPage() {
   const classes = useLoginPageStyles();
@@ -24,10 +25,11 @@ function LoginPage() {
   const [showPassword, setShowPassword] = React.useState(false);
   const hasPassword = Boolean(watch("password"));
   const history = useHistory();
+  const client = useApolloClient();
 
   async function onSubmit({ input, password }) {
-    if(!isEmail(input)) {
-      
+    if (!isEmail(input)) {
+      getUserEmail(input);
     }
     await loginWithEmailAndPassword(input, password);
     history.push("/");
