@@ -30,10 +30,10 @@ function LoginPage() {
 
   async function onSubmit({ input, password }) {
     if (!isEmail(input)) {
-      await getUserEmail(input);
+      input = await getUserEmail(input);
     }
-    // await loginWithEmailAndPassword(input, password);
-    //history.push("/");
+    await loginWithEmailAndPassword(input, password);
+    history.push("/");
   }
 
   async function getUserEmail(input) {
