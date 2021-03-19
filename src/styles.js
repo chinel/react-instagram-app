@@ -123,6 +123,9 @@ export const useLoginPageStyles = makeStyles({
   blueButton: {
     background: "#4285f4",
     color: "#fff",
+    "&:hover": {
+      background: "#4285f4",
+    },
   },
 });
 
