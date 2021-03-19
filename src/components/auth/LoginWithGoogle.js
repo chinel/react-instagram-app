@@ -8,7 +8,7 @@ import { useContext } from "react";
 import AuthError from "./AuthError";
 import { useHistory } from "react-router-dom";
 
-function LoginWithFacebook({ color, iconColor, variant }) {
+function LoginWithGoogle({ color, iconColor, variant }) {
   const classes = useLoginPageStyles();
   const { loginInWithGoogle } = useContext(AuthContext);
   const facebookIcon =
@@ -44,4 +44,4 @@ function LoginWithFacebook({ color, iconColor, variant }) {
     </>
   );
 }
-export default LoginWithFacebook;
+export default LoginWithGoogle;
