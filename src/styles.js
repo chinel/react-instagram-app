@@ -120,6 +120,10 @@ export const useLoginPageStyles = makeStyles({
     width: 16,
     marginRight: 8,
   },
+  blueButton: {
+    background: "#4285f4",
+    color: "#fff",
+  },
 });
 
 // SignUp page: /pages/signup.js

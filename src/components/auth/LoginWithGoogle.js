@@ -30,8 +30,9 @@ function LoginWithGoogle({ color, iconColor, variant }) {
       <Button
         onClick={handleLogInWithGoogle}
         fullWidth
-        color={color}
+        color={color !== "primary" ? color : ""}
         variant={variant}
+        className={color === "primary" ?  classes.blueButton: }
       >
         <img
           src={facebookIcon}
