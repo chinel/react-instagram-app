@@ -1,6 +1,6 @@
 import React from "react";
 import { useLoginPageStyles } from "../../styles";
-import FacebookIconBlue from "../../images/facebook-icon-blue.svg";
+import GoogleColoredIcon from "../../images/google-white-icon-2.png";
 import GoogleIconWhite from "../../images/google-icon-white.png";
 import { Button } from "@material-ui/core";
 import { AuthContext } from "../../auth";
@@ -12,7 +12,7 @@ function LoginWithGoogle({ color, iconColor, variant }) {
   const classes = useLoginPageStyles();
   const { loginInWithGoogle } = useContext(AuthContext);
   const facebookIcon =
-    iconColor === "blue" ? FacebookIconBlue : GoogleIconWhite;
+    iconColor === "blue" ? GoogleColoredIcon : GoogleIconWhite;
   const [error, setError] = React.useState("");
   const history = useHistory();
   async function handleLogInWithGoogle() {
@@ -30,7 +30,7 @@ function LoginWithGoogle({ color, iconColor, variant }) {
       <Button
         onClick={handleLogInWithGoogle}
         fullWidth
-        color={color !== "primary" ? color : ""}
+        color={color !== "primary" ? color : "default"}
         variant={variant}
         className={color === "primary" ? classes.blueButton : ""}
       >
