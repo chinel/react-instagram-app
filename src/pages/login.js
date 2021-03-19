@@ -9,7 +9,7 @@ import {
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import LoginWithFacebook from "../components/auth/LoginWithFacebook";
+import LoginWithFacebook from "../components/auth/LoginWithGoogle";
 import SEO from "../components/shared/Seo";
 import { useLoginPageStyles } from "../styles";
 import { AuthContext } from "../auth";

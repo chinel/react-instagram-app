@@ -1,18 +1,18 @@
 import React from "react";
 import { useLoginPageStyles } from "../../styles";
-import FacebookIconBlue from "../../images/facebook-icon-blue.svg";
-import FacebookIconWhite from "../../images/facebook-icon-white.png";
+import GoogleColoredIcon from "../../images/google-trans.png";
+import GoogleIconWhite from "../../images/google-icon-white.png";
 import { Button } from "@material-ui/core";
 import { AuthContext } from "../../auth";
 import { useContext } from "react";
 import AuthError from "./AuthError";
 import { useHistory } from "react-router-dom";
 
-function LoginWithFacebook({ color, iconColor, variant }) {
+function LoginWithGoogle({ color, iconColor, variant }) {
   const classes = useLoginPageStyles();
   const { loginInWithGoogle } = useContext(AuthContext);
   const facebookIcon =
-    iconColor === "blue" ? FacebookIconBlue : FacebookIconWhite;
+    iconColor === "blue" ? GoogleColoredIcon : GoogleIconWhite;
   const [error, setError] = React.useState("");
   const history = useHistory();
   async function handleLogInWithGoogle() {
@@ -30,18 +30,19 @@ function LoginWithFacebook({ color, iconColor, variant }) {
       <Button
         onClick={handleLogInWithGoogle}
         fullWidth
-        color={color}
+        color={color !== "primary" ? color : "default"}
         variant={variant}
+        className={color === "primary" ? classes.blueButton : ""}
       >
         <img
           src={facebookIcon}
-          alt="Facebook Icon"
-          className={classes.facebookIcon}
+          alt="Google Icon"
+          className={classes.googleIcon}
         />
-        Log In with Facebook
+        {iconColor === "blue" ? "Log In with Google" : "Sign in with Google"}
       </Button>
       <AuthError error={error} />
     </>
   );
 }
-export default LoginWithFacebook;
+export default LoginWithGoogle;

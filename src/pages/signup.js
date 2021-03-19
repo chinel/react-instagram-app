@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Link, useHistory } from "react-router-dom";
-import LoginWithFacebook from "../components/auth/LoginWithFacebook";
+import LoginWithFacebook from "../components/auth/LoginWithGoogle";
 import SEO from "../components/shared/Seo";
 import { useSignUpPageStyles } from "../styles";
 import { AuthContext } from "../auth";
