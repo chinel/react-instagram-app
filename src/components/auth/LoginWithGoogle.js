@@ -35,10 +35,10 @@ function LoginWithGoogle({ color, iconColor, variant }) {
       >
         <img
           src={facebookIcon}
-          alt="Facebook Icon"
+          alt="Google Icon"
           className={classes.facebookIcon}
         />
-        Log In with Facebook
+        Log In with Google
       </Button>
       <AuthError error={error} />
     </>
