@@ -32,14 +32,14 @@ function LoginWithGoogle({ color, iconColor, variant }) {
         fullWidth
         color={color !== "primary" ? color : ""}
         variant={variant}
-        className={color === "primary" ?  classes.blueButton: }
+        className={color === "primary" ? classes.blueButton : ""}
       >
         <img
           src={facebookIcon}
           alt="Google Icon"
           className={classes.facebookIcon}
         />
-        {iconColor === "blue"? "Log In with Google": "Sign in with Google"}
+        {iconColor === "blue" ? "Log In with Google" : "Sign in with Google"}
       </Button>
       <AuthError error={error} />
     </>
