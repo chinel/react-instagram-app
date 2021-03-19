@@ -1,6 +1,6 @@
 import React from "react";
 import { useLoginPageStyles } from "../../styles";
-import GoogleColoredIcon from "../../images/google-white-icon-2.png";
+import GoogleColoredIcon from "../../images/google-trans.png";
 import GoogleIconWhite from "../../images/google-icon-white.png";
 import { Button } from "@material-ui/core";
 import { AuthContext } from "../../auth";
@@ -37,7 +37,7 @@ function LoginWithGoogle({ color, iconColor, variant }) {
         <img
           src={facebookIcon}
           alt="Google Icon"
-          className={classes.facebookIcon}
+          className={classes.googleIcon}
         />
         {iconColor === "blue" ? "Log In with Google" : "Sign in with Google"}
       </Button>
