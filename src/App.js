@@ -42,7 +42,7 @@ function App() {
     }
   }, [location, modal, history.action]);
 
-  const isModalOpen = modal && prevLocation.current !== location;
+  if (loading) return <LoadingScreen />;
 
   if (!isAuth) {
     // use unauthenticated routes
@@ -55,9 +55,18 @@ function App() {
       </Switch>
     );
   }
+  const isModalOpen = modal && prevLocation.current !== location;
+
+  const me = isAuth && data ? data.users[0] : null;
+  const currentUserId = me.id;
 
   return (
-    <>
+    <UserContext.Provider
+      value={{
+        me,
+        currentUserId,
+      }}
+    >
       <Switch location={isModalOpen ? prevLocation.current : location}>
         <Route exact path="/" component={FeedPage} />
         <Route path="/explore" component={ExplorePage} />
@@ -69,7 +78,7 @@ function App() {
         <Route path="*" component={NotFoundPage} />
       </Switch>
       {isModalOpen && <Route exact path="/p/:postId" component={PostModal} />}
-    </>
+    </UserContext.Provider>
   );
 }
 
