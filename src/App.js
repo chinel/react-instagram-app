@@ -20,6 +20,7 @@ import PostModal from "./components/post/PostModal";
 import { AuthContext } from "./auth";
 import { useSubscription } from "@apollo/react-hooks";
 import { ME } from "./graphql/subscriptions";
+import LoadingScreen from "./components/shared/LoadingScreen";
 
 export const UserContext = React.createContext();
 
@@ -28,7 +29,7 @@ function App() {
   const isAuth = authState.status === "in";
   const userId = isAuth ? authState.user.uid : null;
   const variables = { userId };
-  const { data, loading } = useSubscription(ME);
+  const { data, loading } = useSubscription(ME, { variables });
   const history = useHistory();
   const location = useLocation();
   // console.log(history, location);
