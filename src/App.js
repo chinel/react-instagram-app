@@ -18,6 +18,7 @@ import {
 } from "./pages";
 import PostModal from "./components/post/PostModal";
 import { AuthContext } from "./auth";
+import { useSubscription } from "@apollo/react-hooks";
 
 export const UserContext = React.createContext();
 
