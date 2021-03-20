@@ -15,11 +15,12 @@ import EditUserInfo from "../components/profile/EditUserInfo";
 import { UserContext } from "../App";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_EDIT_USER_PROFILE } from "../graphql/queries";
+import LoadingScreen from "../components/shared/LoadingScreen";
 
 function EditProfilePage({ history }) {
   const { currentUserId } = React.useContext(UserContext);
   const variables = { id: currentUserId };
-  const { data, loading } = useQuery(GET_EDIT_USER_PROFILE);
+  const { data, loading } = useQuery(GET_EDIT_USER_PROFILE, { variables });
 
   const classes = useEditProfilePageStyles();
   const path = history.location.pathname;
@@ -79,6 +80,8 @@ function EditProfilePage({ history }) {
       ))}
     </List>
   );
+
+  if (loading) return <LoadingScreen />;
 
   return (
     <Layout title="Edit Profile">
