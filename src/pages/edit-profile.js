@@ -12,8 +12,10 @@ import {
 import { Menu } from "@material-ui/icons";
 import { defaultCurrentUser } from "../data";
 import EditUserInfo from "../components/profile/EditUserInfo";
+import { UserContext } from "../App";
 
 function EditProfilePage({ history }) {
+  const { me, currentUserId } = React.useContext(UserContext);
   const classes = useEditProfilePageStyles();
   const path = history.location.pathname;
 
