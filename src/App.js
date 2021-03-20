@@ -19,6 +19,8 @@ import {
 import PostModal from "./components/post/PostModal";
 import { AuthContext } from "./auth";
 
+export const UserContext = React.createContext();
+
 function App() {
   const { authState } = React.useContext(AuthContext);
   const isAuth = authState.status === "in";
