@@ -13,9 +13,14 @@ import { Menu } from "@material-ui/icons";
 import { defaultCurrentUser } from "../data";
 import EditUserInfo from "../components/profile/EditUserInfo";
 import { UserContext } from "../App";
+import { useQuery } from "@apollo/react-hooks";
+import { GET_EDIT_USER_PROFILE } from "../graphql/queries";
 
 function EditProfilePage({ history }) {
-  const { me, currentUserId } = React.useContext(UserContext);
+  const { currentUserId } = React.useContext(UserContext);
+  const variables = { id: currentUserId };
+  const { data, loading } = useQuery(GET_EDIT_USER_PROFILE);
+
   const classes = useEditProfilePageStyles();
   const path = history.location.pathname;
 
