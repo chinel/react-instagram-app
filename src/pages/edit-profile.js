@@ -10,7 +10,6 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
-import { defaultCurrentUser } from "../data";
 import EditUserInfo from "../components/profile/EditUserInfo";
 import { UserContext } from "../App";
 import { useQuery } from "@apollo/react-hooks";
@@ -123,7 +122,7 @@ function EditProfilePage({ history }) {
           </Hidden>
         </nav>
         <main>
-          {path.includes("edit") && <EditUserInfo user={defaultCurrentUser} />}
+          {path.includes("edit") && <EditUserInfo user={data.users_by_pk} />}
         </main>
       </section>
     </Layout>
