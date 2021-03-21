@@ -2,9 +2,22 @@ import { Button, Hidden, TextField, Typography } from "@material-ui/core";
 import React from "react";
 import { useEditProfilePageStyles } from "../../styles";
 import ProfilePicture from "../shared/ProfilePicture";
+import { useForm } from "react-hook-form";
+import isURL from "validator/lib/isURL";
+import isEmail from "validator/lib/isEmail";
+import isMobilePhone from "validator/lib/isMobilePhone";
+import { useMutation } from "@apollo/react-hooks";
+import { EDIT_USER } from "./graphql/mutations";
 
 function EditUserInfo({ user }) {
   const classes = useEditProfilePageStyles();
+  const { register, handleSubmit } = useForm({ mode: "onBlur" });
+  const [editUser] = useMutation(EDIT_USER, {});
+
+  function onSubmit(data) {
+    console.log(data);
+  }
+
   return (
     <section className={classes.container}>
       <div className={classes.pictureSectionItem}>
@@ -22,21 +35,57 @@ function EditUserInfo({ user }) {
           </Typography>
         </div>
       </div>
-      <form className={classes.form}>
-        <SectionItem text="Name" formItem={user.name} />
-        <SectionItem text="Username" formItem={user.username} />
-        <SectionItem text="Website" formItem={user.website} />
+      <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
+        <SectionItem
+          text="Name"
+          formItem={user.name}
+          name="name"
+          inputRef={register({
+            required: true,
+            miniLength: 5,
+            maxLength: 20,
+          })}
+        />
+        <SectionItem
+          text="Username"
+          formItem={user.username}
+          name="username"
+          inputRef={register({
+            required: true,
+            pattern: /^[a-zA-Z0-9_.]*$/,
+            miniLength: 5,
+            maxLength: 20,
+          })}
+        />
+        <SectionItem
+          text="Website"
+          formItem={user.website}
+          name="website"
+          inputRef={register({
+            validate: (input) =>
+              Boolean(input)
+                ? isURL(input, {
+                    protocols: ["http", "https"],
+                    require_protocol: true,
+                  })
+                : true,
+          })}
+        />
         <div className={classes.sectionItem}>
           <aside>
             <Typography className={classes.bio}>Bio</Typography>
           </aside>
           <TextField
+            name="bio"
+            inputRef={register({
+              maxLength: 120,
+            })}
             variant="outlined"
             multiline
             rowsMax={3}
             rows={3}
             fullWidth
-            value={user.bio}
+            defaultValue={user.bio}
           />
         </div>
         <div className={classes.sectionItem}>
@@ -48,8 +97,24 @@ function EditUserInfo({ user }) {
             Personal Information
           </Typography>
         </div>
-        <SectionItem text="Email" formItem={user.email} type="email" />
-        <SectionItem text="Phone Number" formItem={user.phone_number} />
+        <SectionItem
+          name="email"
+          inputRef={register({
+            required: true,
+            validate: (input) => isEmail(input),
+          })}
+          text="Email"
+          formItem={user.email}
+          type="email"
+        />
+        <SectionItem
+          text="Phone Number"
+          formItem={user.phone_number}
+          name="phoneNumber"
+          inputRef={register({
+            validate: (input) => (Boolean(input) ? isMobilePhone(input) : true),
+          })}
+        />
         <div className={classes.sectionItem}>
           <div />
           <Button
@@ -66,7 +131,7 @@ function EditUserInfo({ user }) {
   );
 }
 
-function SectionItem({ type = "text", text, formItem }) {
+function SectionItem({ type = "text", text, formItem, inputRef, name }) {
   const classes = useEditProfilePageStyles();
   return (
     <div className={classes.sectionItemWrapper}>
@@ -81,9 +146,11 @@ function SectionItem({ type = "text", text, formItem }) {
         </Hidden>
       </aside>
       <TextField
+        name={name}
+        inputRef={inputRef}
         variant="outlined"
         fullWidth
-        value={formItem}
+        defaultValue={formItem}
         type={type}
         className={classes.textField}
         inputProps={{

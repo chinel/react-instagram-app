@@ -21,6 +21,7 @@ function EditProfilePage({ history }) {
   const variables = { id: currentUserId };
   const { data, loading } = useQuery(GET_EDIT_USER_PROFILE, { variables });
   const classes = useEditProfilePageStyles();
+
   const path = history.location.pathname;
 
   const [showDrawer, setShowDrawer] = React.useState(false);
