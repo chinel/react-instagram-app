@@ -68,9 +68,7 @@ function EditUserInfo({ user }) {
           <TextField
             name="bio"
             inputRef={register({
-              required: true,
-              miniLength: 5,
-              maxLength: 20,
+              maxLength: 120,
             })}
             variant="outlined"
             multiline
