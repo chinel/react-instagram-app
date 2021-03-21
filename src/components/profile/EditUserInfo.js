@@ -25,14 +25,48 @@ function EditUserInfo({ user }) {
         </div>
       </div>
       <form className={classes.form}>
-        <SectionItem text="Name" formItem={user.name} />
-        <SectionItem text="Username" formItem={user.username} />
-        <SectionItem text="Website" formItem={user.website} />
+        <SectionItem
+          text="Name"
+          formItem={user.name}
+          name="name"
+          inputRef={register({
+            required: true,
+            miniLength: 5,
+            maxLength: 20,
+          })}
+        />
+        <SectionItem
+          text="Username"
+          formItem={user.username}
+          name="username"
+          inputRef={register({
+            required: true,
+            pattern: /^[a-zA-Z0-9_.]*$/,
+            miniLength: 5,
+            maxLength: 20,
+          })}
+        />
+        <SectionItem
+          text="Website"
+          formItem={user.website}
+          name="website"
+          inputRef={register({
+            required: true,
+            miniLength: 5,
+            maxLength: 20,
+          })}
+        />
         <div className={classes.sectionItem}>
           <aside>
             <Typography className={classes.bio}>Bio</Typography>
           </aside>
           <TextField
+            name="bio"
+            inputRef={register({
+              required: true,
+              miniLength: 5,
+              maxLength: 20,
+            })}
             variant="outlined"
             multiline
             rowsMax={3}
@@ -50,8 +84,27 @@ function EditUserInfo({ user }) {
             Personal Information
           </Typography>
         </div>
-        <SectionItem text="Email" formItem={user.email} type="email" />
-        <SectionItem text="Phone Number" formItem={user.phone_number} />
+        <SectionItem
+          name="email"
+          inputRef={register({
+            required: true,
+            miniLength: 5,
+            maxLength: 20,
+          })}
+          text="Email"
+          formItem={user.email}
+          type="email"
+        />
+        <SectionItem
+          text="Phone Number"
+          formItem={user.phone_number}
+          name="phone"
+          inputRef={register({
+            required: true,
+            miniLength: 5,
+            maxLength: 20,
+          })}
+        />
         <div className={classes.sectionItem}>
           <div />
           <Button
@@ -83,6 +136,8 @@ function SectionItem({ type = "text", text, formItem, inputRef, name }) {
         </Hidden>
       </aside>
       <TextField
+        name={name}
+        inputRef={inputRef}
         variant="outlined"
         fullWidth
         value={formItem}
