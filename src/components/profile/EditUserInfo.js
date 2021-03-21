@@ -10,6 +10,11 @@ import isMobilePhone from "validator/lib/isMobilePhone";
 function EditUserInfo({ user }) {
   const classes = useEditProfilePageStyles();
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
+
+  function onSubmit(data) {
+    console.log(data);
+  }
+
   return (
     <section className={classes.container}>
       <div className={classes.pictureSectionItem}>
@@ -27,7 +32,7 @@ function EditUserInfo({ user }) {
           </Typography>
         </div>
       </div>
-      <form className={classes.form}>
+      <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
         <SectionItem
           text="Name"
           formItem={user.name}
