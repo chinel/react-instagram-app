@@ -5,6 +5,7 @@ import ProfilePicture from "../shared/ProfilePicture";
 import { useForm } from "react-hook-form";
 import isURL from "validator/lib/isURL";
 import isEmail from "validator/lib/isEmail";
+import isMobilePhone from "validator/lib/isMobilePhone";
 
 function EditUserInfo({ user }) {
   const classes = useEditProfilePageStyles();
@@ -101,11 +102,9 @@ function EditUserInfo({ user }) {
         <SectionItem
           text="Phone Number"
           formItem={user.phone_number}
-          name="phone"
+          name="phoneNumber"
           inputRef={register({
-            required: true,
-            miniLength: 5,
-            maxLength: 20,
+            validate: (input) => (Boolean(input) ? isMobilePhone(input) : true),
           })}
         />
         <div className={classes.sectionItem}>
