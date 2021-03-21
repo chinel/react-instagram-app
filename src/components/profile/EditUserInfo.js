@@ -3,6 +3,7 @@ import React from "react";
 import { useEditProfilePageStyles } from "../../styles";
 import ProfilePicture from "../shared/ProfilePicture";
 import { useForm } from "react-hook-form";
+import isURL from "validator/lib/isURL";
 
 function EditUserInfo({ user }) {
   const classes = useEditProfilePageStyles();
@@ -51,9 +52,13 @@ function EditUserInfo({ user }) {
           formItem={user.website}
           name="website"
           inputRef={register({
-            required: true,
-            miniLength: 5,
-            maxLength: 20,
+            validate: (input) =>
+              Boolean(input)
+                ? isURL(input, {
+                    protocols: ["http", "https"],
+                    require_protocol: true,
+                  })
+                : true,
           })}
         />
         <div className={classes.sectionItem}>
