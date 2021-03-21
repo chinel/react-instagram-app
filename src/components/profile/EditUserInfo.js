@@ -4,6 +4,7 @@ import { useEditProfilePageStyles } from "../../styles";
 import ProfilePicture from "../shared/ProfilePicture";
 import { useForm } from "react-hook-form";
 import isURL from "validator/lib/isURL";
+import isEmail from "validator/lib/isEmail";
 
 function EditUserInfo({ user }) {
   const classes = useEditProfilePageStyles();
@@ -91,8 +92,7 @@ function EditUserInfo({ user }) {
           name="email"
           inputRef={register({
             required: true,
-            miniLength: 5,
-            maxLength: 20,
+            validate: (input) => isEmail(input),
           })}
           text="Email"
           formItem={user.email}
