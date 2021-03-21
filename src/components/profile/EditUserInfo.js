@@ -75,7 +75,7 @@ function EditUserInfo({ user }) {
             rowsMax={3}
             rows={3}
             fullWidth
-            value={user.bio}
+            defaultValue={user.bio}
           />
         </div>
         <div className={classes.sectionItem}>
@@ -143,7 +143,7 @@ function SectionItem({ type = "text", text, formItem, inputRef, name }) {
         inputRef={inputRef}
         variant="outlined"
         fullWidth
-        value={formItem}
+        defaultValue={formItem}
         type={type}
         className={classes.textField}
         inputProps={{
