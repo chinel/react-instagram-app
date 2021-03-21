@@ -6,10 +6,13 @@ import { useForm } from "react-hook-form";
 import isURL from "validator/lib/isURL";
 import isEmail from "validator/lib/isEmail";
 import isMobilePhone from "validator/lib/isMobilePhone";
+import { useMutation } from "@apollo/react-hooks";
+import { EDIT_USER } from "./graphql/mutations";
 
 function EditUserInfo({ user }) {
   const classes = useEditProfilePageStyles();
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
+  const [editUser] = useMutation(EDIT_USER, {});
 
   function onSubmit(data) {
     console.log(data);
