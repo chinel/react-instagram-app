@@ -2,9 +2,11 @@ import { Button, Hidden, TextField, Typography } from "@material-ui/core";
 import React from "react";
 import { useEditProfilePageStyles } from "../../styles";
 import ProfilePicture from "../shared/ProfilePicture";
+import { useForm } from "react-hook-form";
 
 function EditUserInfo({ user }) {
   const classes = useEditProfilePageStyles();
+  const { register, handleSubmit } = useForm({ mode: "onBlur" });
   return (
     <section className={classes.container}>
       <div className={classes.pictureSectionItem}>
@@ -66,7 +68,7 @@ function EditUserInfo({ user }) {
   );
 }
 
-function SectionItem({ type = "text", text, formItem }) {
+function SectionItem({ type = "text", text, formItem, inputRef, name }) {
   const classes = useEditProfilePageStyles();
   return (
     <div className={classes.sectionItemWrapper}>
