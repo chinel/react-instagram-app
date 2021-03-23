@@ -10,16 +10,18 @@ import { useMutation } from "@apollo/react-hooks";
 import { EDIT_USER } from "./graphql/mutations";
 import { AuthContext } from "../../auth";
 
+const DEFAULT_ERROR = { type: "", message: "" };
+
 function EditUserInfo({ user }) {
   const classes = useEditProfilePageStyles();
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
   const { updateEmail } = React.useContext(AuthContext);
   const [editUser] = useMutation(EDIT_USER);
-  const [error, setError] = React.useState({ type: "", message: "" });
+  const [error, setError] = React.useState(DEFAULT_ERROR);
 
   async function onSubmit(data) {
     try {
-      setError({ type: "", message: "" });
+      setError(DEFAULT_ERROR);
       const variables = { ...data, id: user.id };
       await updateEmail(data.email);
       await editUser({ variables });
