@@ -25,6 +25,7 @@ function EditUserInfo({ user }) {
   const { updateEmail } = React.useContext(AuthContext);
   const [editUser] = useMutation(EDIT_USER);
   const [error, setError] = React.useState(DEFAULT_ERROR);
+  const [open, setOpen] = React.useState(false);
 
   async function onSubmit(data) {
     try {
