@@ -66,6 +66,7 @@ function EditUserInfo({ user }) {
         />
         <SectionItem
           text="Username"
+          error={error}
           formItem={user.username}
           name="username"
           inputRef={register({
@@ -117,6 +118,7 @@ function EditUserInfo({ user }) {
         </div>
         <SectionItem
           name="email"
+          error={error}
           inputRef={register({
             required: true,
             validate: (input) => isEmail(input),
@@ -166,6 +168,7 @@ function SectionItem({ type = "text", text, formItem, inputRef, name, error }) {
       <TextField
         name={name}
         inputRef={inputRef}
+        helperText={error?.type === name && error.message}
         variant="outlined"
         fullWidth
         defaultValue={formItem}
