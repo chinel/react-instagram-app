@@ -1,4 +1,11 @@
-import { Button, Hidden, TextField, Typography } from "@material-ui/core";
+import {
+  Button,
+  Hidden,
+  Slide,
+  Snackbar,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import React from "react";
 import { useEditProfilePageStyles } from "../../styles";
 import ProfilePicture from "../shared/ProfilePicture";
@@ -150,6 +157,13 @@ function EditUserInfo({ user }) {
           </Button>
         </div>
       </form>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        TransitionComponent={Slide}
+        message={<span>Profile Updated</span>}
+        onClose={}
+      />
     </section>
   );
 }
