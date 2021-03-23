@@ -15,6 +15,7 @@ function EditUserInfo({ user }) {
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
   const { updateEmail } = React.useContext(AuthContext);
   const [editUser] = useMutation(EDIT_USER);
+  const [error, setError] = React.useState({ type: "", message: "" });
 
   async function onSubmit(data) {
     try {
