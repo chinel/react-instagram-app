@@ -7,8 +7,8 @@ import isURL from "validator/lib/isURL";
 import isEmail from "validator/lib/isEmail";
 import isMobilePhone from "validator/lib/isMobilePhone";
 import { useMutation } from "@apollo/react-hooks";
-import { EDIT_USER } from "./graphql/mutations";
 import { AuthContext } from "../../auth";
+import { EDIT_USER } from "../../graphql/mutations";
 
 const DEFAULT_ERROR = { type: "", message: "" };
 
