@@ -149,7 +149,7 @@ function EditUserInfo({ user }) {
   );
 }
 
-function SectionItem({ type = "text", text, formItem, inputRef, name }) {
+function SectionItem({ type = "text", text, formItem, inputRef, name, error }) {
   const classes = useEditProfilePageStyles();
   return (
     <div className={classes.sectionItemWrapper}>
