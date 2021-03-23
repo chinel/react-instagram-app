@@ -30,9 +30,9 @@ function EditUserInfo({ user }) {
 
   function handleError(error) {
     if (error.message.includes("users_username_key")) {
-      setError("Username already taken");
+      setError({ type: "username", message: "This username is already taken" });
     } else if (error.code.includes("auth")) {
-      setError(error.message);
+      setError({ type: "email", message: error.message });
     }
   }
 
