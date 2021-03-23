@@ -16,6 +16,7 @@ import isMobilePhone from "validator/lib/isMobilePhone";
 import { useMutation } from "@apollo/react-hooks";
 import { AuthContext } from "../../auth";
 import { EDIT_USER } from "../../graphql/mutations";
+import { TrendingUpRounded } from "@material-ui/icons";
 
 const DEFAULT_ERROR = { type: "", message: "" };
 
@@ -33,6 +34,7 @@ function EditUserInfo({ user }) {
       const variables = { ...data, id: user.id };
       await updateEmail(data.email);
       await editUser({ variables });
+      setOpen(true);
     } catch (error) {
       console.log("Error updating profile", error);
       handleError(error);
