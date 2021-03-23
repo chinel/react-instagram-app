@@ -24,6 +24,15 @@ function EditUserInfo({ user }) {
       await editUser({ variables });
     } catch (error) {
       console.log("Error updating profile", error);
+      handleError(error);
+    }
+  }
+
+  function handleError(error) {
+    if (error.message.includes("users_username_key")) {
+      setError("Username already taken");
+    } else if (error.code.includes("auth")) {
+      setError(error.message);
     }
   }
 
