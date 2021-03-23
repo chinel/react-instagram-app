@@ -14,13 +14,16 @@ function EditUserInfo({ user }) {
   const classes = useEditProfilePageStyles();
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
   const { updateEmail } = React.useContext(AuthContext);
-  const [editUser] = useMutation(EDIT_USER, {});
+  const [editUser] = useMutation(EDIT_USER);
 
   async function onSubmit(data) {
     try {
       const variables = { ...data, id: user.id };
+      await updateEmail(data.email);
       await editUser({ variables });
-    } catch (error) {}
+    } catch (error) {
+      console.log("Error updating profile", error);
+    }
   }
 
   return (
