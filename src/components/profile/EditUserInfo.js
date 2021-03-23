@@ -163,7 +163,7 @@ function EditUserInfo({ user }) {
         autoHideDuration={6000}
         TransitionComponent={Slide}
         message={<span>Profile Updated</span>}
-        onClose={}
+        onClose={() => setOpen(false)}
       />
     </section>
   );
