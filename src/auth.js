@@ -124,6 +124,7 @@ function AuthProvider({ children }) {
           signOut,
           signUpWithEmailAndPassword,
           loginWithEmailAndPassword,
+          updateEmail,
         }}
       >
         {children}
