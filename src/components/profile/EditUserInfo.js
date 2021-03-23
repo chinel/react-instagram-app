@@ -8,16 +8,18 @@ import isEmail from "validator/lib/isEmail";
 import isMobilePhone from "validator/lib/isMobilePhone";
 import { useMutation } from "@apollo/react-hooks";
 import { EDIT_USER } from "./graphql/mutations";
+import { AuthContext } from "../../auth";
 
 function EditUserInfo({ user }) {
   const classes = useEditProfilePageStyles();
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
+  const { updateEmail } = React.useContext(AuthContext);
   const [editUser] = useMutation(EDIT_USER, {});
 
   async function onSubmit(data) {
     try {
       const variables = { ...data, id: user.id };
-      await editUser({variables})
+      await editUser({ variables });
     } catch (error) {}
   }
 
