@@ -19,6 +19,7 @@ function EditUserInfo({ user }) {
 
   async function onSubmit(data) {
     try {
+      setError({ type: "", message: "" });
       const variables = { ...data, id: user.id };
       await updateEmail(data.email);
       await editUser({ variables });
