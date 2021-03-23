@@ -14,8 +14,11 @@ function EditUserInfo({ user }) {
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
   const [editUser] = useMutation(EDIT_USER, {});
 
-  function onSubmit(data) {
-    console.log(data);
+  async function onSubmit(data) {
+    try {
+      const variables = { ...data, id: user.id };
+      await editUser({variables})
+    } catch (error) {}
   }
 
   return (
