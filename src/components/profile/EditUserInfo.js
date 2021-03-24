@@ -17,6 +17,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { AuthContext } from "../../auth";
 import { EDIT_USER } from "../../graphql/mutations";
 import { TrendingUpRounded } from "@material-ui/icons";
+import handleImageUpload from "../../utils/handleImageUpload";
 
 const DEFAULT_ERROR = { type: "", message: "" };
 
@@ -49,7 +50,10 @@ function EditUserInfo({ user }) {
     }
   }
 
-  function handleUpdateProfilePic() {}
+  async function handleUpdateProfilePic(event) {
+    const url = await handleImageUpload(event.target.files[0]);
+    console.log({ url });
+  }
 
   return (
     <section className={classes.container}>
