@@ -15,7 +15,7 @@ import isEmail from "validator/lib/isEmail";
 import isMobilePhone from "validator/lib/isMobilePhone";
 import { useMutation } from "@apollo/react-hooks";
 import { AuthContext } from "../../auth";
-import { EDIT_USER } from "../../graphql/mutations";
+import { EDIT_USER, EDIT_USER_AVATAR } from "../../graphql/mutations";
 import handleImageUpload from "../../utils/handleImageUpload";
 
 const DEFAULT_ERROR = { type: "", message: "" };
@@ -25,6 +25,7 @@ function EditUserInfo({ user }) {
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
   const { updateEmail } = React.useContext(AuthContext);
   const [editUser] = useMutation(EDIT_USER);
+  const [editUserAvatar] = useMutation(EDIT_USER_AVATAR);
   const [error, setError] = React.useState(DEFAULT_ERROR);
   const [open, setOpen] = React.useState(false);
 
