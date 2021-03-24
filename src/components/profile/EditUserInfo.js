@@ -66,13 +66,15 @@ function EditUserInfo({ user }) {
             style={{ display: "none" }}
             onChange={handleUpdateProfilePic}
           />
-          <Typography
-            color="primary"
-            variant="body2"
-            className={classes.typographyChangePic}
-          >
-            Change Profile Photo
-          </Typography>
+          <label htmlFor="image">
+            <Typography
+              color="primary"
+              variant="body2"
+              className={classes.typographyChangePic}
+            >
+              Change Profile Photo
+            </Typography>
+          </label>
         </div>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={classes.form}>
