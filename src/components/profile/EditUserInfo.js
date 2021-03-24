@@ -57,6 +57,12 @@ function EditUserInfo({ user }) {
           <Typography className={classes.typography}>
             {user.username}
           </Typography>
+          <input
+            type="file"
+            accept="image/*"
+            id="image"
+            style={{ display: "none" }}
+          />
           <Typography
             color="primary"
             variant="body2"
