@@ -62,6 +62,7 @@ function EditUserInfo({ user }) {
             accept="image/*"
             id="image"
             style={{ display: "none" }}
+            onChange={handleUpdateProfilePic}
           />
           <Typography
             color="primary"
