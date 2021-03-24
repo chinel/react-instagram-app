@@ -52,7 +52,8 @@ function EditUserInfo({ user }) {
 
   async function handleUpdateProfilePic(event) {
     const url = await handleImageUpload(event.target.files[0]);
-    console.log({ url });
+    const variables = { id: user.id, profileImage: url };
+    await editUserAvatar({ variables });
   }
 
   return (
