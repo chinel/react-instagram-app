@@ -49,6 +49,8 @@ function EditUserInfo({ user }) {
     }
   }
 
+  function handleUpdateProfilePic() {}
+
   return (
     <section className={classes.container}>
       <div className={classes.pictureSectionItem}>
