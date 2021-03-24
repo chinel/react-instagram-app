@@ -16,7 +16,6 @@ import isMobilePhone from "validator/lib/isMobilePhone";
 import { useMutation } from "@apollo/react-hooks";
 import { AuthContext } from "../../auth";
 import { EDIT_USER } from "../../graphql/mutations";
-import { TrendingUpRounded } from "@material-ui/icons";
 import handleImageUpload from "../../utils/handleImageUpload";
 
 const DEFAULT_ERROR = { type: "", message: "" };
