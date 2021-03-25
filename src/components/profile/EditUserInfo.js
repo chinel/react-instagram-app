@@ -60,7 +60,7 @@ function EditUserInfo({ user }) {
   return (
     <section className={classes.container}>
       <div className={classes.pictureSectionItem}>
-        <ProfilePicture size={38} image={user.profile_image} />
+        <ProfilePicture size={38} image={profileImage} />
         <div className={classes.justifySelfStart}>
           <Typography className={classes.typography}>
             {user.username}
