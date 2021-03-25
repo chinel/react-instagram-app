@@ -9,7 +9,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import { LoadingIcon } from "../../icons";
-import { getDefaultUser } from "../../data";
 import { useLazyQuery } from "@apollo/react-hooks";
 import { SEARCH_USERS } from "../../graphql/queries";
 
