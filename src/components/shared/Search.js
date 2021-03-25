@@ -32,7 +32,7 @@ function Search({ history }) {
       setLoading(false);
     }
     // setResults(Array.from({ length: 5 }, () => getDefaultUser()));
-  }, [query]);
+  }, [query, searchUsers, data]);
 
   const handleClearInput = () => {
     setQuery("");
