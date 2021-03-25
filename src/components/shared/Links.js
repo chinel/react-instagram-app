@@ -20,7 +20,7 @@ function Links({ path }) {
   const classes = useNavbarStyles();
   const [showList, setShowList] = React.useState(false);
   const [showTooltip, setTooltip] = React.useState(true);
-  const { me} = React.useContext(UserContext);
+  const { me } = React.useContext(UserContext);
   React.useEffect(() => {
     const timeout = setTimeout(handleHideTooltip, 5000);
     return () => {
@@ -69,10 +69,7 @@ function Links({ path }) {
                 : ""
             }
           ></div>
-          <Avatar
-            src={defaultCurrentUser.profile_image}
-            className={classes.profileImage}
-          />
+          <Avatar src={me.profile_image} className={classes.profileImage} />
         </Link>
       </div>
     </div>
