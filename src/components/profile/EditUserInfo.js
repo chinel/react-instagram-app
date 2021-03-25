@@ -55,6 +55,7 @@ function EditUserInfo({ user }) {
     const url = await handleImageUpload(event.target.files[0]);
     const variables = { id: user.id, profileImage: url };
     await editUserAvatar({ variables });
+    setProfileImage(url);
   }
 
   return (
