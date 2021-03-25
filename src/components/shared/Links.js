@@ -14,12 +14,13 @@ import { Link } from "react-router-dom";
 import { defaultCurrentUser } from "../../data";
 import NotificationTooltip from "../notification/NotificationTooltip";
 import NotificationList from "../notification/NotificationList";
+import { UserContext } from "../../App";
 
 function Links({ path }) {
   const classes = useNavbarStyles();
   const [showList, setShowList] = React.useState(false);
   const [showTooltip, setTooltip] = React.useState(true);
-
+  const { me} = React.useContext(UserContext);
   React.useEffect(() => {
     const timeout = setTimeout(handleHideTooltip, 5000);
     return () => {
