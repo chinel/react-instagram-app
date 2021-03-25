@@ -24,6 +24,7 @@ function EditUserInfo({ user }) {
   const classes = useEditProfilePageStyles();
   const { register, handleSubmit } = useForm({ mode: "onBlur" });
   const { updateEmail } = React.useContext(AuthContext);
+  const [profileImage, setProfileImage] = React.useState(user.profile_image);
   const [editUser] = useMutation(EDIT_USER);
   const [editUserAvatar] = useMutation(EDIT_USER_AVATAR);
   const [error, setError] = React.useState(DEFAULT_ERROR);
