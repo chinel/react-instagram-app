@@ -34,3 +34,18 @@ export const GET_EDIT_USER_PROFILE = gql`
     }
   }
 `;
+
+export const SEARCH_USERS = gql`
+  query searhUsers($query: String) {
+    users(
+      where: {
+        _or: [{ username: { _ilike: $query } }, { name: { _ilike: $query } }]
+      }
+    ) {
+      id
+      name
+      username
+      profile_image
+    }
+  }
+`;
