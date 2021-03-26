@@ -11,7 +11,6 @@ import {
 } from "../../icons";
 import { Avatar, Hidden, Zoom } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { defaultCurrentUser } from "../../data";
 import NotificationTooltip from "../notification/NotificationTooltip";
 import NotificationList from "../notification/NotificationList";
 import { UserContext } from "../../App";
