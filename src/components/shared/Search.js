@@ -9,20 +9,30 @@ import {
   Typography,
 } from "@material-ui/core";
 import { LoadingIcon } from "../../icons";
-import { getDefaultUser } from "../../data";
+import { useLazyQuery } from "@apollo/react-hooks";
+import { SEARCH_USERS } from "../../graphql/queries";
 
 function Search({ history }) {
   const classes = useNavbarStyles();
-  const [loading] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const [results, setResults] = React.useState([]);
+  const [searchUsers, { data }] = useLazyQuery(SEARCH_USERS);
 
   const hasResults = Boolean(query) && results.length > 0;
 
   React.useEffect(() => {
     if (!query.trim()) return;
-    setResults(Array.from({ length: 5 }, () => getDefaultUser()));
-  }, [query]);
+    setLoading(true);
+    const variables = { query: `%${query}%` };
+    // useLazy is synchronous and not asynchronous
+    searchUsers({ variables });
+    if (data) {
+      setResults(data.users);
+      setLoading(false);
+    }
+    // setResults(Array.from({ length: 5 }, () => getDefaultUser()));
+  }, [query, searchUsers, data]);
 
   const handleClearInput = () => {
     setQuery("");
