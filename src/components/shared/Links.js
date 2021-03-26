@@ -11,7 +11,6 @@ import {
 } from "../../icons";
 import { Avatar, Hidden, Zoom } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { defaultCurrentUser } from "../../data";
 import NotificationTooltip from "../notification/NotificationTooltip";
 import NotificationList from "../notification/NotificationList";
 import { UserContext } from "../../App";
@@ -21,6 +20,8 @@ function Links({ path }) {
   const [showList, setShowList] = React.useState(false);
   const [showTooltip, setTooltip] = React.useState(true);
   const { me } = React.useContext(UserContext);
+  const [media, setMedia] = React.useState();
+  const inputRef = React.useRef();
   React.useEffect(() => {
     const timeout = setTimeout(handleHideTooltip, 5000);
     return () => {
@@ -39,12 +40,26 @@ function Links({ path }) {
     setShowList(false);
   }
 
+  function openFileInput() {
+    inputRef.current.click();
+  }
+
+  function handleAddPost(event) {
+    setMedia(event.target.files[0]);
+  }
+
   return (
     <div className={classes.linksContainer}>
       {showList && <NotificationList handleHideList={handleHideList} />}
       <div className={classes.linksWrapper}>
         <Hidden xsDown>
-          <AddIcon />
+          <input
+            ref={inputRef}
+            type="file"
+            style={{ display: "none" }}
+            onChange={handleAddPost}
+          />
+          <AddIcon onClick={openFileInput} />
         </Hidden>
         <Link to="/">{path === "/" ? <HomeActiveIcon /> : <HomeIcon />}</Link>
         <Link to="/explore">
@@ -61,13 +76,9 @@ function Links({ path }) {
             {showList ? <LikeActiveIcon /> : <LikeIcon />}
           </div>
         </RedTooltip>
-        <Link to={`/${defaultCurrentUser.username}`}>
+        <Link to={`/${me.username}`}>
           <div
-            className={
-              path === `/${defaultCurrentUser.username}`
-                ? classes.profileActive
-                : ""
-            }
+            className={path === `/${me.username}` ? classes.profileActive : ""}
           ></div>
           <Avatar src={me.profile_image} className={classes.profileImage} />
         </Link>
