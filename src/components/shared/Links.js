@@ -20,6 +20,7 @@ function Links({ path }) {
   const [showList, setShowList] = React.useState(false);
   const [showTooltip, setTooltip] = React.useState(true);
   const { me } = React.useContext(UserContext);
+  const inputRef = React.useRef();
   React.useEffect(() => {
     const timeout = setTimeout(handleHideTooltip, 5000);
     return () => {
@@ -43,7 +44,7 @@ function Links({ path }) {
       {showList && <NotificationList handleHideList={handleHideList} />}
       <div className={classes.linksWrapper}>
         <Hidden xsDown>
-          <input type="file" style={{ display: "none" }} />
+          <input ref={inputRef} type="file" style={{ display: "none" }} />
           <AddIcon />
         </Hidden>
         <Link to="/">{path === "/" ? <HomeActiveIcon /> : <HomeIcon />}</Link>
