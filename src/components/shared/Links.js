@@ -43,6 +43,7 @@ function Links({ path }) {
       {showList && <NotificationList handleHideList={handleHideList} />}
       <div className={classes.linksWrapper}>
         <Hidden xsDown>
+          <input type="file" style={{ display: "none" }} />
           <AddIcon />
         </Hidden>
         <Link to="/">{path === "/" ? <HomeActiveIcon /> : <HomeIcon />}</Link>
