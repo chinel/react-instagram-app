@@ -39,6 +39,10 @@ function Links({ path }) {
     setShowList(false);
   }
 
+  function openFileInput() {
+    inputRef.current.click();
+  }
+
   return (
     <div className={classes.linksContainer}>
       {showList && <NotificationList handleHideList={handleHideList} />}
