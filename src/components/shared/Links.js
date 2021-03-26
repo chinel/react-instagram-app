@@ -20,6 +20,7 @@ function Links({ path }) {
   const [showList, setShowList] = React.useState(false);
   const [showTooltip, setTooltip] = React.useState(true);
   const { me } = React.useContext(UserContext);
+  const [media, setMedia] = React.useState();
   const inputRef = React.useRef();
   React.useEffect(() => {
     const timeout = setTimeout(handleHideTooltip, 5000);
@@ -43,9 +44,7 @@ function Links({ path }) {
     inputRef.current.click();
   }
 
-  function handleAddPost(event){
-    
-  }
+  function handleAddPost(event) {}
 
   return (
     <div className={classes.linksContainer}>
