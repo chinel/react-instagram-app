@@ -45,7 +45,7 @@ function Links({ path }) {
       <div className={classes.linksWrapper}>
         <Hidden xsDown>
           <input ref={inputRef} type="file" style={{ display: "none" }} />
-          <AddIcon />
+          <AddIcon onClick={openFileInput} />
         </Hidden>
         <Link to="/">{path === "/" ? <HomeActiveIcon /> : <HomeIcon />}</Link>
         <Link to="/explore">
