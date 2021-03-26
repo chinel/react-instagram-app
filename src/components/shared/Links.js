@@ -61,13 +61,9 @@ function Links({ path }) {
             {showList ? <LikeActiveIcon /> : <LikeIcon />}
           </div>
         </RedTooltip>
-        <Link to={`/${defaultCurrentUser.username}`}>
+        <Link to={`/${me.username}`}>
           <div
-            className={
-              path === `/${defaultCurrentUser.username}`
-                ? classes.profileActive
-                : ""
-            }
+            className={path === `/${me.username}` ? classes.profileActive : ""}
           ></div>
           <Avatar src={me.profile_image} className={classes.profileImage} />
         </Link>
