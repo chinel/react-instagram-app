@@ -44,7 +44,9 @@ function Links({ path }) {
     inputRef.current.click();
   }
 
-  function handleAddPost(event) {}
+  function handleAddPost(event) {
+    setMedia(event.target.files[0]);
+  }
 
   return (
     <div className={classes.linksContainer}>
