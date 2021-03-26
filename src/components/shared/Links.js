@@ -43,6 +43,10 @@ function Links({ path }) {
     inputRef.current.click();
   }
 
+  function handleAddPost(event){
+    
+  }
+
   return (
     <div className={classes.linksContainer}>
       {showList && <NotificationList handleHideList={handleHideList} />}
