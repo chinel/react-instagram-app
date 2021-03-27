@@ -4,6 +4,7 @@ import { Slate, Editable, withReact } from "slate-react";
 
 function AddPostDialog({ media, handleClose }) {
   const editor = React.useMemo(() => withReact(createEditor()), []);
+  const [value, setValue] = React.useState([]);
 
   return <span>addpost dialog</span>;
 }
