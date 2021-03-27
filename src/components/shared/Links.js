@@ -21,6 +21,7 @@ function Links({ path }) {
   const [showTooltip, setTooltip] = React.useState(true);
   const { me } = React.useContext(UserContext);
   const [media, setMedia] = React.useState();
+  const [showAddPostDialog, setAddPostDialog] = React.useState(false);
   const inputRef = React.useRef();
   React.useEffect(() => {
     const timeout = setTimeout(handleHideTooltip, 5000);
