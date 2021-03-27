@@ -46,6 +46,7 @@ function Links({ path }) {
 
   function handleAddPost(event) {
     setMedia(event.target.files[0]);
+    setAddPostDialog(true);
   }
 
   return (
