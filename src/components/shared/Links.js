@@ -53,7 +53,11 @@ function Links({ path }) {
   return (
     <div className={classes.linksContainer}>
       {showList && <NotificationList handleHideList={handleHideList} />}
+      
       <div className={classes.linksWrapper}>
+        {showAddPostDialog && (
+          <AddPostDialog/>
+        )}
         <Hidden xsDown>
           <input
             ref={inputRef}
