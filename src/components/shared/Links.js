@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import NotificationTooltip from "../notification/NotificationTooltip";
 import NotificationList from "../notification/NotificationList";
 import { UserContext } from "../../App";
+import AddPostDialog from "../post/AddPostDialog";
 
 function Links({ path }) {
   const classes = useNavbarStyles();
@@ -53,11 +54,9 @@ function Links({ path }) {
   return (
     <div className={classes.linksContainer}>
       {showList && <NotificationList handleHideList={handleHideList} />}
-      
+
       <div className={classes.linksWrapper}>
-        {showAddPostDialog && (
-          <AddPostDialog/>
-        )}
+        {showAddPostDialog && <AddPostDialog media={media} handleClose={handleClose}/>}
         <Hidden xsDown>
           <input
             ref={inputRef}
