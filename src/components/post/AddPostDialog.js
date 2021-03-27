@@ -1,6 +1,6 @@
 import React from "react";
 
-function AddPostDialog() {
+function AddPostDialog({ media, handleClose }) {
   return <span>addpost dialog</span>;
 }
 
