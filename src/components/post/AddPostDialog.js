@@ -6,6 +6,13 @@ function AddPostDialog({ media, handleClose }) {
   const editor = React.useMemo(() => withReact(createEditor()), []);
   const [value, setValue] = React.useState([]);
 
+/*   <Slate
+      editor={editor}
+      value={value}
+      onChange={newValue => setValue(newValue)}
+    >
+      <Editable />
+    </Slate> */
   return <span>addpost dialog</span>;
 }
 
