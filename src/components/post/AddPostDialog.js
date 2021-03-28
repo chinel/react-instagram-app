@@ -1,6 +1,18 @@
 import React from "react";
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
+import { makeStyles } from "@material-ui/core";
+
+const useAddPostDialogStyles = makeStyles((theme) => ({
+  appBar: {
+    position: "relative",
+    background: "#fff !important",
+    color: "#000 !important",
+    display: "flex",
+    justifyContent: "space-between",
+    height: "54px !important",
+  },
+}));
 
 const initialValue = [
   {
