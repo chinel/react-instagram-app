@@ -26,6 +26,13 @@ const useAddPostDialogStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  editor: {
+    flex: 1,
+  },
+  avatarLarge: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
 }));
 
 const initialValue = [
