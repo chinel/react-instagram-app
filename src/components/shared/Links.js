@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import NotificationTooltip from "../notification/NotificationTooltip";
 import NotificationList from "../notification/NotificationList";
 import { UserContext } from "../../App";
+import AddPostDialog from "../post/AddPostDialog";
 
 function Links({ path }) {
   const classes = useNavbarStyles();
@@ -21,6 +22,7 @@ function Links({ path }) {
   const [showTooltip, setTooltip] = React.useState(true);
   const { me } = React.useContext(UserContext);
   const [media, setMedia] = React.useState();
+  const [showAddPostDialog, setAddPostDialog] = React.useState(false);
   const inputRef = React.useRef();
   React.useEffect(() => {
     const timeout = setTimeout(handleHideTooltip, 5000);
@@ -46,12 +48,21 @@ function Links({ path }) {
 
   function handleAddPost(event) {
     setMedia(event.target.files[0]);
+    setAddPostDialog(true);
+  }
+
+  function handleClose() {
+    setAddPostDialog(false);
   }
 
   return (
     <div className={classes.linksContainer}>
       {showList && <NotificationList handleHideList={handleHideList} />}
+
       <div className={classes.linksWrapper}>
+        {showAddPostDialog && (
+          <AddPostDialog media={media} handleClose={handleClose} />
+        )}
         <Hidden xsDown>
           <input
             ref={inputRef}
