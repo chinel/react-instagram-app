@@ -19,6 +19,13 @@ const useAddPostDialogStyles = makeStyles((theme) => ({
     flex: 1,
     fontWeight: 600,
   },
+  paper: {
+    display: "flex",
+    alignItems: "flex-start",
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
 }));
 
 const initialValue = [
