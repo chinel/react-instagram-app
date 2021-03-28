@@ -12,6 +12,9 @@ const useAddPostDialogStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     height: "54px !important",
   },
+  toolbar:{
+      minHeight: "54px !important",    
+  }
 }));
 
 const initialValue = [
