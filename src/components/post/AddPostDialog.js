@@ -62,6 +62,7 @@ const initialValue = [
 ];
 
 function AddPostDialog({ media, handleClose }) {
+  const classes = useAddPostDialogStyles();
   const editor = React.useMemo(() => withReact(createEditor()), []);
   const [value, setValue] = React.useState(initialValue);
 
