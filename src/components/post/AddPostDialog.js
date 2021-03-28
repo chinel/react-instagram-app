@@ -33,6 +33,10 @@ const useAddPostDialogStyles = makeStyles((theme) => ({
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
+  input: {
+    padding: "10px !important",
+    fontSize: "14px !important",
+  },
 }));
 
 const initialValue = [
