@@ -37,6 +37,21 @@ const useAddPostDialogStyles = makeStyles((theme) => ({
     padding: "10px !important",
     fontSize: "14px !important",
   },
+  root: {
+    border: "1px solid #e6e6e6",
+    marginTop: "10px !important",
+  },
+  underline: {
+    "&::before": {
+      border: "none !important",
+    },
+    "&::after": {
+      border: "none !important",
+    },
+    "&:hover&:before": {
+      border: "none !important",
+    },
+  },
 }));
 
 const initialValue = [
