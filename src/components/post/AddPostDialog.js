@@ -31,7 +31,7 @@ function AddPostDialog({ media, handleClose }) {
   const [location, setLocation] = React.useState("");
 
   return (
-    <Dialog fullscreen open onClose={handleClose}>
+    <Dialog fullScreen open onClose={handleClose}>
       <AppBar className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <ArrowBackIos onClick={handleClose} />
