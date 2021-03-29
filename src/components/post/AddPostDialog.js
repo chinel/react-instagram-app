@@ -1,3 +1,13 @@
+import { Avatar, 
+  AppBar,
+  Button,
+  Dialog,
+  Divider,
+  Paper,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
+import { ArrowBackIos } from "@material-ui/icons";
 import React from "react";
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
@@ -21,7 +31,25 @@ function AddPostDialog({ media, handleClose }) {
     >
       <Editable />
     </Slate> */
-  return <span>addpost dialog</span>;
+  return (
+    <Dialog fullscreen open onClose={handleClose}>
+      <AppBar className={classes.appBar}>
+        <Toolbar className={classes.toolbar}>
+          <ArrowBackIos onClick={handleClose} />
+          <Typography align="center" variant="body1" className={classes.title}>
+            New Post
+          </Typography>
+          <Button color="primary" className={classes.share}>
+            Share
+          </Button>
+        </Toolbar>
+      </AppBar>
+      <Divider />
+      <Paper className={classes.paper}>
+        <Avatar />
+      </Paper>
+    </Dialog>
+  );
 }
 
 export default AddPostDialog;
