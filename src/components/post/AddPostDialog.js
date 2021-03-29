@@ -49,7 +49,7 @@ function AddPostDialog({ media, handleClose }) {
       </AppBar>
       <Divider />
       <Paper className={classes.paper}>
-        <Avatar />
+        <Avatar src={me.profile_image} />
       </Paper>
     </Dialog>
   );
