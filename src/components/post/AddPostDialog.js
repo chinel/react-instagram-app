@@ -1,4 +1,5 @@
-import { Avatar, 
+import {
+  Avatar,
   AppBar,
   Button,
   Dialog,
@@ -11,6 +12,7 @@ import { ArrowBackIos } from "@material-ui/icons";
 import React from "react";
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
+import { UserContext } from "../../App";
 import { useAddPostDialogStyles } from "../../styles";
 const initialValue = [
   {
@@ -23,6 +25,7 @@ function AddPostDialog({ media, handleClose }) {
   const classes = useAddPostDialogStyles();
   const editor = React.useMemo(() => withReact(createEditor()), []);
   const [value, setValue] = React.useState(initialValue);
+  const { me } = React.useContext(UserContext);
 
   /*   <Slate
       editor={editor}
