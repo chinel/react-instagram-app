@@ -27,13 +27,6 @@ function AddPostDialog({ media, handleClose }) {
   const [value, setValue] = React.useState(initialValue);
   const { me } = React.useContext(UserContext);
 
-  /*   <Slate
-      editor={editor}
-      value={value}
-      onChange={newValue => setValue(newValue)}
-    >
-      <Editable />
-    </Slate> */
   return (
     <Dialog fullscreen open onClose={handleClose}>
       <AppBar className={classes.appBar}>
@@ -50,6 +43,13 @@ function AddPostDialog({ media, handleClose }) {
       <Divider />
       <Paper className={classes.paper}>
         <Avatar src={me.profile_image} />
+        <Slate
+          editor={editor}
+          value={value}
+          onChange={(newValue) => setValue(newValue)}
+        >
+          <Editable />
+        </Slate>
       </Paper>
     </Dialog>
   );
