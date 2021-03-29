@@ -66,6 +66,11 @@ function AddPostDialog({ media, handleClose }) {
         fullWidth
         placeholder="Location"
         InputProps={{
+          classes: {
+            root: classes.root,
+            input: classes.input,
+            underline: classes.underline,
+          },
           startAdornment: (
             <InputAdornment>
               <PinDrop />
