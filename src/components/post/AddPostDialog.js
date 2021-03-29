@@ -7,8 +7,10 @@ import {
   Paper,
   Toolbar,
   Typography,
+  TextField,
+  InputAdornment,
 } from "@material-ui/core";
-import { ArrowBackIos } from "@material-ui/icons";
+import { ArrowBackIos, PinDrop } from "@material-ui/icons";
 import React from "react";
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
@@ -48,9 +50,29 @@ function AddPostDialog({ media, handleClose }) {
           value={value}
           onChange={(newValue) => setValue(newValue)}
         >
-          <Editable />
+          <Editable
+            className={classes.editor}
+            placeholder="write your caption..."
+          />
         </Slate>
+        <Avatar
+          src={URL.createObjectURL(media)}
+          className={classes.avatarLarge}
+          variant="square"
+        />
       </Paper>
+      <TextField
+        fullWidth
+        placeholder="Location"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment>
+              <PinDrop />
+            </InputAdornment>
+          ),
+        }}
+        onChange={(event) => setLocation(event.target.value)}
+      />
     </Dialog>
   );
 }
