@@ -29,6 +29,10 @@ function AddPostDialog({ media, handleClose }) {
   const [value, setValue] = React.useState(initialValue);
   const { me } = React.useContext(UserContext);
   const [location, setLocation] = React.useState("");
+  
+  function handleSharePost(){
+    
+  }
 
   return (
     <Dialog fullScreen open onClose={handleClose}>
