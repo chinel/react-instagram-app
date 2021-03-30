@@ -16,6 +16,7 @@ import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 import { UserContext } from "../../App";
 import { useAddPostDialogStyles } from "../../styles";
+import handleImageUpload from "../../utils/handleImageUpload";
 const initialValue = [
   {
     type: "paragraph",
@@ -31,8 +32,9 @@ function AddPostDialog({ media, handleClose }) {
   const [location, setLocation] = React.useState("");
   const [submitting, setSubmitting] = React.useState(false);
 
-  function handleSharePost() {
+  async function handleSharePost() {
     setSubmitting(true);
+    const url = await handleImageUpload(media);
   }
 
   return (
