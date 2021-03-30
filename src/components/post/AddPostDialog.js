@@ -41,7 +41,11 @@ function AddPostDialog({ media, handleClose }) {
           <Typography align="center" variant="body1" className={classes.title}>
             New Post
           </Typography>
-          <Button color="primary" className={classes.share}>
+          <Button
+            color="primary"
+            className={classes.share}
+            disabled={submitting}
+          >
             Share
           </Button>
         </Toolbar>
