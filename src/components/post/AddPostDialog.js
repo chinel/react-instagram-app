@@ -1,3 +1,4 @@
+import { useMutation } from "@apollo/react-hooks";
 import {
   Avatar,
   AppBar,
@@ -15,6 +16,7 @@ import React from "react";
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 import { UserContext } from "../../App";
+import { CREATE_POST } from "../../graphql/mutations";
 import { useAddPostDialogStyles } from "../../styles";
 import handleImageUpload from "../../utils/handleImageUpload";
 const initialValue = [
@@ -31,6 +33,7 @@ function AddPostDialog({ media, handleClose }) {
   const { me } = React.useContext(UserContext);
   const [location, setLocation] = React.useState("");
   const [submitting, setSubmitting] = React.useState(false);
+  const [createPost] = useMutation(CREATE_POST);
 
   async function handleSharePost() {
     setSubmitting(true);
