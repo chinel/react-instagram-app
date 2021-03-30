@@ -31,7 +31,9 @@ function AddPostDialog({ media, handleClose }) {
   const [location, setLocation] = React.useState("");
   const [submitting, setSubmitting] = React.useState(false);
 
-  function handleSharePost() {}
+  function handleSharePost() {
+    setSubmitting(true);
+  }
 
   return (
     <Dialog fullScreen open onClose={handleClose}>
@@ -45,6 +47,7 @@ function AddPostDialog({ media, handleClose }) {
             color="primary"
             className={classes.share}
             disabled={submitting}
+            onClick={handleSharePost}
           >
             Share
           </Button>
