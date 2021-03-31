@@ -20,6 +20,7 @@ function Post({ postId }) {
   const classes = usePostStyles();
   const [loading, setLoading] = React.useState(true);
   const [showOptionsDialog, setShowOptionsDialog] = React.useState(false);
+  const { data, loading } = useSubscription(GET_POST);
   const { id, media, likes, user, caption, comments } = defaultPost;
 
   setTimeout(() => setLoading(false), 2000);
