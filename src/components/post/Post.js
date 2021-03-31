@@ -20,12 +20,13 @@ import { GET_POST } from "../../graphql/subscriptions";
 
 function Post({ postId }) {
   const classes = usePostStyles();
-  const [showLoading, setLoading] = React.useState(true);
+  // const [showLoading, setLoading] = React.useState(true);
   const [showOptionsDialog, setShowOptionsDialog] = React.useState(false);
-  const { data, loading } = useSubscription(GET_POST);
-  const { id, media, likes, user, caption, comments } = defaultPost;
+  const variables = { postId };
+  const { data, loading } = useSubscription(GET_POST, { variables });
+  const { id, media, likes, user, caption, comments } = data.posts_by_pk;
 
-  setTimeout(() => setLoading(false), 2000);
+  //setTimeout(() => setLoading(false), 2000);
 
   if (showLoading) return <PostSkeleton />;
 
