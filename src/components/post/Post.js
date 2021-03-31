@@ -15,17 +15,19 @@ import { defaultPost } from "../../data";
 import { LikeIcon, UnlikeIcon } from "../../icons";
 import { RemoveIcon, SaveIcon } from "../../icons";
 import PostSkeleton from "./PostSkeleton";
+import { useSubscription } from "@apollo/react-hooks";
+import { GET_POST } from "../../graphql/subscriptions";
 
 function Post({ postId }) {
   const classes = usePostStyles();
-  const [loading, setLoading] = React.useState(true);
+  const [showLoading, setLoading] = React.useState(true);
   const [showOptionsDialog, setShowOptionsDialog] = React.useState(false);
   const { data, loading } = useSubscription(GET_POST);
   const { id, media, likes, user, caption, comments } = defaultPost;
 
   setTimeout(() => setLoading(false), 2000);
 
-  if (loading) return <PostSkeleton />;
+  if (showLoading) return <PostSkeleton />;
 
   return (
     <div className={classes.postContainer}>
