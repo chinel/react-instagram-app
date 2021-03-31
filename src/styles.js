@@ -455,6 +455,7 @@ export const useLayoutStyles = makeStyles((theme) => ({
     display: "flex",
     margin: "0 auto",
     flexFlow: "row nowrap",
+    maxWidth: "932px;",
   },
   children: {
     width: "100%",
@@ -815,6 +816,7 @@ export const usePostStyles = makeStyles((theme) => ({
     paddingLeft: "24px",
     paddingRight: "24px",
     paddingTop: "5px",
+    width: "100%",
   },
 }));
 
