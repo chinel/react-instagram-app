@@ -24,11 +24,11 @@ function Post({ postId }) {
   const [showOptionsDialog, setShowOptionsDialog] = React.useState(false);
   const variables = { postId };
   const { data, loading } = useSubscription(GET_POST, { variables });
-  const { id, media, likes, user, caption, comments } = data.posts_by_pk;
-
+  
   //setTimeout(() => setLoading(false), 2000);
-
-  if (showLoading) return <PostSkeleton />;
+  
+  if (loading) return <PostSkeleton />;
+  const { id, media, likes, user, caption, comments } = data.posts_by_pk;
 
   return (
     <div className={classes.postContainer}>
