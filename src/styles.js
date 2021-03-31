@@ -816,6 +816,7 @@ export const usePostStyles = makeStyles((theme) => ({
     paddingLeft: "24px",
     paddingRight: "24px",
     paddingTop: "5px",
+    width: "100%",
   },
 }));
 
