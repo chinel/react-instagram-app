@@ -16,7 +16,7 @@ import { LikeIcon, UnlikeIcon } from "../../icons";
 import { RemoveIcon, SaveIcon } from "../../icons";
 import PostSkeleton from "./PostSkeleton";
 
-function Post() {
+function Post({ postId }) {
   const classes = usePostStyles();
   const [loading, setLoading] = React.useState(true);
   const [showOptionsDialog, setShowOptionsDialog] = React.useState(false);
