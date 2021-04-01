@@ -79,6 +79,9 @@ function Post({ postId }) {
               createdAt={created_at}
               caption={caption}
             />
+            {comments.map((comment) => (
+              <UserComment key={comment.id} comment={comment} />
+            ))}
           </div>
 
           <Typography color="textSecondary" className={classes.datePosted}>
