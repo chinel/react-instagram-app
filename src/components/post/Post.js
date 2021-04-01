@@ -104,6 +104,8 @@ function Post({ postId }) {
 
 function AuthorCation() {}
 
+function UserComment() {}
+
 function LikeButton() {
   let classes = usePostStyles();
   const [liked, setLiked] = React.useState(false);
