@@ -37,6 +37,7 @@ function Post({ postId }) {
     caption,
     comments,
     created_at,
+    location,
   } = data.posts_by_pk;
 
   return (
@@ -44,7 +45,7 @@ function Post({ postId }) {
       <article className={classes.article}>
         {/*Post Header */}
         <div className={classes.postHeader}>
-          {user && <UserCard user={user} avatarSize={32} />}
+          {user && <UserCard user={user} location={location} avatarSize={32} />}
           <MoreIcon
             className={classes.moreIcon}
             onClick={() => setShowOptionsDialog(true)}
