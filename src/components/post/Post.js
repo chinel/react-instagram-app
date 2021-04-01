@@ -150,6 +150,7 @@ function AuthorCaption({ user, createdAt, caption }) {
 }
 
 function UserComment({ comment }) {
+  const classes = usePostStyles();
   return (
     <div
       style={{
@@ -157,26 +158,27 @@ function UserComment({ comment }) {
       }}
     >
       <Avatar
-        src={user.profile_image}
+        src={comment.user.profile_image}
         alt="User avatar"
         style={{ marginRight: 14, width: 42, height: 32 }}
       />
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <Link to={user.username}>
+        <Link to={comment.user.username}>
           <Typography
             variant="subTitle2"
             component="span"
             className={classes.username}
           >
-            {user.username}
+            {comment.user.username}
           </Typography>
           <Typography
             variant="body2"
             component="span"
             className={classes.postCaption}
             style={{ paddingLeft: 0 }}
-            dangerouslySetInnerHTML={{ __html: caption }}
-          />
+          >
+            {comment.content}
+          </Typography>
         </Link>
         <Typography
           style={{
@@ -187,7 +189,7 @@ function UserComment({ comment }) {
           color="textSecondary"
           variant="caption"
         >
-          {createdAt}
+          {comment.createdAt}
         </Typography>
       </div>
     </div>
