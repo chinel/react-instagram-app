@@ -71,7 +71,7 @@ function Post({ postId }) {
           <div
             style={{
               overflow: "scroll",
-              padding: "16px 12px !important",
+              padding: "16px 12px",
               height: "100%",
             }}
           >
@@ -114,7 +114,7 @@ function AuthorCaption({ user, createdAt, caption }) {
       <Avatar
         src={user.profile_image}
         alt="User avatar"
-        style={{ marginRight: 14, width: 42, height: 32 }}
+        style={{ marginRight: 14, width: 22, height: 32 }}
       />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Link to={user.username}>
@@ -160,7 +160,7 @@ function UserComment({ comment }) {
       <Avatar
         src={comment.user.profile_image}
         alt="User avatar"
-        style={{ marginRight: 14, width: 42, height: 32 }}
+        style={{ marginRight: 14, width: 32, height: 32 }}
       />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Link to={comment.user.username}>
