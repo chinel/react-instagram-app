@@ -149,7 +149,50 @@ function AuthorCaption({ user, createdAt, caption }) {
   );
 }
 
-function UserComment() {}
+function UserComment({ comment }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+      }}
+    >
+      <Avatar
+        src={user.profile_image}
+        alt="User avatar"
+        style={{ marginRight: 14, width: 42, height: 32 }}
+      />
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <Link to={user.username}>
+          <Typography
+            variant="subTitle2"
+            component="span"
+            className={classes.username}
+          >
+            {user.username}
+          </Typography>
+          <Typography
+            variant="body2"
+            component="span"
+            className={classes.postCaption}
+            style={{ paddingLeft: 0 }}
+            dangerouslySetInnerHTML={{ __html: caption }}
+          />
+        </Link>
+        <Typography
+          style={{
+            marginTop: 16,
+            marginBottom: 4,
+            display: "inline-block",
+          }}
+          color="textSecondary"
+          variant="caption"
+        >
+          {createdAt}
+        </Typography>
+      </div>
+    </div>
+  );
+}
 
 function LikeButton() {
   let classes = usePostStyles();
