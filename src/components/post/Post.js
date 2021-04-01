@@ -24,9 +24,9 @@ function Post({ postId }) {
   const [showOptionsDialog, setShowOptionsDialog] = React.useState(false);
   const variables = { postId };
   const { data, loading } = useSubscription(GET_POST, { variables });
-  
+
   //setTimeout(() => setLoading(false), 2000);
-  
+
   if (loading) return <PostSkeleton />;
   const { id, media, likes, user, caption, comments } = data.posts_by_pk;
 
@@ -101,6 +101,8 @@ function Post({ postId }) {
     </div>
   );
 }
+
+function AuthorCation() {}
 
 function LikeButton() {
   let classes = usePostStyles();
