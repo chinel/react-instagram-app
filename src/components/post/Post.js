@@ -33,6 +33,8 @@ function Post({ postId }) {
     media,
     likes,
     likes_aggregate,
+    saved_posts,
+    user_id,
     user,
     caption,
     comments,
@@ -59,7 +61,7 @@ function Post({ postId }) {
         {/*Post Buttons*/}
         <div className={classes.postButtonsWrapper}>
           <div className={classes.postButtons}>
-            <LikeButton />
+            <LikeButton likes={likes} postId={id} authorId={user.id} />
             <Link to={`/p/${id}`}>
               <CommentIcon />
             </Link>
@@ -198,7 +200,7 @@ function UserComment({ comment }) {
   );
 }
 
-function LikeButton() {
+function LikeButton({ likes, postId, authorId }) {
   let classes = usePostStyles();
   const [liked, setLiked] = React.useState(false);
   const Icon = liked ? UnlikeIcon : LikeIcon;
