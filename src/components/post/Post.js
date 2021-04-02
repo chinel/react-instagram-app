@@ -32,12 +32,14 @@ function Post({ postId }) {
     id,
     media,
     likes,
+    likes_aggregate,
     user,
     caption,
     comments,
     created_at,
     location,
   } = data.posts_by_pk;
+  const likesCount = likes_aggregate.aggregate.count;
 
   return (
     <div className={classes.postContainer}>
@@ -65,7 +67,7 @@ function Post({ postId }) {
             <SaveButton />
           </div>
           <Typography className={classes.likes} variant="subtitle2">
-            <span>{likes === 1 ? "1 like" : `${likes} likes`}</span>
+            <span>{likesCount === 1 ? "1 like" : `${likesCount} likes`}</span>
           </Typography>
 
           <div
