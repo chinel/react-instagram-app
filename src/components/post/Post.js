@@ -12,7 +12,6 @@ import { CommentIcon, MoreIcon, ShareIcon } from "../../icons";
 import { usePostStyles } from "../../styles";
 import UserCard from "../shared/UserCard";
 import OptionsDialog from "../shared/OptionsDialog";
-import { defaultPost } from "../../data";
 import { LikeIcon, UnlikeIcon } from "../../icons";
 import { RemoveIcon, SaveIcon } from "../../icons";
 import PostSkeleton from "./PostSkeleton";
