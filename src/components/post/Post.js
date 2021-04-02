@@ -17,6 +17,7 @@ import { RemoveIcon, SaveIcon } from "../../icons";
 import PostSkeleton from "./PostSkeleton";
 import { useSubscription } from "@apollo/react-hooks";
 import { GET_POST } from "../../graphql/subscriptions";
+import { UserContext } from "../../App";
 
 function Post({ postId }) {
   const classes = usePostStyles();
@@ -202,10 +203,17 @@ function UserComment({ comment }) {
 
 function LikeButton({ likes, postId, authorId }) {
   let classes = usePostStyles();
-  const [liked, setLiked] = React.useState(false);
+  const { currentUserId } = React.useContext(UserContext);
+  const isAlreadyLiked = likes.some(({ user_id }) => user_id === currentUserId);
+  const [liked, setLiked] = React.useState(isAlreadyLiked);
   const Icon = liked ? UnlikeIcon : LikeIcon;
   const className = liked ? classes.liked : classes.like;
   const onClick = liked ? handleUnlike : handleLike;
+  const variables = {
+    postId,
+    userId: currentUserId,
+    // profileId: authorId
+  };
 
   function handleLike() {
     console.log("like");
