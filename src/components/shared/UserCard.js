@@ -26,7 +26,7 @@ function UserCard({ user, avatarSize = 44, location }) {
           variant="body2"
           className={classes.typography}
         >
-          {user.name}
+          {location || user.name}
         </Typography>
       </div>
     </div>
