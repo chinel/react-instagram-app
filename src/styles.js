@@ -772,6 +772,9 @@ export const usePostStyles = makeStyles((theme) => ({
   postImage: {
     display: "flex",
     width: "calc(100% - 335px)",
+    "& img": {
+      height: "500px",
+    },
     [theme.breakpoints.only("xs")]: {
       width: "initial !important",
       position: "relative !important",

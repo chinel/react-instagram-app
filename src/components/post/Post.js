@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Button,
   Divider,
   Hidden,
@@ -24,18 +25,27 @@ function Post({ postId }) {
   const [showOptionsDialog, setShowOptionsDialog] = React.useState(false);
   const variables = { postId };
   const { data, loading } = useSubscription(GET_POST, { variables });
-  
+
   //setTimeout(() => setLoading(false), 2000);
-  
+
   if (loading) return <PostSkeleton />;
-  const { id, media, likes, user, caption, comments } = data.posts_by_pk;
+  const {
+    id,
+    media,
+    likes,
+    user,
+    caption,
+    comments,
+    created_at,
+    location,
+  } = data.posts_by_pk;
 
   return (
     <div className={classes.postContainer}>
       <article className={classes.article}>
         {/*Post Header */}
         <div className={classes.postHeader}>
-          {user && <UserCard user={user} avatarSize={32} />}
+          {user && <UserCard user={user} location={location} avatarSize={32} />}
           <MoreIcon
             className={classes.moreIcon}
             onClick={() => setShowOptionsDialog(true)}
@@ -59,28 +69,20 @@ function Post({ postId }) {
             <span>{likes === 1 ? "1 like" : `${likes} likes`}</span>
           </Typography>
 
-          <div className={classes.postCaptionContainer}>
-            <Typography
-              variant="body2"
-              component="span"
-              className={classes.postCaption}
-              dangerouslySetInnerHTML={{ __html: caption }}
+          <div
+            style={{
+              overflow: "scroll",
+              padding: "16px 12px",
+              height: "100%",
+            }}
+          >
+            <AuthorCaption
+              user={user}
+              createdAt={created_at}
+              caption={caption}
             />
             {comments.map((comment) => (
-              <div key={comment.id}>
-                <Link to={`/${comment.user.username}`}>
-                  <Typography
-                    variant="subtitle2"
-                    component="span"
-                    className={classes.commentUsername}
-                  >
-                    {comment.user.username}
-                  </Typography>{" "}
-                  <Typography variant="body2" component="span">
-                    {comment.content}
-                  </Typography>
-                </Link>
-              </div>
+              <UserComment key={comment.id} comment={comment} />
             ))}
           </div>
 
@@ -98,6 +100,99 @@ function Post({ postId }) {
       {showOptionsDialog && (
         <OptionsDialog onClose={() => setShowOptionsDialog(false)} />
       )}
+    </div>
+  );
+}
+
+function AuthorCaption({ user, createdAt, caption }) {
+  const classes = usePostStyles();
+  return (
+    <div
+      style={{
+        display: "flex",
+      }}
+    >
+      <Avatar
+        src={user.profile_image}
+        alt="User avatar"
+        style={{ marginRight: 14, width: 22, height: 32 }}
+      />
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <Link to={user.username}>
+          <Typography
+            variant="subTitle2"
+            component="span"
+            className={classes.username}
+          >
+            {user.username}
+          </Typography>
+          <Typography
+            variant="body2"
+            component="span"
+            className={classes.postCaption}
+            style={{ paddingLeft: 0 }}
+            dangerouslySetInnerHTML={{ __html: caption }}
+          />
+        </Link>
+        <Typography
+          style={{
+            marginTop: 16,
+            marginBottom: 4,
+            display: "inline-block",
+          }}
+          color="textSecondary"
+          variant="caption"
+        >
+          {createdAt}
+        </Typography>
+      </div>
+    </div>
+  );
+}
+
+function UserComment({ comment }) {
+  const classes = usePostStyles();
+  return (
+    <div
+      style={{
+        display: "flex",
+      }}
+    >
+      <Avatar
+        src={comment.user.profile_image}
+        alt="User avatar"
+        style={{ marginRight: 14, width: 32, height: 32 }}
+      />
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <Link to={comment.user.username}>
+          <Typography
+            variant="subTitle2"
+            component="span"
+            className={classes.username}
+          >
+            {comment.user.username}
+          </Typography>
+          <Typography
+            variant="body2"
+            component="span"
+            className={classes.postCaption}
+            style={{ paddingLeft: 0 }}
+          >
+            {comment.content}
+          </Typography>
+        </Link>
+        <Typography
+          style={{
+            marginTop: 16,
+            marginBottom: 4,
+            display: "inline-block",
+          }}
+          color="textSecondary"
+          variant="caption"
+        >
+          {comment.createdAt}
+        </Typography>
+      </div>
     </div>
   );
 }
