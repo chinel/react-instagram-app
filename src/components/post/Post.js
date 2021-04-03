@@ -125,7 +125,7 @@ function AuthorCaption({ user, createdAt, caption }) {
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Link to={user.username}>
           <Typography
-            variant="subTitle2"
+            variant="subtitle2"
             component="span"
             className={classes.username}
           >
