@@ -227,6 +227,7 @@ function LikeButton({ likes, postId, authorId }) {
   function handleUnlike() {
     // console.log("unlike");
     setLiked(false);
+    unLikePost({ variables });
   }
 
   return <Icon className={className} onClick={onClick} />;
