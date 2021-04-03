@@ -12,12 +12,12 @@ import { CommentIcon, MoreIcon, ShareIcon } from "../../icons";
 import { usePostStyles } from "../../styles";
 import UserCard from "../shared/UserCard";
 import OptionsDialog from "../shared/OptionsDialog";
-import { defaultPost } from "../../data";
 import { LikeIcon, UnlikeIcon } from "../../icons";
 import { RemoveIcon, SaveIcon } from "../../icons";
 import PostSkeleton from "./PostSkeleton";
 import { useSubscription } from "@apollo/react-hooks";
 import { GET_POST } from "../../graphql/subscriptions";
+import { UserContext } from "../../App";
 
 function Post({ postId }) {
   const classes = usePostStyles();
@@ -33,12 +33,16 @@ function Post({ postId }) {
     id,
     media,
     likes,
+    likes_aggregate,
+    saved_posts,
+    user_id,
     user,
     caption,
     comments,
     created_at,
     location,
   } = data.posts_by_pk;
+  const likesCount = likes_aggregate.aggregate.count;
 
   return (
     <div className={classes.postContainer}>
@@ -58,7 +62,7 @@ function Post({ postId }) {
         {/*Post Buttons*/}
         <div className={classes.postButtonsWrapper}>
           <div className={classes.postButtons}>
-            <LikeButton />
+            <LikeButton likes={likes} postId={id} authorId={user.id} />
             <Link to={`/p/${id}`}>
               <CommentIcon />
             </Link>
@@ -66,7 +70,7 @@ function Post({ postId }) {
             <SaveButton />
           </div>
           <Typography className={classes.likes} variant="subtitle2">
-            <span>{likes === 1 ? "1 like" : `${likes} likes`}</span>
+            <span>{likesCount === 1 ? "1 like" : `${likesCount} likes`}</span>
           </Typography>
 
           <div
@@ -197,12 +201,19 @@ function UserComment({ comment }) {
   );
 }
 
-function LikeButton() {
+function LikeButton({ likes, postId, authorId }) {
   let classes = usePostStyles();
-  const [liked, setLiked] = React.useState(false);
+  const { currentUserId } = React.useContext(UserContext);
+  const isAlreadyLiked = likes.some(({ user_id }) => user_id === currentUserId);
+  const [liked, setLiked] = React.useState(isAlreadyLiked);
   const Icon = liked ? UnlikeIcon : LikeIcon;
   const className = liked ? classes.liked : classes.like;
   const onClick = liked ? handleUnlike : handleLike;
+  const variables = {
+    postId,
+    userId: currentUserId,
+    // profileId: authorId
+  };
 
   function handleLike() {
     console.log("like");
