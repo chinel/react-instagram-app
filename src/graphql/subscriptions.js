@@ -32,6 +32,10 @@ export const GET_POST = gql`
           count
         }
       }
+      likes {
+        id
+        user_id
+      }
       saved_posts {
         id
         user_id
