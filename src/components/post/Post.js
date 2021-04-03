@@ -120,7 +120,7 @@ function AuthorCaption({ user, createdAt, caption }) {
       <Avatar
         src={user.profile_image}
         alt="User avatar"
-        style={{ marginRight: 14, width: 22, height: 32 }}
+        style={{ marginRight: 14, width: 32, height: 32 }}
       />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <Link to={user.username}>
