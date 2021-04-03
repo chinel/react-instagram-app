@@ -219,12 +219,13 @@ function LikeButton({ likes, postId, authorId }) {
   };
 
   function handleLike() {
-    console.log("like");
+    //console.log("like");
     setLiked(true);
+    likePost({ variables });
   }
 
   function handleUnlike() {
-    console.log("unlike");
+    // console.log("unlike");
     setLiked(false);
   }
 
