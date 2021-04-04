@@ -255,13 +255,13 @@ function SaveButton({ savedPosts, postId }) {
   };
 
   function handleSave() {
-    console.log("saved");
+    //console.log("saved");
     setSaved(true);
     savePost({ variables });
   }
 
   function handleRemove() {
-    console.log("removed");
+    //console.log("removed");
     setSaved(false);
     unsavePost({ variables });
   }
