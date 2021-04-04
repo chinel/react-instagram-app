@@ -249,10 +249,15 @@ function SaveButton({ savedPosts, postId }) {
   const onClick = saved ? handleRemove : handleSave;
   const [savePost] = useMutation(SAVE_POST);
   const [unsavePost] = useMutation(UNSAVE_POST);
+  const variables = {
+    postId,
+    userId: currentUserId,
+  };
 
   function handleSave() {
     console.log("saved");
     setSaved(true);
+    savePost({ variables });
   }
 
   function handleRemove() {
