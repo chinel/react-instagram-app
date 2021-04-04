@@ -263,6 +263,7 @@ function SaveButton({ savedPosts, postId }) {
   function handleRemove() {
     console.log("removed");
     setSaved(false);
+    unsavePost({ variables });
   }
 
   return <Icon className={classes.saveIcon} onClick={onClick} />;
