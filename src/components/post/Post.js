@@ -68,7 +68,7 @@ function Post({ postId }) {
               <CommentIcon />
             </Link>
             <ShareIcon />
-            <SaveButton />
+            <SaveButton savedPosts={saved_posts} postId={id} />
           </div>
           <Typography className={classes.likes} variant="subtitle2">
             <span>{likesCount === 1 ? "1 like" : `${likesCount} likes`}</span>
