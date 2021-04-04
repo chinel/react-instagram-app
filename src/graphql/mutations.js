@@ -111,9 +111,9 @@ export const SAVE_POST = gql`
   }
 `;
 
-export const UNLIKE_POST_ = gql`
-  mutation unLikePost($postId: uuid!, $userId: uuid!) {
-    delete_likes(
+export const UNSAVE_POST_ = gql`
+  mutation unSavePost($postId: uuid!, $userId: uuid!) {
+    delete_saved_posts(
       where: { post_id: { _eq: $postId }, user_id: { _eq: $userId } }
     ) {
       affected_rows
