@@ -18,7 +18,12 @@ import PostSkeleton from "./PostSkeleton";
 import { useMutation, useSubscription } from "@apollo/react-hooks";
 import { GET_POST } from "../../graphql/subscriptions";
 import { UserContext } from "../../App";
-import { LIKE_POST, UNLIKE_POST_ } from "../../graphql/mutations";
+import {
+  LIKE_POST,
+  UNLIKE_POST,
+  SAVE_POST,
+  UNSAVE_POST,
+} from "../../graphql/mutations";
 
 function Post({ postId }) {
   const classes = usePostStyles();
@@ -211,7 +216,7 @@ function LikeButton({ likes, postId, authorId }) {
   const className = liked ? classes.liked : classes.like;
   const onClick = liked ? handleUnlike : handleLike;
   const [likePost] = useMutation(LIKE_POST);
-  const [unLikePost] = useMutation(UNLIKE_POST_);
+  const [unLikePost] = useMutation(UNLIKE_POST);
   const variables = {
     postId,
     userId: currentUserId,
@@ -242,6 +247,8 @@ function SaveButton({ savedPosts, postId }) {
   const [saved, setSaved] = React.useState(isAlreadySaved);
   const Icon = saved ? RemoveIcon : SaveIcon;
   const onClick = saved ? handleRemove : handleSave;
+  const [savePost] = useMutation(SAVE_POST);
+  const [unsavePost] = useMutation(UNSAVE_POST);
 
   function handleSave() {
     console.log("saved");
