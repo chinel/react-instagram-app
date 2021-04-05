@@ -305,7 +305,7 @@ function Comment({ postId }) {
         }}
       />
       <Button
-        click={handleAddComment}
+        onClick={handleAddComment}
         color="primary"
         className={classes.commentButton}
         disabled={!content.trim()}
