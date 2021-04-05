@@ -120,3 +120,13 @@ export const UNSAVE_POST = gql`
     }
   }
 `;
+
+export const CREATE_COMMENT = gql`
+  mutation createComment($userId: uuid!, $postId: uuid!, $content: String!) {
+    insert_comments(
+      objects: { user_id: $userId, post_id: $postId, content: $content }
+    ) {
+      affected_rows
+    }
+  }
+`;
