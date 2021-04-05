@@ -23,6 +23,7 @@ import {
   UNLIKE_POST,
   SAVE_POST,
   UNSAVE_POST,
+  CREATE_COMMENT,
 } from "../../graphql/mutations";
 
 function Post({ postId }) {
@@ -272,6 +273,10 @@ function SaveButton({ savedPosts, postId }) {
 function Comment({ postId }) {
   const classes = usePostStyles();
   const [content, setContent] = React.useState("");
+  const [createComment] = useMutation(CREATE_COMMENT);
+
+  function handleAddComment() {}
+
   return (
     <div className={classes.commentContainer}>
       <TextField
@@ -291,6 +296,7 @@ function Comment({ postId }) {
         }}
       />
       <Button
+        click={handleAddComment}
         color="primary"
         className={classes.commentButton}
         disabled={!content.trim()}
