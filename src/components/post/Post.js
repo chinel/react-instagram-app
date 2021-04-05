@@ -102,7 +102,7 @@ function Post({ postId }) {
           <Hidden xsDown>
             <div className={classes.comment}>
               <Divider />
-              <Comment />
+              <Comment postId={id} />
             </div>
           </Hidden>
         </div>
@@ -269,7 +269,7 @@ function SaveButton({ savedPosts, postId }) {
   return <Icon className={classes.saveIcon} onClick={onClick} />;
 }
 
-function Comment() {
+function Comment({ postId }) {
   const classes = usePostStyles();
   const [content, setContent] = React.useState("");
   return (
