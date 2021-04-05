@@ -272,10 +272,18 @@ function SaveButton({ savedPosts, postId }) {
 
 function Comment({ postId }) {
   const classes = usePostStyles();
+  const { currentUserId } = React.useContext(UserContext);
   const [content, setContent] = React.useState("");
   const [createComment] = useMutation(CREATE_COMMENT);
 
-  function handleAddComment() {}
+  function handleAddComment() {
+    const variables = {
+      content,
+      postId,
+      userId: currentUserId,
+    };
+    createComment({ variables });
+  }
 
   return (
     <div className={classes.commentContainer}>
