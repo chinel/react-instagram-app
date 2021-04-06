@@ -15,17 +15,17 @@ import NotificationTooltip from "../notification/NotificationTooltip";
 import NotificationList from "../notification/NotificationList";
 import { UserContext } from "../../App";
 import AddPostDialog from "../post/AddPostDialog";
-import isAfter from "date-fns"
+import isAfter from "date-fns";
 
 function Links({ path }) {
-  const classes = useNavbarStyles();
-  const [showList, setShowList] = React.useState(false);
-  const [showTooltip, setTooltip] = React.useState(true);
   const { me } = React.useContext(UserContext);
   const newNotifications = me.notifications.filter((created_at) => {
     isAfter(new Date(created_at), new Date(me.last_checked));
   });
- 
+  const hasNotifications = newNotifications.length > 0;
+  const classes = useNavbarStyles();
+  const [showList, setShowList] = React.useState(false);
+  const [showTooltip, setTooltip] = React.useState(hasNotifications);
   const [media, setMedia] = React.useState();
   const [showAddPostDialog, setAddPostDialog] = React.useState(false);
   const inputRef = React.useRef();
