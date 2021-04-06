@@ -110,6 +110,16 @@ export const UNLIKE_POST = gql`
     ) {
       affected_rows
     }
+    delete_notifications(
+      where: {
+        profile_id: { _eq: $profileId }
+        type: { _eq: "like" }
+        user_id: { _eq: $userId }
+        post_id: { _eq: $postId }
+      }
+    ) {
+      affected_rows
+    }
   }
 `;
 
