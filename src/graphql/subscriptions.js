@@ -9,6 +9,20 @@ export const ME = gql`
       profile_image
       user_id
       username
+      notifications(order_by: { created_at: desc }) {
+        id
+        type
+        created_at
+        post {
+          id
+          media
+        }
+        user {
+          id
+          username
+          profile_image
+        }
+      }
     }
   }
 `;
