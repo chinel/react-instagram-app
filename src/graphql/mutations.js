@@ -90,6 +90,16 @@ export const LIKE_POST = gql`
     insert_likes(objects: { post_id: $postId, user_id: $userId }) {
       affected_rows
     }
+    insert_notifications(
+      objects: {
+        post_id: $postId
+        profile_id: $profileId
+        type: "like"
+        user_id: $userId
+      }
+    ) {
+      affected_rows
+    }
   }
 `;
 
