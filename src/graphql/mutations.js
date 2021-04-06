@@ -86,7 +86,7 @@ export const CREATE_POST = gql`
 `;
 
 export const LIKE_POST = gql`
-  mutation likePost($postId: uuid!, $userId: uuid!) {
+  mutation likePost($postId: uuid!, $userId: uuid!, $profileId: uuid!) {
     insert_likes(objects: { post_id: $postId, user_id: $userId }) {
       affected_rows
     }
@@ -94,7 +94,7 @@ export const LIKE_POST = gql`
 `;
 
 export const UNLIKE_POST = gql`
-  mutation unLikePost($postId: uuid!, $userId: uuid!) {
+  mutation unLikePost($postId: uuid!, $userId: uuid!, $profileId: uuid!) {
     delete_likes(
       where: { post_id: { _eq: $postId }, user_id: { _eq: $userId } }
     ) {
