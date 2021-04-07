@@ -2,7 +2,7 @@ import React from "react";
 import { useNavbarStyles } from "../../styles";
 import { Typography } from "@material-ui/core";
 
-function NotificationTooltip() {
+function NotificationTooltip({ notifications }) {
   const classes = useNavbarStyles();
 
   return (

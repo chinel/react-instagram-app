@@ -91,7 +91,7 @@ function Links({ path }) {
           open={showTooltip}
           onOpen={handleHideTooltip}
           TransitionComponent={Zoom}
-          title={<NotificationTooltip />}
+          title={<NotificationTooltip notifications={newNotifications} />}
         >
           <div className={classes.notifications} onClick={handleToggleList}>
             {showList ? <LikeActiveIcon /> : <LikeIcon />}
