@@ -7,7 +7,10 @@ function NotificationTooltip({ notifications }) {
   const followCount = countNotifications("follow");
   const likeCount = countNotifications("like");
 
-  function countNotifications(notificationsType) {}
+  function countNotifications(notificationsType) {
+    return notifications.filter(({ type }) => type === notificationsType)
+      .length;
+  }
 
   return (
     <div className={classes.tooltipContainer}>
