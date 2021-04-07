@@ -20,10 +20,12 @@ function NotificationTooltip({ notifications }) {
           <Typography>{followCount}</Typography>
         </div>
       )}
-      <div className={classes.tooltip}>
-        <span arial-label="Likes" className={classes.likes} />
-        <Typography>1</Typography>
-      </div>
+      {likeCount > 0 && (
+        <div className={classes.tooltip}>
+          <span arial-label="Likes" className={classes.likes} />
+          <Typography>1</Typography>
+        </div>
+      )}
     </div>
   );
 }
