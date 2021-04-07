@@ -4,6 +4,10 @@ import { Typography } from "@material-ui/core";
 
 function NotificationTooltip({ notifications }) {
   const classes = useNavbarStyles();
+  const followCount = countNotifications("follow");
+  const likeCount = countNotifications("like");
+
+  function countNotifications(notificationsType) {}
 
   return (
     <div className={classes.tooltipContainer}>
