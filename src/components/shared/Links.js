@@ -62,7 +62,12 @@ function Links({ path }) {
 
   return (
     <div className={classes.linksContainer}>
-      {showList && <NotificationList handleHideList={handleHideList} />}
+      {showList && (
+        <NotificationList
+          notifications={me.notifications}
+          handleHideList={handleHideList}
+        />
+      )}
 
       <div className={classes.linksWrapper}>
         {showAddPostDialog && (

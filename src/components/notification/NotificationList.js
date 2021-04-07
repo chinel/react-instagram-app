@@ -5,14 +5,14 @@ import { defaultNotifications } from "../../data";
 import { useNotificationListStyles } from "../../styles";
 import FollowButton from "../shared/FollowButton";
 import useOutsideClick from "@rooks/use-outside-click";
-function NotificationList({ handleHideList }) {
+function NotificationList({ handleHideList, notifications }) {
   const listContainerRef = React.useRef();
   const classes = useNotificationListStyles();
   useOutsideClick(listContainerRef, handleHideList);
 
   return (
     <Grid className={classes.listContainer}>
-      {defaultNotifications.map((notification) => {
+      {notifications.map((notification) => {
         const isLike = notification.type === "like";
         const isFollow = notification.type === "follow";
 
