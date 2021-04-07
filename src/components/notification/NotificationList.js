@@ -52,7 +52,7 @@ function NotificationList({ handleHideList, notifications }) {
                   <Avatar src={notification.post.media} alt="post cover" />
                 </Link>
               )}
-              {isFollow && <FollowButton />}
+              {isFollow && <FollowButton id={notification.user.id} />}
             </div>
           </Grid>
         );
