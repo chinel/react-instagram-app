@@ -1,7 +1,6 @@
 import { Avatar, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
-import { defaultNotifications } from "../../data";
 import { useNotificationListStyles } from "../../styles";
 import FollowButton from "../shared/FollowButton";
 import useOutsideClick from "@rooks/use-outside-click";
