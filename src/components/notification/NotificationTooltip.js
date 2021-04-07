@@ -14,10 +14,12 @@ function NotificationTooltip({ notifications }) {
 
   return (
     <div className={classes.tooltipContainer}>
-      <div className={classes.tooltip}>
-        <span arial-label="Followers" className={classes.followers} />
-        <Typography>1</Typography>
-      </div>
+      {followCount > 0 && (
+        <div className={classes.tooltip}>
+          <span arial-label="Followers" className={classes.followers} />
+          <Typography>{followCount}</Typography>
+        </div>
+      )}
       <div className={classes.tooltip}>
         <span arial-label="Likes" className={classes.likes} />
         <Typography>1</Typography>
