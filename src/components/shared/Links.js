@@ -18,7 +18,7 @@ import AddPostDialog from "../post/AddPostDialog";
 import isAfter from "date-fns/isAfter";
 
 function Links({ path }) {
-  const { me } = React.useContext(UserContext);
+  const { me, currentUserId } = React.useContext(UserContext);
   const newNotifications = me.notifications.filter((created_at) => {
     isAfter(new Date(created_at), new Date(me.last_checked));
   });
@@ -68,6 +68,7 @@ function Links({ path }) {
         <NotificationList
           notifications={me.notifications}
           handleHideList={handleHideList}
+          currentUserId={currentUserId}
         />
       )}
 
