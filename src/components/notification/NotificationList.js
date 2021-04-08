@@ -4,10 +4,17 @@ import { Link } from "react-router-dom";
 import { useNotificationListStyles } from "../../styles";
 import FollowButton from "../shared/FollowButton";
 import useOutsideClick from "@rooks/use-outside-click";
-function NotificationList({ handleHideList, notifications }) {
+function NotificationList({ handleHideList, notifications, currentUserId }) {
   const listContainerRef = React.useRef();
   const classes = useNotificationListStyles();
   useOutsideClick(listContainerRef, handleHideList);
+
+  React.useEffect(() => {
+    const variables = {
+      userId: currentUserId,
+      lastChecked: new Date().toISOString(),
+    };
+  }, []);
 
   return (
     <Grid className={classes.listContainer}>
