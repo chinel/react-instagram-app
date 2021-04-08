@@ -4,10 +4,13 @@ import { Link } from "react-router-dom";
 import { useNotificationListStyles } from "../../styles";
 import FollowButton from "../shared/FollowButton";
 import useOutsideClick from "@rooks/use-outside-click";
+import { CHECK_NOTIFICATIONS } from "../../graphql/mutations";
+import { useMutation } from "@apollo/react-hooks";
 function NotificationList({ handleHideList, notifications, currentUserId }) {
   const listContainerRef = React.useRef();
   const classes = useNotificationListStyles();
   useOutsideClick(listContainerRef, handleHideList);
+  const [checkNotifications] = useMutation(CHECK_NOTIFICATIONS);
 
   React.useEffect(() => {
     const variables = {
