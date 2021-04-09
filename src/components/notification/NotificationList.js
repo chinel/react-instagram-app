@@ -17,7 +17,8 @@ function NotificationList({ handleHideList, notifications, currentUserId }) {
       userId: currentUserId,
       lastChecked: new Date().toISOString(),
     };
-  }, []);
+    checkNotifications({ variables });
+  }, [currentUserId, checkNotifications]);
 
   return (
     <Grid className={classes.listContainer}>
