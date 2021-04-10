@@ -1,4 +1,4 @@
-import { format, isThisYear } from "date-fns";
+import { format, formatDistance, isThisYear } from "date-fns";
 
 export function formatePostDate(date) {
   // If the post was created this Year format example - March 23
@@ -7,4 +7,13 @@ export function formatePostDate(date) {
   const formatLong = format(new Date(date), "MMMM d, yyy");
 
   return isThisYear(new Date(date)) ? formatShort : formatLong;
+}
+
+export function formatDateToNowShort(date) {
+  // 5 days ago -> 5d
+  // 7 Weeks ago -> 7w
+  return formatDistance(new Date(date), new Date(Date.now()))
+    .split(" ")
+    .map((s, i) => (i === 1 ? s[0] : s))
+    .join("");
 }
