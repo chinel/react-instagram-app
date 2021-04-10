@@ -98,7 +98,7 @@ function Post({ postId }) {
           </div>
 
           <Typography color="textSecondary" className={classes.datePosted}>
-            5 DAYS AGO
+            {created_at}
           </Typography>
           <Hidden xsDown>
             <div className={classes.comment}>
