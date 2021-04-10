@@ -25,6 +25,7 @@ import {
   UNSAVE_POST,
   CREATE_COMMENT,
 } from "../../graphql/mutations";
+import { formatDateToNowShort, formatePostDate } from "../../utils/formatDate";
 
 function Post({ postId }) {
   const classes = usePostStyles();
@@ -98,7 +99,7 @@ function Post({ postId }) {
           </div>
 
           <Typography color="textSecondary" className={classes.datePosted}>
-            {created_at}
+            {formatePostDate(created_at)}
           </Typography>
           <Hidden xsDown>
             <div className={classes.comment}>
@@ -154,7 +155,7 @@ function AuthorCaption({ user, createdAt, caption }) {
           color="textSecondary"
           variant="caption"
         >
-          {createdAt}
+          {formatDateToNowShort(createdAt)}
         </Typography>
       </div>
     </div>
