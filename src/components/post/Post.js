@@ -202,7 +202,7 @@ function UserComment({ comment }) {
           color="textSecondary"
           variant="caption"
         >
-          {comment.createdAt}
+          {formatDateToNowShort(comment.createdAt)}
         </Typography>
       </div>
     </div>
