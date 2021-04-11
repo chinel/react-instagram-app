@@ -1,21 +1,32 @@
+import { useQuery } from "@apollo/react-hooks";
 import { Card, CardContent, Hidden } from "@material-ui/core";
 import React from "react";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../App";
 import NameBioSection from "../components/profile/NameBioSection";
 import OptionsMenu from "../components/profile/OptionsMenu";
 import PostCountSection from "../components/profile/PostCount";
 import ProfileNameSection from "../components/profile/ProfileNameSection";
 import ProfileTabs from "../components/profile/ProfileTabs";
 import Layout from "../components/shared/Layout";
+import LoadingScreen from "../components/shared/LoadingScreen";
 import ProfilePicture from "../components/shared/ProfilePicture";
 import { defaultCurrentUser } from "../data";
+import { GET_USER_PROFILE } from "../graphql/queries";
 import { useProfilePageStyles } from "../styles";
 
 function ProfilePage() {
   const { username } = useParams();
-  const isOwner = true;
+  const { currentUserId } = React.useContext(UserContext);
   const classes = useProfilePageStyles();
   const [showOptionsMenu, setShowOptionsMenu] = React.useState(false);
+  const variables = { username };
+  const { data, loading } = useQuery(GET_USER_PROFILE, { variables });
+
+  if (loading) return <LoadingScreen />;
+
+  const [user] = data.users;
+  const isOwner = user.id === currentUserId;
 
   function handleOptionsMenuClick() {
     setShowOptionsMenu(true);
