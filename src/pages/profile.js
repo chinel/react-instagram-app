@@ -11,7 +11,6 @@ import ProfileTabs from "../components/profile/ProfileTabs";
 import Layout from "../components/shared/Layout";
 import LoadingScreen from "../components/shared/LoadingScreen";
 import ProfilePicture from "../components/shared/ProfilePicture";
-import { defaultCurrentUser } from "../data";
 import { GET_USER_PROFILE } from "../graphql/queries";
 import { useProfilePageStyles } from "../styles";
 
@@ -37,21 +36,19 @@ function ProfilePage() {
   }
 
   return (
-    <Layout
-      title={`${defaultCurrentUser.name} (@${defaultCurrentUser.username})`}
-    >
+    <Layout title={`${user.name} (@${user.username})`}>
       <div className={classes.container}>
         <Hidden xsDown>
           <Card className={classes.cardLarge}>
             <ProfilePicture isOwner={isOwner} />
             <CardContent className={classes.cardContentLarge}>
               <ProfileNameSection
-                user={defaultCurrentUser}
+                user={user}
                 isOwner={isOwner}
                 handleOptionsMenuClick={handleOptionsMenuClick}
               />
-              <PostCountSection user={defaultCurrentUser} />
-              <NameBioSection user={defaultCurrentUser} />
+              <PostCountSection user={user} />
+              <NameBioSection user={user} />
             </CardContent>
           </Card>
         </Hidden>
@@ -61,18 +58,18 @@ function ProfilePage() {
               <section className={classes.sectionSmall}>
                 <ProfilePicture size={77} isOwner={isOwner} />
                 <ProfileNameSection
-                  user={defaultCurrentUser}
+                  user={user}
                   isOwner={isOwner}
                   handleOptionsMenuClick={handleOptionsMenuClick}
                 />
               </section>
-              <NameBioSection user={defaultCurrentUser} />
+              <NameBioSection user={user} />
             </CardContent>
-            <PostCountSection user={defaultCurrentUser} />
+            <PostCountSection user={user} />
           </Card>
         </Hidden>
         {showOptionsMenu && <OptionsMenu handleCloseMenu={handleCloseMenu} />}
-        <ProfileTabs user={defaultCurrentUser} isOwner={isOwner} />
+        <ProfileTabs user={user} isOwner={isOwner} />
       </div>
     </Layout>
   );
