@@ -1,5 +1,6 @@
 import { Card, CardContent, Hidden } from "@material-ui/core";
 import React from "react";
+import { useParams } from "react-router-dom";
 import NameBioSection from "../components/profile/NameBioSection";
 import OptionsMenu from "../components/profile/OptionsMenu";
 import PostCountSection from "../components/profile/PostCount";
@@ -11,6 +12,7 @@ import { defaultCurrentUser } from "../data";
 import { useProfilePageStyles } from "../styles";
 
 function ProfilePage() {
+  const { username } = useParams();
   const isOwner = true;
   const classes = useProfilePageStyles();
   const [showOptionsMenu, setShowOptionsMenu] = React.useState(false);
