@@ -2,11 +2,7 @@ import { Person } from "@material-ui/icons";
 import React from "react";
 import { useProfilePictureStyles } from "../../styles";
 
-function ProfilePicture({
-  size,
-  image = "https://instagram.com/static/images/anonymousUser.jpg/23e7b3b2a737.jpg",
-  isOwner,
-}) {
+function ProfilePicture({ size, image, isOwner }) {
   const classes = useProfilePictureStyles({ size, isOwner });
 
   return (
