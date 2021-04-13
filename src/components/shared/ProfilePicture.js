@@ -4,13 +4,12 @@ import { useProfilePictureStyles } from "../../styles";
 
 function ProfilePicture({ size, image, isOwner }) {
   const classes = useProfilePictureStyles({ size, isOwner });
+  const inputRef = React.useRef();
+  function openFileInput() {}
 
-  function openFileInput (){
-
-  }
-  
   return (
     <section className={classes.section}>
+      <input style={{ display: "none" }} ref={inputRef} type="file" />
       {image ? (
         <div
           className={classes.wrapper}
