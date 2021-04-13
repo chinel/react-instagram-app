@@ -5,8 +5,17 @@ import { useProfilePictureStyles } from "../../styles";
 function ProfilePicture({ size, image, isOwner }) {
   const classes = useProfilePictureStyles({ size, isOwner });
   const inputRef = React.useRef();
+  const [editUserAvatar] = useMutation(EDIT_USER_AVATAR);
+
   function openFileInput() {
     inputRef.current.click();
+  }
+
+  async function handleUpdateProfilePic(event) {
+    const url = await handleImageUpload(event.target.files[0]);
+    const variables = { id: user.id, profileImage: url };
+    await editUserAvatar({ variables });
+    setProfileImage(url);
   }
 
   return (
