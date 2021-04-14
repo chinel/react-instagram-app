@@ -2,7 +2,7 @@ import { Typography } from "@material-ui/core";
 import React from "react";
 import { useProfileTabsStyles } from "../../styles";
 
-function SavedPosts() {
+function SavedPosts({ user }) {
   const classes = useProfileTabsStyles();
   return (
     <section className={classes.savedPostsSection}>
