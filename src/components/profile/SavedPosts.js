@@ -1,6 +1,7 @@
 import { Typography } from "@material-ui/core";
 import React from "react";
 import { useProfileTabsStyles } from "../../styles";
+import GridPost from "../shared/GridPost";
 
 function SavedPosts({ user }) {
   const classes = useProfileTabsStyles();
@@ -18,6 +19,16 @@ function SavedPosts({ user }) {
       </section>
     );
   }
+
+  return (
+    <article className={classes.article}>
+      <div className={classes.postContainer}>
+        {user.saved_posts.map((post) => (
+          <GridPost key={post.id} post={post} />
+        ))}
+      </div>
+    </article>
+  );
 }
 
 export default SavedPosts;
