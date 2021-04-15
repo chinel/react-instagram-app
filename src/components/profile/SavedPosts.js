@@ -23,7 +23,7 @@ function SavedPosts({ user }) {
   return (
     <article className={classes.article}>
       <div className={classes.postContainer}>
-        {user.saved_posts.map((post) => (
+        {user.saved_posts.map(({ post }) => (
           <GridPost key={post.id} post={post} />
         ))}
       </div>
