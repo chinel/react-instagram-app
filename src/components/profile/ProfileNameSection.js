@@ -1,6 +1,7 @@
 import { Button, Hidden, Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../App";
 import { GearIcon } from "../../icons";
 import { useProfilePageStyles } from "../../styles";
 import UnFollowDialog from "./UnFollowDialog";
@@ -8,6 +9,9 @@ import UnFollowDialog from "./UnFollowDialog";
 function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
   const classes = useProfilePageStyles();
   const [showUnFollowDialog, setShowUnFollowDialog] = React.useState(false);
+  const { currentUserId, followingIds, followerIds } = React.useContext(
+    UserContext
+  );
   let followButton;
   const isFollowing = true;
   const isFollower = false;
