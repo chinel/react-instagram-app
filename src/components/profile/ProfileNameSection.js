@@ -29,7 +29,12 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
     );
   } else if (isFollower) {
     followButton = (
-      <Button variant="contained" color="primary" className={classes.button}>
+      <Button
+        onClick={handleFollowUser}
+        variant="contained"
+        color="primary"
+        className={classes.button}
+      >
         Follow Back
       </Button>
     );
