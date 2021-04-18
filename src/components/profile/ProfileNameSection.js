@@ -12,9 +12,11 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
   const { currentUserId, followingIds, followerIds } = React.useContext(
     UserContext
   );
+  const isAlreadyFollowing = followingIds.some((id) => id === user.id);
+  const [isFollowing, setIsFollowing] = React.useState(isAlreadyFollowing);
+  const isFollower = !isFollowing && followerIds.some((id) => id === user.id);
   let followButton;
-  const isFollowing = true;
-  const isFollower = false;
+  // const isFollowing = true;
   if (isFollowing) {
     followButton = (
       <Button
