@@ -1,7 +1,9 @@
+import { useMutation } from "@apollo/react-hooks";
 import { Button, Hidden, Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
+import { FOLLOW_USER } from "../../graphql/mutations";
 import { GearIcon } from "../../icons";
 import { useProfilePageStyles } from "../../styles";
 import UnFollowDialog from "./UnFollowDialog";
@@ -13,8 +15,21 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
     UserContext
   );
   const isAlreadyFollowing = followingIds.some((id) => id === user.id);
-  const [isFollowing, setIsFollowing] = React.useState(isAlreadyFollowing);
+  const [isFollowing, setFollowing] = React.useState(isAlreadyFollowing);
   const isFollower = !isFollowing && followerIds.some((id) => id === user.id);
+
+  const variables = {
+    userIdToFollow: user.id,
+    currentUserId,
+  };
+
+  const [followUser] = useMutation(FOLLOW_USER);
+
+  function handleFollowUser() {
+    setFollowing(true);
+    followUser({ variables });
+  }
+
   let followButton;
   // const isFollowing = true;
   if (isFollowing) {
