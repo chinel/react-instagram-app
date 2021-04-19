@@ -1,3 +1,4 @@
+import { useMutation } from "@apollo/react-hooks";
 import {
   Avatar,
   Button,
@@ -7,10 +8,12 @@ import {
   Zoom,
 } from "@material-ui/core";
 import React from "react";
+import { UNFOLLOW_USER } from "../../graphql/mutations";
 import { useProfilePageStyles } from "../../styles";
 
 function UnFollowDialog({ user, onClose }) {
   const classes = useProfilePageStyles();
+  const [unfollowUser] = useMutation(UNFOLLOW_USER);
 
   return (
     <Dialog
