@@ -31,7 +31,7 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
   }
 
   const onUnFollowUser = React.useCallback(() => {
-    setUnfollowUser(false);
+    setShowUnFollowDialog(false);
     setFollowing(false);
   }, []);
 
