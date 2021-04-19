@@ -10,10 +10,20 @@ import {
 import React from "react";
 import { UNFOLLOW_USER } from "../../graphql/mutations";
 import { useProfilePageStyles } from "../../styles";
+import { UserContext } from "../../App";
 
 function UnFollowDialog({ user, onClose }) {
   const classes = useProfilePageStyles();
+  const { currentUserId } = React.useContext(UserContext);
   const [unfollowUser] = useMutation(UNFOLLOW_USER);
+
+  function handleUnfollowUser() {
+    const variables = {
+      userIdToFollow: user.id,
+      currentUserId,
+    };
+    unfollowUser({ variables });
+  }
 
   return (
     <Dialog
