@@ -30,6 +30,11 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
     followUser({ variables });
   }
 
+  const onUnFollowUser = React.useCallback(() => {
+    setUnfollowUser(false);
+    setFollowing(false);
+  }, []);
+
   let followButton;
   // const isFollowing = true;
   if (isFollowing) {
@@ -117,6 +122,7 @@ function ProfileNameSection({ user, isOwner, handleOptionsMenuClick }) {
       </Hidden>
       {showUnFollowDialog && (
         <UnFollowDialog
+          onUnFollowUser={onUnFollowUser}
           onClose={() => setShowUnFollowDialog(false)}
           user={user}
         />
