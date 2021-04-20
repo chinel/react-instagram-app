@@ -74,7 +74,7 @@ export const GET_USER_PROFILE = gql`
           count
         }
       }
-      posts {
+      posts(order_by: { created_at: desc }) {
         id
         media
         likes_aggregate {
@@ -88,7 +88,7 @@ export const GET_USER_PROFILE = gql`
           }
         }
       }
-      saved_posts {
+      saved_posts(order_by: { created_at: desc }) {
         post {
           id
           media
