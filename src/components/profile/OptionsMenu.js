@@ -1,3 +1,4 @@
+import { useApolloClient } from "@apollo/react-hooks";
 import {
   Button,
   Dialog,
@@ -15,9 +16,12 @@ function OptionsMenu({ handleCloseMenu }) {
   const { signOut } = React.useContext(AuthContext);
   const [showLogoutMessage, setShowLogoutMessage] = React.useState(false);
   const history = useHistory();
+  const client = useApolloClient();
+
   function handleLogoutClick() {
     setShowLogoutMessage(true);
-    setTimeout(() => {
+    setTimeout(async () => {
+      await client.clearStore();
       signOut();
       history.push("/accounts/login");
     }, 2000);
