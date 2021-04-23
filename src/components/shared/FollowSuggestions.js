@@ -5,7 +5,6 @@ import { useFollowSuggestionsStyles } from "../../styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { getDefaultUser } from "../../data";
 import FollowSuggestionsItem from "./FollowSuggestionsItem";
 import { useQuery } from "@apollo/react-hooks";
 import { SUGGEST_USERS } from "../../graphql/queries";
@@ -41,7 +40,7 @@ function FollowSuggestions({ hideHeader }) {
           slidesToScroll={3}
           easing="ease-in-out"
         >
-          {Array.from({ length: 10 }, () => getDefaultUser()).map((user) => (
+          {data.users.map((user) => (
             <FollowSuggestionsItem key={user.id} user={user} />
           ))}
         </Slider>
