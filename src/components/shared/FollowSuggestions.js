@@ -7,9 +7,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { getDefaultUser } from "../../data";
 import FollowSuggestionsItem from "./FollowSuggestionsItem";
+import { useQuery } from "@apollo/react-hooks";
+import { SUGGEST_USERS } from "../../graphql/queries";
 function FollowSuggestions({ hideHeader }) {
   const classes = useFollowSuggestionsStyles();
-  let loading = false;
+  const { followerIds } = React.useContext();
+  const variables = { limit: 20, followerIds };
+  const { data, loading } = useQuery(SUGGEST_USERS, { variables });
+
   return (
     <div className={classes.container}>
       {!hideHeader && (

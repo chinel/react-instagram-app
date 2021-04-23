@@ -109,7 +109,7 @@ export const GET_USER_PROFILE = gql`
 `;
 
 //suggest users from folllowers and also users created around the same time
-export const SUGGEST_USER = gql`
+export const SUGGEST_USERS = gql`
   query suggestUsers(
     $limit: Int!
     $followerIds: [uuid!]!
