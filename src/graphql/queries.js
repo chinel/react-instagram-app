@@ -159,3 +159,5 @@ export const EXPLORE_POSTS = gql`
     }
   }
 `;
+
+export const GET_MORE_POSTS_FROM_USER = gql``;
