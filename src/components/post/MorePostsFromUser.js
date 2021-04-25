@@ -1,14 +1,20 @@
+import { useQuery } from "@apollo/react-hooks";
 import { Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../App";
 import { getDefaultPost, defaultUser } from "../../data";
+import { GET_MORE_POSTS_FROM_USER } from "../../graphql/queries";
 import { LoadingLargeIcon } from "../../icons";
 import { useMorePostsFromUserStyles } from "../../styles";
 import GridPost from "../shared/GridPost";
 
 function MorePostsFromUser() {
   const classes = useMorePostsFromUserStyles();
+  const {} = React.useContext(UserContext);
 
+  const variables = {};
+  const {} = useQuery(GET_MORE_POSTS_FROM_USER);
   let loading = false;
 
   return (
