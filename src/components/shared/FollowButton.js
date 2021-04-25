@@ -1,6 +1,8 @@
+import { useMutation } from "@apollo/react-hooks";
 import { Button } from "@material-ui/core";
 import React from "react";
 import { UserContext } from "../../App";
+import { FOLLOW_USER, UNFOLLOW_USER } from "../../graphql/mutations";
 import { useFollowButtonStyles } from "../../styles";
 
 function FollowButton({ side, id }) {
@@ -10,6 +12,12 @@ function FollowButton({ side, id }) {
     (followingId) => followingId === id
   );
   const [isFollowing, setIsFollowing] = React.useState(isAlreadyFollowing);
+  const [followUser] = useMutation(FOLLOW_USER);
+  const [unfollowUser] = useMutation(UNFOLLOW_USER);
+  const variables = {
+    userIdToFollow: id,
+    currentUserId,
+  };
 
   const followButton = (
     <Button
