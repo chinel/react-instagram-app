@@ -181,3 +181,14 @@ export const GET_MORE_POSTS_FROM_USER = gql`
     }
   }
 `;
+
+export const GET_POST = gql`
+  query getPost($postId: uuid!) {
+    posts_by_pk(id: $postId) {
+      id
+      user {
+        id
+      }
+    }
+  }
+`;
