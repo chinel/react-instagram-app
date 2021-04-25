@@ -14,9 +14,15 @@ function FollowButton({ side, id }) {
   const [isFollowing, setIsFollowing] = React.useState(isAlreadyFollowing);
   const [followUser] = useMutation(FOLLOW_USER);
   const [unfollowUser] = useMutation(UNFOLLOW_USER);
+
   const variables = {
     userIdToFollow: id,
     currentUserId,
+  };
+
+  const handleFollowUser = () => {
+    setIsFollowing(true);
+    followUser({ variables });
   };
 
   const followButton = (
@@ -24,7 +30,7 @@ function FollowButton({ side, id }) {
       variant={side ? "text" : "contained"}
       color="primary"
       className={classes.button}
-      onClick={() => setIsFollowing(true)}
+      onClick={handleFollowUser}
       fullWidth
     >
       Follow
@@ -35,7 +41,7 @@ function FollowButton({ side, id }) {
     <Button
       variant={side ? "text" : "outlined"}
       className={classes.button}
-      onClick={() => setIsFollowing(false)}
+      onClick={handleUnfollowUser}
       fullWidth
     >
       Following
