@@ -1,10 +1,15 @@
 import { Button } from "@material-ui/core";
 import React from "react";
+import { UserContext } from "../../App";
 import { useFollowButtonStyles } from "../../styles";
 
-function FollowButton({ side }) {
+function FollowButton({ side, id }) {
   const classes = useFollowButtonStyles({ side });
-  const [isFollowing, setIsFollowing] = React.useState(false);
+  const { currentUserId, followingIds } = React.useContext(UserContext);
+  const isAlreadyFollowing = followingIds.some(
+    (followingId) => followingId === id
+  );
+  const [isFollowing, setIsFollowing] = React.useState(isAlreadyFollowing);
 
   const followButton = (
     <Button
