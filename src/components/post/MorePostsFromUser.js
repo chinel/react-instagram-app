@@ -1,21 +1,32 @@
-import { useQuery } from "@apollo/react-hooks";
+import { useLazyQuery, useQuery } from "@apollo/react-hooks";
 import { Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../App";
 import { getDefaultPost, defaultUser } from "../../data";
-import { GET_MORE_POSTS_FROM_USER } from "../../graphql/queries";
+import { GET_MORE_POSTS_FROM_USER, GET_POST } from "../../graphql/queries";
 import { LoadingLargeIcon } from "../../icons";
 import { useMorePostsFromUserStyles } from "../../styles";
 import GridPost from "../shared/GridPost";
 
-function MorePostsFromUser() {
+function MorePostsFromUser({ postId }) {
   const classes = useMorePostsFromUserStyles();
-  const {} = React.useContext(UserContext);
+  const variables = { postId };
+  const { data, loading } = useQuery(GET_POST, { variables });
 
-  const variables = {};
-  const {} = useQuery(GET_MORE_POSTS_FROM_USER);
-  let loading = false;
+  //here we will get back data, since we have data variable above it will conflict
+  //so we need to rename it below, we renamed it to morePosts by destructuring and remaning it
+  const [
+    getMorePostsFromUser,
+    { data: morePosts, loading: loading2 },
+  ] = useLazyQuery(GET_MORE_POSTS_FROM_USER);
+
+  React.useEffect(() => {
+    if (loading) return;
+    const userId = data.posts_by_pk.user.id;
+    const postId = data.posts_by_pk.id;
+    const variables = { userId, postId };
+    getMorePostsFromUser({ variables });
+  }, [data, loading, getMorePostsFromUser]);
 
   return (
     <div className={classes.container}>
