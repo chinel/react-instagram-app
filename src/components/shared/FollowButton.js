@@ -25,6 +25,11 @@ function FollowButton({ side, id }) {
     followUser({ variables });
   };
 
+  const handleUnfollowUser = () => {
+    setIsFollowing(false);
+    unfollowUser({ variables });
+  };
+
   const followButton = (
     <Button
       variant={side ? "text" : "contained"}
