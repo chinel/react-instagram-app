@@ -42,16 +42,14 @@ function MorePostsFromUser({ postId }) {
           @{defaultUser.username}
         </Link>
       </Typography>
-      {loading ? (
+      {loading || loading2 ? (
         <LoadingLargeIcon />
       ) : (
         <article className={classes.article}>
           <div className={classes.postContainer}>
-            {Array.from({ length: 6 }, () => getDefaultPost()).map(
-              (post, index) => (
-                <GridPost key={index} post={post} />
-              )
-            )}
+            {morePosts.posts.map((post, index) => (
+              <GridPost key={index} post={post} />
+            ))}
           </div>
         </article>
       )}
