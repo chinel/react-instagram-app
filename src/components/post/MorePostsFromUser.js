@@ -30,28 +30,31 @@ function MorePostsFromUser({ postId }) {
 
   return (
     <div className={classes.container}>
-      <Typography
-        color="textSecondary"
-        variant="subtitle2"
-        component="h2"
-        gutterBottom
-        className={classes.typography}
-      >
-        More Posts from{" "}
-        <Link to={`/${defaultUser.username}`} className={classes.link}>
-          @{defaultUser.username}
-        </Link>
-      </Typography>
       {loading || loading2 ? (
         <LoadingLargeIcon />
       ) : (
-        <article className={classes.article}>
-          <div className={classes.postContainer}>
-            {morePosts?.posts.map((post, index) => (
-              <GridPost key={index} post={post} />
-            ))}
-          </div>
-        </article>
+        <>
+          <Typography
+            color="textSecondary"
+            variant="subtitle2"
+            component="h2"
+            gutterBottom
+            className={classes.typography}
+          >
+            More Posts from{" "}
+            <Link to={`/${defaultUser.username}`} className={classes.link}>
+              @{defaultUser.username}
+            </Link>
+          </Typography>
+
+          <article className={classes.article}>
+            <div className={classes.postContainer}>
+              {morePosts?.posts.map((post, index) => (
+                <GridPost key={index} post={post} />
+              ))}
+            </div>
+          </article>
+        </>
       )}
     </div>
   );
