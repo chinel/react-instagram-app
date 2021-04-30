@@ -188,6 +188,7 @@ export const GET_POST = gql`
       id
       user {
         id
+        username
       }
     }
   }
