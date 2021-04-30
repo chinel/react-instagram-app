@@ -42,8 +42,11 @@ function MorePostsFromUser({ postId }) {
             className={classes.typography}
           >
             More Posts from{" "}
-            <Link to={`/${defaultUser.username}`} className={classes.link}>
-              @{defaultUser.username}
+            <Link
+              to={`/${data.posts_by_pk.user.username}`}
+              className={classes.link}
+            >
+              @{data.posts_by_pk.user.username}
             </Link>
           </Typography>
 
