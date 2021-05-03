@@ -5,7 +5,7 @@ import { UserContext } from "../../App";
 import { defaultPost } from "../../data";
 import { useOptionsDialogStyles } from "../../styles";
 
-function OptionsDialog({ onClose, authorId }) {
+function OptionsDialog({ onClose, authorId, postId }) {
   const classes = useOptionsDialogStyles();
   const { currentUserId } = React.useContext(UserContext);
   const isOwner = authorId === currentUserId;
