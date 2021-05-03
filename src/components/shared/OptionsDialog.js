@@ -1,11 +1,14 @@
 import { Button, Dialog, Divider, Zoom } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../App";
 import { defaultPost } from "../../data";
 import { useOptionsDialogStyles } from "../../styles";
 
-function OptionsDialog({ onClose }) {
+function OptionsDialog({ onClose, authorId }) {
   const classes = useOptionsDialogStyles();
+  const { currentUserId } = React.useContext(UserContext);
+  const isOwner = authorId === currentUserId;
 
   return (
     <Dialog
