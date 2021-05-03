@@ -7,8 +7,16 @@ import { useOptionsDialogStyles } from "../../styles";
 
 function OptionsDialog({ onClose, authorId, postId }) {
   const classes = useOptionsDialogStyles();
-  const { currentUserId } = React.useContext(UserContext);
+  const { currentUserId, followingIds } = React.useContext(UserContext);
   const isOwner = authorId === currentUserId;
+  const buttonText = isOwner ? "Delete" : "Unfollow";
+  const onClick = isOwner ? handleDeletePost : handleUnfollowUser;
+  const isFollowing = followingIds.some((id) => id === authorId);
+  const isUnrelatedUser = !isOwner && isFollowing;
+
+  function handleDeletePost() {}
+
+  function handleUnfollowUser() {}
 
   return (
     <Dialog
