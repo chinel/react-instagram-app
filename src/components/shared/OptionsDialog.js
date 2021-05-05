@@ -12,7 +12,7 @@ function OptionsDialog({ onClose, authorId, postId }) {
   const buttonText = isOwner ? "Delete" : "Unfollow";
   const onClick = isOwner ? handleDeletePost : handleUnfollowUser;
   const isFollowing = followingIds.some((id) => id === authorId);
-  const isUnrelatedUser = !isOwner && isFollowing;
+  const isUnrelatedUser = !isOwner && !isFollowing;
 
   function handleDeletePost() {}
 
