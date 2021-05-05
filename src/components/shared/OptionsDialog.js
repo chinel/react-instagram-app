@@ -27,7 +27,9 @@ function OptionsDialog({ onClose, authorId, postId }) {
       onClose={onClose}
       TransitionComponent={Zoom}
     >
-      <Button className={classes.redButton}>Unfollow</Button>
+      {!isUnrelatedUser && (
+        <Button className={classes.redButton}>Unfollow</Button>
+      )}
       <Divider />
       <Button className={classes.button}>
         <Link to={`/p/${defaultPost.id}`}>Go to post</Link>
