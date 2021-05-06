@@ -19,7 +19,14 @@ function OptionsDialog({ onClose, authorId, postId }) {
 
   function handleDeletePost() {}
 
-  function handleUnfollowUser() {}
+  function handleUnfollowUser() {
+    const variables = {
+      userIdToFollow: authorId,
+      currentUserId,
+    };
+    unFollowUser({ variables });
+    onClose();
+  }
 
   return (
     <Dialog
