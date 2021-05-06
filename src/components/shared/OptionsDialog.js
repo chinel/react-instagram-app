@@ -1,8 +1,10 @@
+import { useMutation } from "@apollo/react-hooks";
 import { Button, Dialog, Divider, Zoom } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
 import { defaultPost } from "../../data";
+import { UNFOLLOW_USER } from "../../graphql/mutations";
 import { useOptionsDialogStyles } from "../../styles";
 
 function OptionsDialog({ onClose, authorId, postId }) {
@@ -13,6 +15,7 @@ function OptionsDialog({ onClose, authorId, postId }) {
   const onClick = isOwner ? handleDeletePost : handleUnfollowUser;
   const isFollowing = followingIds.some((id) => id === authorId);
   const isUnrelatedUser = !isOwner && !isFollowing;
+  const [unFollowUser] = useMutation(UNFOLLOW_USER);
 
   function handleDeletePost() {}
 
