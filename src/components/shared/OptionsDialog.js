@@ -4,7 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
 import { defaultPost } from "../../data";
-import { UNFOLLOW_USER } from "../../graphql/mutations";
+import { UNFOLLOW_USER, DELETE_POST } from "../../graphql/mutations";
 import { useOptionsDialogStyles } from "../../styles";
 
 function OptionsDialog({ onClose, authorId, postId }) {
@@ -16,7 +16,7 @@ function OptionsDialog({ onClose, authorId, postId }) {
   const isFollowing = followingIds.some((id) => id === authorId);
   const isUnrelatedUser = !isOwner && !isFollowing;
   const [unFollowUser] = useMutation(UNFOLLOW_USER);
-
+  const [deletePost] = useMutation(DELETE_POST);
   function handleDeletePost() {}
 
   function handleUnfollowUser() {
