@@ -49,7 +49,9 @@ function OptionsDialog({ onClose, authorId, postId }) {
       TransitionComponent={Zoom}
     >
       {!isUnrelatedUser && (
-        <Button className={classes.redButton}>Unfollow</Button>
+        <Button onClick={onClick} className={classes.redButton}>
+          {buttonText}
+        </Button>
       )}
       <Divider />
       <Button className={classes.button}>
