@@ -193,3 +193,5 @@ export const GET_POST = gql`
     }
   }
 `;
+
+export const GET_FEED = gql``;
