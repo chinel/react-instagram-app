@@ -18,7 +18,12 @@ import PostSkeleton from "./PostSkeleton";
 import { useMutation, useSubscription } from "@apollo/react-hooks";
 import { GET_POST } from "../../graphql/subscriptions";
 import { UserContext } from "../../App";
-import { LIKE_POST, UNLIKE_POST_ } from "../../graphql/mutations";
+import {
+  LIKE_POST,
+  UNLIKE_POST,
+  SAVE_POST,
+  UNSAVE_POST,
+} from "../../graphql/mutations";
 
 function Post({ postId }) {
   const classes = usePostStyles();
@@ -68,7 +73,7 @@ function Post({ postId }) {
               <CommentIcon />
             </Link>
             <ShareIcon />
-            <SaveButton />
+            <SaveButton savedPosts={saved_posts} postId={id} />
           </div>
           <Typography className={classes.likes} variant="subtitle2">
             <span>{likesCount === 1 ? "1 like" : `${likesCount} likes`}</span>
@@ -211,7 +216,7 @@ function LikeButton({ likes, postId, authorId }) {
   const className = liked ? classes.liked : classes.like;
   const onClick = liked ? handleUnlike : handleLike;
   const [likePost] = useMutation(LIKE_POST);
-  const [unLikePost] = useMutation(UNLIKE_POST_);
+  const [unLikePost] = useMutation(UNLIKE_POST);
   const variables = {
     postId,
     userId: currentUserId,
@@ -233,20 +238,32 @@ function LikeButton({ likes, postId, authorId }) {
   return <Icon className={className} onClick={onClick} />;
 }
 
-function SaveButton() {
+function SaveButton({ savedPosts, postId }) {
   const classes = usePostStyles();
-  const [saved, setSaved] = React.useState(false);
+  const { currentUserId } = React.useContext(UserContext);
+  const isAlreadySaved = savedPosts.some(
+    ({ user_id }) => user_id === currentUserId
+  );
+  const [saved, setSaved] = React.useState(isAlreadySaved);
   const Icon = saved ? RemoveIcon : SaveIcon;
   const onClick = saved ? handleRemove : handleSave;
+  const [savePost] = useMutation(SAVE_POST);
+  const [unsavePost] = useMutation(UNSAVE_POST);
+  const variables = {
+    postId,
+    userId: currentUserId,
+  };
 
   function handleSave() {
-    console.log("saved");
+    //console.log("saved");
     setSaved(true);
+    savePost({ variables });
   }
 
   function handleRemove() {
-    console.log("removed");
+    //console.log("removed");
     setSaved(false);
+    unsavePost({ variables });
   }
 
   return <Icon className={classes.saveIcon} onClick={onClick} />;

@@ -93,9 +93,27 @@ export const LIKE_POST = gql`
   }
 `;
 
-export const UNLIKE_POST_ = gql`
+export const UNLIKE_POST = gql`
   mutation unLikePost($postId: uuid!, $userId: uuid!) {
     delete_likes(
+      where: { post_id: { _eq: $postId }, user_id: { _eq: $userId } }
+    ) {
+      affected_rows
+    }
+  }
+`;
+
+export const SAVE_POST = gql`
+  mutation savePost($postId: uuid!, $userId: uuid!) {
+    insert_saved_posts(objects: { post_id: $postId, user_id: $userId }) {
+      affected_rows
+    }
+  }
+`;
+
+export const UNSAVE_POST = gql`
+  mutation unSavePost($postId: uuid!, $userId: uuid!) {
+    delete_saved_posts(
       where: { post_id: { _eq: $postId }, user_id: { _eq: $userId } }
     ) {
       affected_rows
