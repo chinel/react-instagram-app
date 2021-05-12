@@ -226,7 +226,7 @@ export const GET_FEED = gql`
       id
       user_id
     }
-    comments(order_by: { created_at: desc, user: { username: asc } }) {
+    comments(order_by: { created_at: desc }, limit: 2) {
       id
       content
       created_at
