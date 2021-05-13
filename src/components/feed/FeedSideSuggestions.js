@@ -5,11 +5,15 @@ import { getDefaultUser } from "../../data";
 import UserCard from "../shared/UserCard";
 import FollowButton from "../shared/FollowButton";
 import { LoadingIcon } from "../../icons";
+import { SUGGEST_USERS } from "../../graphql/queries";
+import { useQuery } from "@apollo/react-hooks";
+import { UserContext } from "../../App";
 
 function FeedSideSuggestions() {
   const classes = useFeedSideSuggestionsStyles();
-
-  let loading = false;
+  const { me, followerIds } = React.useContext(UserContext);
+  const variables = { limit: 5, followerIds, createdAt: me.createdAt };
+  const { data, loading } = useQuery(SUGGEST_USERS, { variables });
 
   return (
     <article className={classes.article}>
