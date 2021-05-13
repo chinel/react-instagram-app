@@ -31,7 +31,7 @@ function FeedSideSuggestions() {
         {loading ? (
           <LoadingIcon />
         ) : (
-          Array.from({ length: 5 }, () => getDefaultUser()).map((user) => (
+          data.users.map((user) => (
             <div key={user.id} className={classes.card}>
               <UserCard user={user} />
               <FollowButton side />
