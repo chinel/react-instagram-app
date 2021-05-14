@@ -9,13 +9,17 @@ import LoadingScreen from "../components/shared/LoadingScreen";
 import { LoadingLargeIcon } from "../icons";
 import FeedPostSkeleton from "../components/feed/FeedPostSkeleton";
 import { UserContext } from "../App";
+import { useQuery } from "@apollo/react-hooks";
+import { GET_FEED } from "../graphql/queries";
 
 const FeedPost = React.lazy(() => import("../components/feed/FeedPost"));
 
 function FeedPage() {
   const classes = useFeedPageStyles();
-  const { me, currentUserId } = React.useContext(UserContext);
+  const { me, feedIds } = React.useContext(UserContext);
   const [isEndOfFeed] = React.useState(false);
+  const variables = { feedIds, limit: 2 };
+  const { data, loading } = useQuery(GET_FEED, { variables });
 
   // let loading = false;
   if (loading) return <LoadingScreen />;
