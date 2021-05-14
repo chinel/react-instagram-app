@@ -29,13 +29,11 @@ function FeedPage() {
       <div className={classes.container}>
         {/*Feed Posts */}
         <div>
-          {Array.from({ length: 5 }, () => getDefaultPost()).map(
-            (post, index) => (
-              <React.Suspense key={post.id} fallback={<FeedPostSkeleton />}>
-                <FeedPost post={post} index={index} />
-              </React.Suspense>
-            )
-          )}
+          {data.posts.map((post, index) => (
+            <React.Suspense key={post.id} fallback={<FeedPostSkeleton />}>
+              <FeedPost post={post} index={index} />
+            </React.Suspense>
+          ))}
         </div>
         {/*Sidebar */}
         <Hidden smDown>
