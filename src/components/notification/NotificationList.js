@@ -1,18 +1,17 @@
 import { Avatar, Grid, Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
-import { defaultNotifications } from "../../data";
 import { useNotificationListStyles } from "../../styles";
 import FollowButton from "../shared/FollowButton";
 import useOutsideClick from "@rooks/use-outside-click";
-function NotificationList({ handleHideList }) {
+function NotificationList({ handleHideList, notifications }) {
   const listContainerRef = React.useRef();
   const classes = useNotificationListStyles();
   useOutsideClick(listContainerRef, handleHideList);
 
   return (
     <Grid className={classes.listContainer}>
-      {defaultNotifications.map((notification) => {
+      {notifications.map((notification) => {
         const isLike = notification.type === "like";
         const isFollow = notification.type === "follow";
 
@@ -40,8 +39,9 @@ function NotificationList({ handleHideList }) {
                     color="textSecondary"
                     className={classes.typography}
                   >
-                    {isLike && "likes your photo. 4d"}
-                    {isFollow && `started following you. 5d`}
+                    {isLike && `likes your photo. ${notification.created_at}`}
+                    {isFollow &&
+                      `started following you. ${notification.created_at}`}
                   </Typography>
                 </Link>
               </div>
@@ -52,7 +52,7 @@ function NotificationList({ handleHideList }) {
                   <Avatar src={notification.post.media} alt="post cover" />
                 </Link>
               )}
-              {isFollow && <FollowButton />}
+              {isFollow && <FollowButton id={notification.user.id} />}
             </div>
           </Grid>
         );

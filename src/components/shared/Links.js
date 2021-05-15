@@ -15,12 +15,19 @@ import NotificationTooltip from "../notification/NotificationTooltip";
 import NotificationList from "../notification/NotificationList";
 import { UserContext } from "../../App";
 import AddPostDialog from "../post/AddPostDialog";
+import isAfter from "date-fns/isAfter";
 
 function Links({ path }) {
+  const { me } = React.useContext(UserContext);
+  const newNotifications = me.notifications.filter((created_at) => {
+    isAfter(new Date(created_at), new Date(me.last_checked));
+  });
+  console.log("new notifications");
+  console.log(newNotifications);
+  const hasNotifications = newNotifications.length > 0;
   const classes = useNavbarStyles();
   const [showList, setShowList] = React.useState(false);
-  const [showTooltip, setTooltip] = React.useState(true);
-  const { me } = React.useContext(UserContext);
+  const [showTooltip, setTooltip] = React.useState(hasNotifications);
   const [media, setMedia] = React.useState();
   const [showAddPostDialog, setAddPostDialog] = React.useState(false);
   const inputRef = React.useRef();
@@ -57,7 +64,12 @@ function Links({ path }) {
 
   return (
     <div className={classes.linksContainer}>
-      {showList && <NotificationList handleHideList={handleHideList} />}
+      {showList && (
+        <NotificationList
+          notifications={me.notifications}
+          handleHideList={handleHideList}
+        />
+      )}
 
       <div className={classes.linksWrapper}>
         {showAddPostDialog && (
@@ -81,7 +93,7 @@ function Links({ path }) {
           open={showTooltip}
           onOpen={handleHideTooltip}
           TransitionComponent={Zoom}
-          title={<NotificationTooltip />}
+          title={<NotificationTooltip notifications={newNotifications} />}
         >
           <div className={classes.notifications} onClick={handleToggleList}>
             {showList ? <LikeActiveIcon /> : <LikeIcon />}
