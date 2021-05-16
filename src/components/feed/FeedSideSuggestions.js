@@ -34,7 +34,7 @@ function FeedSideSuggestions() {
           data.users.map((user) => (
             <div key={user.id} className={classes.card}>
               <UserCard user={user} />
-              <FollowButton side />
+              <FollowButton id={user.id} side />
             </div>
           ))
         )}
