@@ -11,6 +11,7 @@ import FeedPostSkeleton from "../components/feed/FeedPostSkeleton";
 import { UserContext } from "../App";
 import { useQuery } from "@apollo/react-hooks";
 import { GET_FEED } from "../graphql/queries";
+import usePageBottom from "../utils/usePageBottom";
 
 const FeedPost = React.lazy(() => import("../components/feed/FeedPost"));
 
@@ -20,7 +21,7 @@ function FeedPage() {
   const [isEndOfFeed] = React.useState(false);
   const variables = { feedIds, limit: 2 };
   const { data, loading } = useQuery(GET_FEED, { variables });
-
+  const isPageBottom = usePageBottom();
   // let loading = false;
   if (loading) return <LoadingScreen />;
 
