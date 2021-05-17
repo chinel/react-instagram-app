@@ -20,9 +20,17 @@ function FeedPage() {
   const { me, feedIds } = React.useContext(UserContext);
   const [isEndOfFeed] = React.useState(false);
   const variables = { feedIds, limit: 2 };
-  const { data, loading } = useQuery(GET_FEED, { variables });
+  const { data, loading, fetchMore } = useQuery(GET_FEED, { variables });
   const isPageBottom = usePageBottom();
   // let loading = false;
+
+  React.useEffect(() => {
+    if (!isPageBottom || !data) return;
+    const lastTimestamp = data.posts[data.posts.length - 1].created_at;
+    const updatedVariables = { ...variables, lastTimestamp };
+    fetchMore({ variables: updatedVariables, updateQuery: handleUpdateQuery });
+  }, []);
+
   if (loading) return <LoadingScreen />;
 
   return (
