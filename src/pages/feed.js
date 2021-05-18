@@ -24,6 +24,10 @@ function FeedPage() {
   const isPageBottom = usePageBottom();
   // let loading = false;
 
+  function handleUpdateQuery(prev, { fetchMoreResult }) {
+    console.log({ prev, fetchMoreResult });
+  }
+
   React.useEffect(() => {
     if (!isPageBottom || !data) return;
     const lastTimestamp = data.posts[data.posts.length - 1].created_at;
