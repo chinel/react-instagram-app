@@ -31,9 +31,9 @@ function FeedPage() {
   React.useEffect(() => {
     if (!isPageBottom || !data) return;
     const lastTimestamp = data.posts[data.posts.length - 1].created_at;
-    const updatedVariables = { ...variables, lastTimestamp };
-    fetchMore({ variables: updatedVariables, updateQuery: handleUpdateQuery });
-  }, []);
+    const variables = { feedIds, limit: 2, lastTimestamp };
+    fetchMore({ variables, updateQuery: handleUpdateQuery });
+  }, [data, isPageBottom, handleUpdateQuery, fetchMore]);
 
   if (loading) return <LoadingScreen />;
 
