@@ -18,14 +18,20 @@ const FeedPost = React.lazy(() => import("../components/feed/FeedPost"));
 function FeedPage() {
   const classes = useFeedPageStyles();
   const { me, feedIds } = React.useContext(UserContext);
-  const [isEndOfFeed] = React.useState(false);
+  const [isEndOfFeed, setIsEndOfFeed] = React.useState(false);
   const variables = { feedIds, limit: 2 };
   const { data, loading, fetchMore } = useQuery(GET_FEED, { variables });
   const isPageBottom = usePageBottom();
   // let loading = false;
 
   function handleUpdateQuery(prev, { fetchMoreResult }) {
-    console.log({ prev, fetchMoreResult });
+    if (fetchMoreResult.post.length === 0) {
+      setIsEndOfFeed(true);
+      return prev;
+    }
+    return {
+      posts: [...prev.posts, ...fetchMoreResult.posts],
+    };
   }
 
   React.useEffect(() => {
