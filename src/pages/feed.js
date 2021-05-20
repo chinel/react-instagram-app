@@ -2,7 +2,6 @@ import React from "react";
 import { useFeedPageStyles } from "../styles";
 import Layout from "../components/shared/Layout";
 import UserCard from "../components/shared/UserCard";
-import { getDefaultPost } from "../data";
 import FeedSideSuggestions from "../components/feed/FeedSideSuggestions";
 import { Hidden } from "@material-ui/core";
 import LoadingScreen from "../components/shared/LoadingScreen";
@@ -24,7 +23,7 @@ function FeedPage() {
   const isPageBottom = usePageBottom();
   // let loading = false;
 
-  function handleUpdateQuery(prev, { fetchMoreResult }) {
+  const handleUpdateQuery = React.useCallback((prev, { fetchMoreResult }) => {
     if (fetchMoreResult.post.length === 0) {
       setIsEndOfFeed(true);
       return prev;
@@ -32,14 +31,14 @@ function FeedPage() {
     return {
       posts: [...prev.posts, ...fetchMoreResult.posts],
     };
-  }
+  }, []);
 
   React.useEffect(() => {
     if (!isPageBottom || !data) return;
     const lastTimestamp = data.posts[data.posts.length - 1].created_at;
     const variables = { feedIds, limit: 2, lastTimestamp };
     fetchMore({ variables, updateQuery: handleUpdateQuery });
-  }, [data, isPageBottom, handleUpdateQuery, fetchMore]);
+  }, [data, isPageBottom, handleUpdateQuery, fetchMore, feedIds]);
 
   if (loading) return <LoadingScreen />;
 
