@@ -10,6 +10,7 @@ import HTMLEllipsis from "react-lines-ellipsis/lib/html";
 import Comment from "./Comment";
 import FollowSuggestions from "../shared/FollowSuggestions";
 import OptionsDialog from "../shared/OptionsDialog";
+import { formatDateToNow } from "../../utils/formatDate";
 
 function FeedPost({ post, index }) {
   const classes = useFeedPostStyles();
@@ -125,7 +126,7 @@ function FeedPost({ post, index }) {
             </div>
           ))}
           <Typography color="textSecondary" className={classes.datePosted}>
-            {created_at}
+            {formatDateToNow(created_at)}
           </Typography>
         </div>
         <Hidden xsDown>
