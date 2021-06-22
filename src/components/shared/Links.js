@@ -24,6 +24,7 @@ function Links({ path }) {
   });
   console.log("new notifications");
   console.log(newNotifications);
+  console.log(currentUserId);
   const hasNotifications = newNotifications.length > 0;
   const classes = useNavbarStyles();
   const [showList, setShowList] = React.useState(false);

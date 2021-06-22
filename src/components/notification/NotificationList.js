@@ -17,6 +17,8 @@ function NotificationList({ handleHideList, notifications, currentUserId }) {
       userId: currentUserId,
       lastChecked: new Date().toISOString(),
     };
+    console.log("mounted notification list");
+    console.log(currentUserId);
     checkNotifications({ variables });
   }, [currentUserId, checkNotifications]);
 
