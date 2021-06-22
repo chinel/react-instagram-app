@@ -4,10 +4,23 @@ import { Link } from "react-router-dom";
 import { useNotificationListStyles } from "../../styles";
 import FollowButton from "../shared/FollowButton";
 import useOutsideClick from "@rooks/use-outside-click";
-function NotificationList({ handleHideList, notifications }) {
+import { CHECK_NOTIFICATIONS } from "../../graphql/mutations";
+import { useMutation } from "@apollo/react-hooks";
+function NotificationList({ handleHideList, notifications, currentUserId }) {
   const listContainerRef = React.useRef();
   const classes = useNotificationListStyles();
   useOutsideClick(listContainerRef, handleHideList);
+  const [checkNotifications] = useMutation(CHECK_NOTIFICATIONS);
+
+  React.useEffect(() => {
+    const variables = {
+      userId: currentUserId,
+      lastChecked: new Date().toISOString(),
+    };
+    console.log("mounted notification list");
+    console.log(currentUserId);
+    checkNotifications({ variables });
+  }, [currentUserId, checkNotifications]);
 
   return (
     <Grid className={classes.listContainer}>

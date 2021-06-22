@@ -18,12 +18,13 @@ import AddPostDialog from "../post/AddPostDialog";
 import isAfter from "date-fns/isAfter";
 
 function Links({ path }) {
-  const { me } = React.useContext(UserContext);
+  const { me, currentUserId } = React.useContext(UserContext);
   const newNotifications = me.notifications.filter((created_at) => {
     isAfter(new Date(created_at), new Date(me.last_checked));
   });
   console.log("new notifications");
   console.log(newNotifications);
+  console.log(currentUserId);
   const hasNotifications = newNotifications.length > 0;
   const classes = useNavbarStyles();
   const [showList, setShowList] = React.useState(false);
@@ -68,6 +69,7 @@ function Links({ path }) {
         <NotificationList
           notifications={me.notifications}
           handleHideList={handleHideList}
+          currentUserId={currentUserId}
         />
       )}
 
@@ -95,7 +97,10 @@ function Links({ path }) {
           TransitionComponent={Zoom}
           title={<NotificationTooltip notifications={newNotifications} />}
         >
-          <div className={classes.notifications} onClick={handleToggleList}>
+          <div
+            className={hasNotifications ? classes.notifications : ""}
+            onClick={handleToggleList}
+          >
             {showList ? <LikeActiveIcon /> : <LikeIcon />}
           </div>
         </RedTooltip>
