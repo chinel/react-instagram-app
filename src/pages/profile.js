@@ -40,7 +40,7 @@ function ProfilePage() {
       <div className={classes.container}>
         <Hidden xsDown>
           <Card className={classes.cardLarge}>
-            <ProfilePicture isOwner={isOwner} />
+            <ProfilePicture isOwner={isOwner} image={user.profile_image} />
             <CardContent className={classes.cardContentLarge}>
               <ProfileNameSection
                 user={user}
@@ -56,7 +56,11 @@ function ProfilePage() {
           <Card className={classes.cardSmall}>
             <CardContent>
               <section className={classes.sectionSmall}>
-                <ProfilePicture size={77} isOwner={isOwner} />
+                <ProfilePicture
+                  size={77}
+                  isOwner={isOwner}
+                  image={user.profile_image}
+                />
                 <ProfileNameSection
                   user={user}
                   isOwner={isOwner}
