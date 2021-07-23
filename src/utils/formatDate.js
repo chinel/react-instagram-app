@@ -12,6 +12,7 @@ export function formatePostDate(date) {
 export function formatDateToNowShort(date) {
   // 5 days ago -> 5d
   // 7 Weeks ago -> 7w
+  console.log(date);
   return formatDistance(new Date(date), new Date(Date.now()))
     .split(" ")
     .map((s, i) => (i === 1 ? s[0] : s))

@@ -88,6 +88,22 @@ export const GET_USER_PROFILE = gql`
           }
         }
       }
+      saved_posts {
+        post {
+          id
+          media
+          likes_aggregate {
+            aggregate {
+              count
+            }
+          }
+          comments_aggregate {
+            aggregate {
+              count
+            }
+          }
+        }
+      }
     }
   }
 `;
