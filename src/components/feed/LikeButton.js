@@ -1,9 +1,12 @@
 import React from "react";
+import { UserContext } from "../../App";
 import { LikeIcon, UnlikeIcon } from "../../icons";
 import { useFeedPostStyles } from "../../styles";
 
-function LikeButton() {
+function LikeButton({ postId, authorId, likes }) {
   let classes = useFeedPostStyles();
+  const { currentUserId } = React.useContext(UserContext);
+  const isAreadyLiked = likes.some(({ user_id }) => user_id === currentUserId);
   const [liked, setLiked] = React.useState(false);
   const Icon = liked ? UnlikeIcon : LikeIcon;
   const className = liked ? classes.liked : classes.like;
