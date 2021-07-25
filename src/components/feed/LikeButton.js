@@ -6,8 +6,8 @@ import { useFeedPostStyles } from "../../styles";
 function LikeButton({ postId, authorId, likes }) {
   let classes = useFeedPostStyles();
   const { currentUserId } = React.useContext(UserContext);
-  const isAreadyLiked = likes.some(({ user_id }) => user_id === currentUserId);
-  const [liked, setLiked] = React.useState(false);
+  const isAlreadyLiked = likes.some(({ user_id }) => user_id === currentUserId);
+  const [liked, setLiked] = React.useState(isAlreadyLiked);
   const Icon = liked ? UnlikeIcon : LikeIcon;
   const className = liked ? classes.liked : classes.like;
   const onClick = liked ? handleUnlike : handleLike;
