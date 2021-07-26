@@ -14,22 +14,25 @@ function LikeButton({ postId, authorId, likes }) {
   const className = liked ? classes.liked : classes.like;
   const onClick = liked ? handleUnlike : handleLike;
   const [likePost] = useMutation(LIKE_POST);
-  const [unLikePost] = useMutation(UNLIKE_POST);
+  const [unlikePost] = useMutation(UNLIKE_POST);
   const variables = {
     postId,
     userId: currentUserId,
     profileId: authorId,
   };
 
+  function handleUpdate() {}
+
   function handleLike() {
     //console.log("like");
     setLiked(true);
-    likePost({ variables });
+    likePost({ variables, update: handleUpdate });
   }
 
   function handleUnlike() {
-    console.log("unlike");
+    // console.log("unlike");
     setLiked(false);
+    unlikePost({ variables, update: handleUpdate });
   }
 
   return <Icon className={className} onClick={onClick} />;
