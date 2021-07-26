@@ -1,5 +1,7 @@
+import { useMutation } from "@apollo/react-hooks";
 import React from "react";
 import { UserContext } from "../../App";
+import { LIKE_POST, UNLIKE_POST } from "../../graphql/mutations";
 import { LikeIcon, UnlikeIcon } from "../../icons";
 import { useFeedPostStyles } from "../../styles";
 
@@ -11,10 +13,18 @@ function LikeButton({ postId, authorId, likes }) {
   const Icon = liked ? UnlikeIcon : LikeIcon;
   const className = liked ? classes.liked : classes.like;
   const onClick = liked ? handleUnlike : handleLike;
+  const [likePost] = useMutation(LIKE_POST);
+  const [unLikePost] = useMutation(UNLIKE_POST);
+  const variables = {
+    postId,
+    userId: currentUserId,
+    profileId: authorId,
+  };
 
   function handleLike() {
-    console.log("like");
+    //console.log("like");
     setLiked(true);
+    likePost({ variables });
   }
 
   function handleUnlike() {
