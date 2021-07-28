@@ -2,7 +2,7 @@ import React from "react";
 import { RemoveIcon, SaveIcon } from "../../icons";
 import { useFeedPostStyles } from "../../styles";
 
-function SaveButton() {
+function SaveButton({ savedPosts, postId }) {
   const classes = useFeedPostStyles();
   const [saved, setSaved] = React.useState(false);
   const Icon = saved ? RemoveIcon : SaveIcon;
