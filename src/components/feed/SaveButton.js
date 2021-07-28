@@ -1,10 +1,15 @@
 import React from "react";
 import { RemoveIcon, SaveIcon } from "../../icons";
 import { useFeedPostStyles } from "../../styles";
+import { UserContext } from "../../App";
 
 function SaveButton({ savedPosts, postId }) {
   const classes = useFeedPostStyles();
-  const [saved, setSaved] = React.useState(false);
+  const { currentUserId, feedIds } = React.useContext(UserContext);
+  const isAlreadySaved = savedPosts.some(
+    ({ user_id }) => user_id === currentUserId
+  );
+  const [saved, setSaved] = React.useState(isAlreadySaved);
   const Icon = saved ? RemoveIcon : SaveIcon;
   const onClick = saved ? handleRemove : handleSave;
 
