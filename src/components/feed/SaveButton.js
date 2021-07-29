@@ -14,7 +14,7 @@ function SaveButton({ savedPosts, postId }) {
   const [saved, setSaved] = React.useState(isAlreadySaved);
   const Icon = saved ? RemoveIcon : SaveIcon;
   const onClick = saved ? handleRemove : handleSave;
-  const [savedPost] = useMutation(SAVE_POST);
+  const [savePost] = useMutation(SAVE_POST);
   const [removePost] = useMutation(UNSAVE_POST);
   const variables = {
     postId,
@@ -28,8 +28,9 @@ function SaveButton({ savedPosts, postId }) {
   }
 
   function handleRemove() {
-    console.log("removed");
+    // console.log("removed");
     setSaved(false);
+    removePost({ variables });
   }
 
   return <Icon className={classes.saveIcon} onClick={onClick} />;
