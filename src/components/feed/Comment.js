@@ -1,9 +1,11 @@
 import { Button, TextField } from "@material-ui/core";
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../App";
 import { useFeedPostStyles } from "../../styles";
 
-function Comment() {
+function Comment({ postId }) {
   const classes = useFeedPostStyles();
+  const { feedIds, currentUserId } = useContext(UserContext);
   const [content, setContent] = React.useState("");
   return (
     <div className={classes.commentContainer}>

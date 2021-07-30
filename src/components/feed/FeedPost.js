@@ -141,7 +141,7 @@ function FeedPost({ post, index }) {
         </div>
         <Hidden xsDown>
           <Divider />
-          <Comment />
+          <Comment postId={id} />
         </Hidden>
       </article>
       {showFollowSuggestion && <FollowSuggestions />}
