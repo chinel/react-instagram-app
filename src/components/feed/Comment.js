@@ -3,6 +3,7 @@ import { Button, TextField } from "@material-ui/core";
 import React, { useContext } from "react";
 import { UserContext } from "../../App";
 import { CREATE_COMMENT } from "../../graphql/mutations";
+import { GET_FEED } from "../../graphql/queries";
 import { useFeedPostStyles } from "../../styles";
 
 function Comment({ postId }) {
@@ -10,6 +11,15 @@ function Comment({ postId }) {
   const { feedIds, currentUserId } = useContext(UserContext);
   const [content, setContent] = React.useState("");
   const [createComment] = useMutation(CREATE_COMMENT);
+
+  function handleUpdate(cache, result) {
+    const variables = { limit: 2, feedIds };
+    const data = cache.readQuery({
+      query: GET_FEED,
+      variables,
+    });
+    console.log({ data, result });
+  }
 
   function handleAddComment() {
     const variables = {
