@@ -1,4 +1,5 @@
 import { gql } from "apollo-boost";
+import { userFields } from "./fragments";
 
 export const CHECK_IF_USERNAME_TAKEN = gql`
   query CheckIfUsernameTaken($username: String!) {
@@ -42,12 +43,10 @@ export const SEARCH_USERS = gql`
         _or: [{ username: { _ilike: $query } }, { name: { _ilike: $query } }]
       }
     ) {
-      id
-      name
-      username
-      profile_image
+      ...userFields
     }
   }
+  ${userFields}
 `;
 
 export const GET_USER_PROFILE = gql`
@@ -124,12 +123,10 @@ export const SUGGEST_USERS = gql`
         ]
       }
     ) {
-      id
-      username
-      name
-      profile_image
+      ...userFields
     }
   }
+  ${userFields}
 `;
 
 //post with the most likes and comments at the top, newest to oldest
