@@ -9,3 +9,20 @@ export const userFields = gql`
     profile_image
   }
 `;
+
+export const gridPostFields = gql`
+  fragment gridPostFields on posts {
+    id
+    media
+    likes_aggregate {
+      aggregate {
+        count
+      }
+    }
+    comments_aggregate {
+      aggregate {
+        count
+      }
+    }
+  }
+`;
