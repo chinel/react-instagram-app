@@ -1,5 +1,5 @@
 import { gql } from "apollo-boost";
-import { userFields } from "./fragments";
+import { gridPostFields, userFields } from "./fragments";
 
 export const CHECK_IF_USERNAME_TAKEN = gql`
   query CheckIfUsernameTaken($username: String!) {
@@ -74,37 +74,16 @@ export const GET_USER_PROFILE = gql`
         }
       }
       posts(order_by: { created_at: desc }) {
-        id
-        media
-        likes_aggregate {
-          aggregate {
-            count
-          }
-        }
-        comments_aggregate {
-          aggregate {
-            count
-          }
-        }
+        ...gridPostFields
       }
       saved_posts(order_by: { created_at: desc }) {
         post {
-          id
-          media
-          likes_aggregate {
-            aggregate {
-              count
-            }
-          }
-          comments_aggregate {
-            aggregate {
-              count
-            }
-          }
+          ...gridPostFields
         }
       }
     }
   }
+  ${gridPostFields}
 `;
 
 //suggest users from folllowers and also users created around the same time
