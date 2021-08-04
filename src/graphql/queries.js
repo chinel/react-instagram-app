@@ -120,20 +120,10 @@ export const EXPLORE_POSTS = gql`
       }
       where: { id: { _nin: $followingIds } }
     ) {
-      id
-      media
-      likes_aggregate {
-        aggregate {
-          count
-        }
-      }
-      comments_aggregate {
-        aggregate {
-          count
-        }
-      }
+      ...gridPostFields
     }
   }
+  ${gridPostFields}
 `;
 
 export const GET_MORE_POSTS_FROM_USER = gql`
