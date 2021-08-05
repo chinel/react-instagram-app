@@ -132,20 +132,10 @@ export const GET_MORE_POSTS_FROM_USER = gql`
       limit: 6
       where: { user_id: { _eq: $userId }, _not: { id: { _eq: $postId } } }
     ) {
-      id
-      media
-      likes_aggregate {
-        aggregate {
-          count
-        }
-      }
-      comments_aggregate {
-        aggregate {
-          count
-        }
-      }
+      ...gridPostFields
     }
   }
+  ${gridPostFields}
 `;
 
 export const GET_POST = gql`
