@@ -19,20 +19,29 @@ class ErrorBoundary extends React.Component {
   }
 
   render() {
-    return <Typography component="h1"></Typography>;
+    if (this.state.hasError) {
+      return (
+        <Typography component="h1" variant="h6" align="center">
+          Oops! Something went wrong.
+        </Typography>
+      );
+    }
+    return this.props.children;
   }
 }
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <AuthProvider>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router>
-          <App />
-        </Router>
-      </MuiThemeProvider>
-    </AuthProvider>
-  </ApolloProvider>,
+  <ErrorBoundary>
+    <ApolloProvider client={client}>
+      <AuthProvider>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router>
+            <App />
+          </Router>
+        </MuiThemeProvider>
+      </AuthProvider>
+    </ApolloProvider>
+  </ErrorBoundary>,
   document.getElementById("root")
 );
