@@ -22,9 +22,9 @@ function Links({ path }) {
   const newNotifications = me.notifications.filter((created_at) => {
     isAfter(new Date(created_at), new Date(me.last_checked));
   });
-  console.log("new notifications");
-  console.log(newNotifications);
-  console.log(currentUserId);
+  //console.log("new notifications");
+  //console.log(newNotifications);
+  //console.log(currentUserId);
   const hasNotifications = newNotifications.length > 0;
   const classes = useNavbarStyles();
   const [showList, setShowList] = React.useState(false);

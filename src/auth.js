@@ -110,7 +110,7 @@ function AuthProvider({ children }) {
 
   async function updateEmail(email) {
     await authState.user.updateEmail(email);
-    console.log(authState.user);
+    //console.log(authState.user);
   }
 
   if (authState.status === "loading") {

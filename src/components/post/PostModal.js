@@ -9,7 +9,7 @@ function PostModal() {
   const history = useHistory();
   const classes = usePostModalStyles();
   const { postId } = useParams();
-  console.log({ postId });
+  // console.log({ postId });
 
   return (
     <>
