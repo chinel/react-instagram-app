@@ -7,7 +7,7 @@ import { SAVE_POST, UNSAVE_POST } from "../../graphql/mutations";
 
 function SaveButton({ savedPosts, postId }) {
   const classes = useFeedPostStyles();
-  const { currentUserId, feedIds } = React.useContext(UserContext);
+  const { currentUserId } = React.useContext(UserContext);
   const isAlreadySaved = savedPosts.some(
     ({ user_id }) => user_id === currentUserId
   );
