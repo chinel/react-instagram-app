@@ -2,7 +2,6 @@ import { useQuery } from "@apollo/react-hooks";
 import { Typography } from "@material-ui/core";
 import React from "react";
 import { UserContext } from "../../App";
-import { getDefaultPost } from "../../data";
 import { EXPLORE_POSTS } from "../../graphql/queries";
 import { LoadingLargeIcon } from "../../icons";
 import { useExploreGridStyles } from "../../styles";
