@@ -111,14 +111,14 @@ export const SUGGEST_USERS = gql`
 //post with the most likes and comments at the top, newest to oldest
 //where posts are not from the users we are following
 export const EXPLORE_POSTS = gql`
-  query explorePosts($followingIds: [uuid!]!) {
+  query explorePosts($feedIds: [uuid!]!) {
     posts(
       order_by: {
         created_at: desc
         likes_aggregate: { count: desc }
         comments_aggregate: { count: desc }
       }
-      where: { id: { _nin: $followingIds } }
+      where: { user_id: { _nin: $feedIds } }
     ) {
       ...gridPostFields
     }
@@ -127,8 +127,7 @@ export const EXPLORE_POSTS = gql`
 `;
 
 export const GET_MORE_POSTS_FROM_USER = gql`
-  
-query getMorePostsFromUser($userId: uuid!, $postId: uuid!) {
+  query getMorePostsFromUser($userId: uuid!, $postId: uuid!) {
     posts(
       limit: 6
       where: { user_id: { _eq: $userId }, _not: { id: { _eq: $postId } } }
