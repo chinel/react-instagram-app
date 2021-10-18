@@ -20,7 +20,10 @@ function ProfilePage() {
   const classes = useProfilePageStyles();
   const [showOptionsMenu, setShowOptionsMenu] = React.useState(false);
   const variables = { username };
-  const { data, loading } = useQuery(GET_USER_PROFILE, { variables });
+  const { data, loading } = useQuery(GET_USER_PROFILE, {
+    variables,
+    fetchPolicy: "no-cache",
+  });
 
   if (loading) return <LoadingScreen />;
 

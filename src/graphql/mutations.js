@@ -186,7 +186,7 @@ export const FOLLOW_USER = gql`
   }
 `;
 
-export const UNFOLLOW_USER_ = gql`
+export const UNFOLLOW_USER = gql`
   mutation unFollowUser($userIdToFollow: uuid!, $currentUserId: uuid!) {
     delete_followers(
       where: {
