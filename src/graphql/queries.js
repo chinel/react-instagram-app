@@ -109,7 +109,7 @@ export const GET_USER_PROFILE = gql`
 `;
 
 //suggest users from folllowers and also users created around the same time
-export const SUGGEST_USER = gql`
+export const SUGGEST_USERS = gql`
   query suggestUsers(
     $limit: Int!
     $followerIds: [uuid!]!
@@ -128,6 +128,68 @@ export const SUGGEST_USER = gql`
       username
       name
       profile_image
+    }
+  }
+`;
+
+//post with the most likes and comments at the top, newest to oldest
+//where posts are not from the users we are following
+export const EXPLORE_POSTS = gql`
+  query explorePosts($followingIds: [uuid!]!) {
+    posts(
+      order_by: {
+        created_at: desc
+        likes_aggregate: { count: desc }
+        comments_aggregate: { count: desc }
+      }
+      where: { id: { _nin: $followingIds } }
+    ) {
+      id
+      media
+      likes_aggregate {
+        aggregate {
+          count
+        }
+      }
+      comments_aggregate {
+        aggregate {
+          count
+        }
+      }
+    }
+  }
+`;
+
+export const GET_MORE_POSTS_FROM_USER = gql`
+  query getMorePostsFromUser($userId: uuid!, $postId: uuid!) {
+    posts(
+      limit: 6
+      where: { user_id: { _eq: $userId }, _not: { id: { _eq: $postId } } }
+    ) {
+      id
+      media
+      likes_aggregate {
+        aggregate {
+          count
+        }
+      }
+      comments_aggregate {
+        aggregate {
+          count
+        }
+      }
+    }
+  }
+`;
+
+export const GET_POST = gql`
+  query getPost($postId: uuid!) {
+    posts_by_pk(id: $postId) {
+      id
+      user {
+        id
+        username
+      }
     }
   }
 `;

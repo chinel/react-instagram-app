@@ -6,7 +6,7 @@ import FollowButton from "./FollowButton";
 
 function FollowSuggestionsItem({ user }) {
   const classes = useFollowSuggestionsStyles();
-  const { profile_image, username, name } = user;
+  const { profile_image, username, name, id } = user;
 
   return (
     <div>
@@ -37,7 +37,7 @@ function FollowSuggestionsItem({ user }) {
           >
             {name}
           </Typography>
-          <FollowButton side={false} />
+          <FollowButton id={id} side={false} />
         </Link>
       </div>
     </div>
