@@ -12,7 +12,7 @@ import { UserContext } from "../../App";
 function FeedSideSuggestions() {
   const classes = useFeedSideSuggestionsStyles();
   const { me, followerIds } = React.useContext(UserContext);
-  const variables = { limit: 5, followerIds, createdAt: me.createdAt };
+  const variables = { limit: 5, followerIds, createdAt: me.created_at };
   const { data, loading } = useQuery(SUGGEST_USERS, { variables });
 
   return (
@@ -34,7 +34,7 @@ function FeedSideSuggestions() {
           data.users.map((user) => (
             <div key={user.id} className={classes.card}>
               <UserCard user={user} />
-              <FollowButton side />
+              <FollowButton id={user.id} side />
             </div>
           ))
         )}

@@ -9,15 +9,38 @@ import LoadingScreen from "../components/shared/LoadingScreen";
 import { LoadingLargeIcon } from "../icons";
 import FeedPostSkeleton from "../components/feed/FeedPostSkeleton";
 import { UserContext } from "../App";
+import { useQuery } from "@apollo/react-hooks";
+import { GET_FEED } from "../graphql/queries";
+import usePageBottom from "../utils/usePageBottom";
 
 const FeedPost = React.lazy(() => import("../components/feed/FeedPost"));
 
 function FeedPage() {
   const classes = useFeedPageStyles();
-  const { me, currentUserId } = React.useContext(UserContext);
-  const [isEndOfFeed] = React.useState(false);
-
+  const { me, feedIds } = React.useContext(UserContext);
+  const [isEndOfFeed, setIsEndOfFeed] = React.useState(false);
+  const variables = { feedIds, limit: 2 };
+  const { data, loading, fetchMore } = useQuery(GET_FEED, { variables });
+  const isPageBottom = usePageBottom();
   // let loading = false;
+
+  function handleUpdateQuery(prev, { fetchMoreResult }) {
+    if (fetchMoreResult.post.length === 0) {
+      setIsEndOfFeed(true);
+      return prev;
+    }
+    return {
+      posts: [...prev.posts, ...fetchMoreResult.posts],
+    };
+  }
+
+  React.useEffect(() => {
+    if (!isPageBottom || !data) return;
+    const lastTimestamp = data.posts[data.posts.length - 1].created_at;
+    const variables = { feedIds, limit: 2, lastTimestamp };
+    fetchMore({ variables, updateQuery: handleUpdateQuery });
+  }, [data, isPageBottom, handleUpdateQuery, fetchMore]);
+
   if (loading) return <LoadingScreen />;
 
   return (
@@ -25,13 +48,11 @@ function FeedPage() {
       <div className={classes.container}>
         {/*Feed Posts */}
         <div>
-          {Array.from({ length: 5 }, () => getDefaultPost()).map(
-            (post, index) => (
-              <React.Suspense key={post.id} fallback={<FeedPostSkeleton />}>
-                <FeedPost post={post} index={index} />
-              </React.Suspense>
-            )
-          )}
+          {data.posts.map((post, index) => (
+            <React.Suspense key={post.id} fallback={<FeedPostSkeleton />}>
+              <FeedPost post={post} index={index} />
+            </React.Suspense>
+          ))}
         </div>
         {/*Sidebar */}
         <Hidden smDown>
