@@ -1,4 +1,9 @@
-import { format, formatDistance, isThisYear } from "date-fns";
+import {
+  format,
+  formatDistance,
+  isThisYear,
+  formatDistanceToNow,
+} from "date-fns";
 
 export function formatePostDate(date) {
   // If the post was created this Year format example - March 23
@@ -7,6 +12,10 @@ export function formatePostDate(date) {
   const formatLong = format(new Date(date), "MMMM d, yyy").toUpperCase();
 
   return isThisYear(new Date(date)) ? formatShort : formatLong;
+}
+
+export function formatDateToNow(date) {
+  return formatDistanceToNow(new Date(date), { addSuffix: true }).toUpperCase();
 }
 
 export function formatDateToNowShort(date) {
