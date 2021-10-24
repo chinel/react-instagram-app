@@ -11,6 +11,7 @@ import Comment from "./Comment";
 import FollowSuggestions from "../shared/FollowSuggestions";
 import OptionsDialog from "../shared/OptionsDialog";
 import { formatDateToNow } from "../../utils/formatDate";
+import Img from "react-graceful-image";
 
 function FeedPost({ post, index }) {
   const classes = useFeedPostStyles();
@@ -48,7 +49,7 @@ function FeedPost({ post, index }) {
         </div>
         {/*Feed Post Image */}
         <div>
-          <img src={media} alt="Post Media" className={classes.image} />
+          <Img src={media} alt="Post Media" className={classes.image} />
         </div>
         {/*Feed Post Buttons*/}
         <div className={classes.postButtonsWrapper}>
@@ -136,7 +137,11 @@ function FeedPost({ post, index }) {
       </article>
       {showFollowSuggestion && <FollowSuggestions />}
       {showOptionsDialog && (
-        <OptionsDialog onClose={() => setShowOptionsDialog(false)} />
+        <OptionsDialog
+          authorId={user.id}
+          postId={id}
+          onClose={() => setShowOptionsDialog(false)}
+        />
       )}
     </>
   );
