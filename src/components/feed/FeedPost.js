@@ -68,7 +68,7 @@ function FeedPost({ post, index }) {
               <CommentIcon />
             </Link>
             <ShareIcon />
-            <SaveButton />
+            <SaveButton savedPosts={saved_posts} postId={id} />
           </div>
           <Typography className={classes.likes} variant="subtitle2">
             <span>{likesCount === 1 ? "1 like" : `${likesCount} likes`}</span>
@@ -141,7 +141,7 @@ function FeedPost({ post, index }) {
         </div>
         <Hidden xsDown>
           <Divider />
-          <Comment />
+          <Comment postId={id} />
         </Hidden>
       </article>
       {showFollowSuggestion && <FollowSuggestions />}
