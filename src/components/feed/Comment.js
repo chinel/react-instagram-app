@@ -19,6 +19,30 @@ function Comment({ postId }) {
       variables,
     });
     console.log({ data, result });
+    const oldComment = result.data.insert_comments.returning[0];
+    const newComment = {
+      ...oldComment,
+      user: { ...oldComment.user },
+    };
+    const posts = data.posts.map((post) => {
+      const newPost = {
+        ...post,
+        comments: [...post.comments, newComment],
+        comments_aggregate: {
+          ...post.comments_aggregate,
+          aggregate: {
+            ...post.comments_aggregate.aggregate,
+            count: post.comments_aggregate.aggregate.count + 1,
+          },
+        },
+      };
+      return post.id === postId ? newPost : post;
+    });
+    cache.writeQuery({
+      query: GET_FEED,
+      data: { posts },
+    });
+    setContent("");
   }
 
   function handleAddComment() {

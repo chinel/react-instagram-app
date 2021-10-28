@@ -1,4 +1,5 @@
 import { gql } from "apollo-boost";
+import { gridPostFields, userFields } from "./fragments";
 
 export const CHECK_IF_USERNAME_TAKEN = gql`
   query CheckIfUsernameTaken($username: String!) {
@@ -42,12 +43,10 @@ export const SEARCH_USERS = gql`
         _or: [{ username: { _ilike: $query } }, { name: { _ilike: $query } }]
       }
     ) {
-      id
-      name
-      username
-      profile_image
+      ...userFields
     }
   }
+  ${userFields}
 `;
 
 export const GET_USER_PROFILE = gql`
@@ -75,37 +74,16 @@ export const GET_USER_PROFILE = gql`
         }
       }
       posts(order_by: { created_at: desc }) {
-        id
-        media
-        likes_aggregate {
-          aggregate {
-            count
-          }
-        }
-        comments_aggregate {
-          aggregate {
-            count
-          }
-        }
+        ...gridPostFields
       }
       saved_posts(order_by: { created_at: desc }) {
         post {
-          id
-          media
-          likes_aggregate {
-            aggregate {
-              count
-            }
-          }
-          comments_aggregate {
-            aggregate {
-              count
-            }
-          }
+          ...gridPostFields
         }
       }
     }
   }
+  ${gridPostFields}
 `;
 
 //suggest users from folllowers and also users created around the same time
@@ -124,12 +102,10 @@ export const SUGGEST_USERS = gql`
         ]
       }
     ) {
-      id
-      username
-      name
-      profile_image
+      ...userFields
     }
   }
+  ${userFields}
 `;
 
 //post with the most likes and comments at the top, newest to oldest
@@ -144,20 +120,10 @@ export const EXPLORE_POSTS = gql`
       }
       where: { id: { _nin: $followingIds } }
     ) {
-      id
-      media
-      likes_aggregate {
-        aggregate {
-          count
-        }
-      }
-      comments_aggregate {
-        aggregate {
-          count
-        }
-      }
+      ...gridPostFields
     }
   }
+  ${gridPostFields}
 `;
 
 export const GET_MORE_POSTS_FROM_USER = gql`
@@ -166,20 +132,10 @@ export const GET_MORE_POSTS_FROM_USER = gql`
       limit: 6
       where: { user_id: { _eq: $userId }, _not: { id: { _eq: $postId } } }
     ) {
-      id
-      media
-      likes_aggregate {
-        aggregate {
-          count
-        }
-      }
-      comments_aggregate {
-        aggregate {
-          count
-        }
-      }
+      ...gridPostFields
     }
   }
+  ${gridPostFields}
 `;
 
 export const GET_POST = gql`
@@ -232,7 +188,6 @@ export const GET_FEED = gql`
       created_at
       user {
         username
-        profile_image
       }
     }
     comments_aggregate {
