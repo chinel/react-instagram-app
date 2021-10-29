@@ -4,7 +4,7 @@ import React from "react";
 import { UserContext } from "../../App";
 import { EXPLORE_POSTS } from "../../graphql/queries";
 import { LoadingLargeIcon } from "../../icons";
-import { useExploreGridStyles } from "../../sgit tyles";
+import { useExploreGridStyles } from "../../styles";
 import GridPost from "../shared/GridPost";
 
 function ExploreGrid() {
