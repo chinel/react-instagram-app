@@ -12,15 +12,6 @@ import FollowSuggestions from "../shared/FollowSuggestions";
 import OptionsDialog from "../shared/OptionsDialog";
 import { formatDateToNow } from "../../utils/formatDate";
 import Img from "react-graceful-image";
-import {
-  SAVE_POST,
-  UNSAVE_POST,
-  LIKE_POST,
-  UNLIKE_POST,
-  CREATE_COMMENT,
-} from "../../graphql/mutations";
-import { GET_FEED } from "../../graphql/queries";
-import { useMutation } from "@apollo/react-hooks";
 
 function FeedPost({ post, index }) {
   const classes = useFeedPostStyles();

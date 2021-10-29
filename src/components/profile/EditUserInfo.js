@@ -38,7 +38,7 @@ function EditUserInfo({ user }) {
       await editUser({ variables });
       setOpen(true);
     } catch (error) {
-      console.log("Error updating profile", error);
+      //console.log("Error updating profile", error);
       handleError(error);
     }
   }

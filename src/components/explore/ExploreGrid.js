@@ -2,16 +2,15 @@ import { useQuery } from "@apollo/react-hooks";
 import { Typography } from "@material-ui/core";
 import React from "react";
 import { UserContext } from "../../App";
-import { getDefaultPost } from "../../data";
 import { EXPLORE_POSTS } from "../../graphql/queries";
 import { LoadingLargeIcon } from "../../icons";
-import { useExploreGridStyles } from "../../styles";
+import { useExploreGridStyles } from "../../sgit tyles";
 import GridPost from "../shared/GridPost";
 
 function ExploreGrid() {
   const classes = useExploreGridStyles();
-  const { followingIds } = React.useContext(UserContext);
-  const variables = { followingIds };
+  const { feedIds } = React.useContext(UserContext);
+  const variables = { feedIds };
   const { data, loading } = useQuery(EXPLORE_POSTS, { variables });
 
   return (

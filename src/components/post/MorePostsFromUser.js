@@ -2,7 +2,6 @@ import { useLazyQuery, useQuery } from "@apollo/react-hooks";
 import { Typography } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
-import { getDefaultPost, defaultUser } from "../../data";
 import { GET_MORE_POSTS_FROM_USER, GET_POST } from "../../graphql/queries";
 import { LoadingLargeIcon } from "../../icons";
 import { useMorePostsFromUserStyles } from "../../styles";

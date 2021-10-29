@@ -28,7 +28,7 @@ function LikeButton({ postId, authorId, likes }) {
       query: GET_FEED,
       variables,
     });
-    console.log({ result, data });
+    //console.log({ result, data });
     const typename = result.data.insert_likes?.__typename;
     const count = typename === "likes_mutation_response" ? 1 : -1;
     const posts = data.posts.map((post) => ({
